@@ -5,17 +5,26 @@
  */
 package laboratorio.evaluaciones;
 
-/**
- *
- * @author ferna
- */
 public class LaboratorioEvaluaciones {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        //Inserción   
+        CRUDs.CRUDUsuario.insert(true, "UMG Sistemas", "Administrador", "admin123");
+
+        //Actualizar
+        CRUDs.CRUDUsuario.update(1, true, "GT", "Administrador", "gt123");
+
+        //Anula
+        CRUDs.CRUDUsuario.anular(1);
+
+        //Universo
+        for (int i = 0; i < CRUDs.CRUDUsuario.universo().size(); i++) {
+            System.out.println("CODIGO USUARIO: " + CRUDs.CRUDUsuario.universo().get(i).getCodigoUsuario());
+            System.out.println("USUARIO: " + CRUDs.CRUDUsuario.universo().get(i).getNombreUsuario());
+            System.out.println("ROL: " + CRUDs.CRUDUsuario.universo().get(i).getRol());
+            System.out.println("CONSTRASEÑA: " + CRUDs.CRUDUsuario.universo().get(i).getContrasenia());
+        }
     }
-    
+
 }
