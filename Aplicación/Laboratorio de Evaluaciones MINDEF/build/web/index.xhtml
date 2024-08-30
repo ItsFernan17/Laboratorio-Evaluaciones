@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Ministerio de la Defensa</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="stylesIndex.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+
+    <body>
+        <div class="contenedor">
+            <div class="contenedorLogo">
+                <h:graphicImage value="src/logotipo.png" class="logo"/>
+            </div>
+            <div class="contenedorInformacion">
+                <h1>Iniciar Sesión</h1>
+                <h:form>
+                    <div class="contenedorDatos">
+                        <div class="col-12 md:col-4">
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon" id="contenedorIcono"><i class="pi pi-user"></i></div>
+                                <p:inputText placeholder="Usuario" id="usuario" class="input"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedorDatos">
+                        <div class="col-12 md:col-4">
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon" id="contenedorIcono"><i class="pi pi-lock"></i></div>
+                                <p:inputText placeholder="Contraseña" id="contra" class="input"/>
+                            </div>
+                        </div>
+                    </div>
+                    <p:commandButton type="button" value="INICIAR SESIÓN" class="boton"/>
+                </h:form>
+                <div class="otraInformacion">
+                    <p:link href="https://www.mindef.mil.gt/" value="¿Olvidaste tu contraseña?"></p:link>
+                    <p:link href="https://www.mindef.mil.gt/" value="Conoce más acerca del MINDEF"></p:link>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
+
+

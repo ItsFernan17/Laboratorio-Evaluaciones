@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2024 1:22:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.DetalleExamen" table="detalle_examen" catalog="laboratorio_evaluados" optimistic-lock="version">
+        <id name="codigoDetalle" type="int">
+            <column name="CODIGO_DETALLE" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="examen" class="Pojos.Examen" fetch="select">
+            <column name="EXAMEN" />
+        </many-to-one>
+        <many-to-one name="pregunta" class="Pojos.Pregunta" fetch="select">
+            <column name="PREGUNTA" />
+        </many-to-one>
+        <many-to-one name="usuarioByUsuarioIngreso" class="Pojos.Usuario" fetch="select">
+            <column name="USUARIO_INGRESO" />
+        </many-to-one>
+        <many-to-one name="usuarioByUsuarioModifica" class="Pojos.Usuario" fetch="select">
+            <column name="USUARIO_MODIFICA" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="respuestaDada" type="string">
+            <column name="RESPUESTA_DADA" length="150" />
+        </property>
+        <property name="fechaIngreso" type="timestamp">
+            <column name="FECHA_INGRESO" length="19" />
+        </property>
+        <property name="fechaModifica" type="timestamp">
+            <column name="FECHA_MODIFICA" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2024 1:22:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.Grado" table="grado" catalog="laboratorio_evaluados" optimistic-lock="version">
+        <id name="codigoGrado" type="int">
+            <column name="CODIGO_GRADO" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuarioByUsuarioIngreso" class="Pojos.Usuario" fetch="select">
+            <column name="USUARIO_INGRESO" />
+        </many-to-one>
+        <many-to-one name="usuarioByUsuarioModifica" class="Pojos.Usuario" fetch="select">
+            <column name="USUARIO_MODIFICA" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="nombreGrado" type="string">
+            <column name="NOMBRE_GRADO" length="100" />
+        </property>
+        <property name="fechaIngreso" type="timestamp">
+            <column name="FECHA_INGRESO" length="19" />
+        </property>
+        <property name="fechaModifica" type="timestamp">
+            <column name="FECHA_MODIFICA" length="19" />
+        </property>
+        <set name="personas" table="persona" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="GRADO" />
+            </key>
+            <one-to-many class="Pojos.Persona" />
+        </set>
+    </class>
+</hibernate-mapping>
