@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Aug 21, 2024 1:22:45 PM by Hibernate Tools 4.3.1
+// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Usuario  implements java.io.Serializable {
 
 
-     private Integer codigoUsuario;
+     private int codigoUsuario;
      private Boolean estado;
      private String nombreUsuario;
      private String rol;
@@ -46,7 +46,12 @@ public class Usuario  implements java.io.Serializable {
     public Usuario() {
     }
 
-    public Usuario(Boolean estado, String nombreUsuario, String rol, String contrasenia, Set preguntasForUsuarioModifica, Set certificacionsForUsarioIngresa, Set gradosForUsuarioIngreso, Set certificacionsForUsuarioModifica, Set poblacionsForUsuarioIngreso, Set gradosForUsuarioModifica, Set bancoRespuestasesForUsuarioModifica, Set motivoEvaluacionsForUsuarioModifica, Set motivoNoAptosForUsuarioIngreso, Set departamentoResidenciasForUsuarioIngreso, Set bancoRespuestasesForUsuarioIngreso, Set detalleExamensForUsuarioIngreso, Set motivoEvaluacionsForUsuarioIngreso, Set detalleExamensForUsuarioModifica, Set personasForUsuarioIngreso, Set poblacionsForUsuarioModifica, Set personasForUsuarioModifica, Set departamentoResidenciasForUsuarioModifica, Set empleosForUsuarioModifica, Set empleosForUsuarioIngreso, Set preguntasForUsuarioIngreso, Set comandosForUsuarioIngreso, Set examensForUsuarioIngreso, Set motivoNoAptosForUsuarioModifica, Set comandosForUsuarioModifica, Set examensForUsuarioModifica) {
+	
+    public Usuario(int codigoUsuario) {
+        this.codigoUsuario = codigoUsuario;
+    }
+    public Usuario(int codigoUsuario, Boolean estado, String nombreUsuario, String rol, String contrasenia, Set preguntasForUsuarioModifica, Set certificacionsForUsarioIngresa, Set gradosForUsuarioIngreso, Set certificacionsForUsuarioModifica, Set poblacionsForUsuarioIngreso, Set gradosForUsuarioModifica, Set bancoRespuestasesForUsuarioModifica, Set motivoEvaluacionsForUsuarioModifica, Set motivoNoAptosForUsuarioIngreso, Set departamentoResidenciasForUsuarioIngreso, Set bancoRespuestasesForUsuarioIngreso, Set detalleExamensForUsuarioIngreso, Set motivoEvaluacionsForUsuarioIngreso, Set detalleExamensForUsuarioModifica, Set personasForUsuarioIngreso, Set poblacionsForUsuarioModifica, Set personasForUsuarioModifica, Set departamentoResidenciasForUsuarioModifica, Set empleosForUsuarioModifica, Set empleosForUsuarioIngreso, Set preguntasForUsuarioIngreso, Set comandosForUsuarioIngreso, Set examensForUsuarioIngreso, Set motivoNoAptosForUsuarioModifica, Set comandosForUsuarioModifica, Set examensForUsuarioModifica) {
+       this.codigoUsuario = codigoUsuario;
        this.estado = estado;
        this.nombreUsuario = nombreUsuario;
        this.rol = rol;
@@ -79,11 +84,11 @@ public class Usuario  implements java.io.Serializable {
        this.examensForUsuarioModifica = examensForUsuarioModifica;
     }
    
-    public Integer getCodigoUsuario() {
+    public int getCodigoUsuario() {
         return this.codigoUsuario;
     }
     
-    public void setCodigoUsuario(Integer codigoUsuario) {
+    public void setCodigoUsuario(int codigoUsuario) {
         this.codigoUsuario = codigoUsuario;
     }
     public Boolean getEstado() {

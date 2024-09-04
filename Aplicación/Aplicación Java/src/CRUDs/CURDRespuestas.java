@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
 
 public class CURDRespuestas {
 
-    public static boolean insert(Boolean estado, String respuesta, Integer usuarioIngreso) {
+    public static boolean insert(String respuesta, Integer usuarioIngreso) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -31,7 +31,7 @@ public class CURDRespuestas {
             transaction = session.beginTransaction();
             if (insert == null) {
                 insert = new BancoRespuestas();
-                insert.setEstado(estado);
+                insert.setEstado(true);
                 insert.setRespuesta(respuesta);
                 Usuario usuario = new Usuario();
                 usuario.setCodigoUsuario(usuarioIngreso);
@@ -52,18 +52,18 @@ public class CURDRespuestas {
         return flag;
     }
 
-    public static boolean update(Integer codigoPregunta, Boolean estado, String respuesta, Integer usuarioModifica) {
+    public static boolean update(Integer codigoRespuesta, String respuesta, Integer usuarioModifica) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(BancoRespuestas.class);
-        criteria.add(Restrictions.eq("codigoPregunta", codigoPregunta));
+        criteria.add(Restrictions.eq("codigoRespuesta", codigoRespuesta));
         BancoRespuestas update = (BancoRespuestas) criteria.uniqueResult();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             if (update != null) {
-                update.setEstado(estado);
+                update.setEstado(true);
                 update.setRespuesta(respuesta);
                 Usuario usuario = new Usuario();
                 usuario.setCodigoUsuario(usuarioModifica);
@@ -91,7 +91,7 @@ public class CURDRespuestas {
             session.beginTransaction();
             Criteria criteria = session.createCriteria(BancoRespuestas.class);
             criteria.add(Restrictions.eq("estado", true));
-            criteria.addOrder(Order.asc("codigoPregunta"));
+            criteria.addOrder(Order.asc("codigoRespuesta"));
             lista = criteria.list();
         } catch (HibernateException e) {
             System.out.println("Error " + e);
@@ -101,11 +101,11 @@ public class CURDRespuestas {
         return lista;
     }
 
-    public static boolean anular(Integer codigoPregunta) {
+    public static boolean anular(Integer codigoRespuesta) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(BancoRespuestas.class);
-        criteria.add(Restrictions.eq("codigoPregunta", codigoPregunta));
+        criteria.add(Restrictions.eq("codigoRespuesta", codigoRespuesta));
         BancoRespuestas update = (BancoRespuestas) criteria.uniqueResult();
         Transaction transaction = null;
         try {

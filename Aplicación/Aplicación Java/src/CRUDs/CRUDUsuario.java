@@ -16,7 +16,7 @@ import org.hibernate.criterion.Restrictions;
 
 public class CRUDUsuario {
 
-    public static boolean insert(Boolean estado, String nombreUsuario, String rol, String contrasenia) {
+    public static boolean insert(String nombreUsuario, String rol, String contrasenia) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Usuario.class);
@@ -28,7 +28,7 @@ public class CRUDUsuario {
             transaction = session.beginTransaction();
             if (insert == null) {
                 insert = new Usuario();
-                insert.setEstado(estado);
+                insert.setEstado(true);
                 insert.setNombreUsuario(nombreUsuario);
                 insert.setRol(rol);
                 insert.setContrasenia(contrasenia);
@@ -47,7 +47,7 @@ public class CRUDUsuario {
         return flag;
     }
 
-    public static boolean update(Integer codigoUsuario, Boolean estado, String nombreUsuario, String rol, String contrasenia) {
+    public static boolean update(Integer codigoUsuario, String nombreUsuario, String rol, String contrasenia) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Usuario.class);
@@ -57,7 +57,7 @@ public class CRUDUsuario {
         try {
             transaction = session.beginTransaction();
             if (update != null) {
-                update.setEstado(estado);
+                update.setEstado(true);
                 update.setNombreUsuario(nombreUsuario);
                 update.setRol(rol);
                 update.setContrasenia(contrasenia);

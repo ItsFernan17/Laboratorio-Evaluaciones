@@ -41,18 +41,18 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="laboratorio_evaluados"/>
-  <table-filter match-name="poblacion"/>
-  <table-filter match-name="empleo"/>
-  <table-filter match-name="motivo_evaluacion"/>
-  <table-filter match-name="banco_respuestas"/>
-  <table-filter match-name="certificacion"/>
-  <table-filter match-name="comando"/>
-  <table-filter match-name="examen"/>
   <table-filter match-name="pregunta"/>
-  <table-filter match-name="detalle_examen"/>
   <table-filter match-name="persona"/>
-  <table-filter match-name="departamento_residencia"/>
   <table-filter match-name="motivo_no_apto"/>
-  <table-filter match-name="usuario"/>
+  <table-filter match-name="certificacion"/>
+  <table-filter match-name="departamento_residencia"/>
+  <table-filter match-name="examen"/>
+  <table-filter match-name="empleo"/>
   <table-filter match-name="grado"/>
+  <table-filter match-name="comando"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="poblacion"/>
+  <table-filter match-name="banco_respuestas"/>
+  <table-filter match-name="motivo_evaluacion"/>
+  <table-filter match-name="detalle_examen"/>
 </hibernate-reverse-engineering>

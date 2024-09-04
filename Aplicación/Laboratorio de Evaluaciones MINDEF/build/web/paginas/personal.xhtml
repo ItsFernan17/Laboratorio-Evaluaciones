@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton icon="pi pi-bars" styleClass="botonMenu"/>
+                    <h:graphicImage value="src/img/logotipo.png" alt="Logo" styleClass="logo" />
+                    <div class="ui-input-icon-left mr-2">
+                        <i class="pi pi-fw pi-search"></i>
+                        <p:inputText placeholder="Buscar" />
+                    </div>
+                    <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/>
+                    <div class="linea"></div>
+                    <h:graphicImage value="src/img/icono_usuario.png" alt="Icono Usuario" styleClass="iconoUsuario" />
+                    <div class="usuario-info">
+                        <h:outputText value="Nombre del Usuario" styleClass="nombreUsuario" />
+                        <h:outputText value="Rol del Usuario" styleClass="rolUsuario" />
+                    </div>
+                </p:toolbarGroup>
+            </p:toolbar>
+        </h:form>
+        <h:form>
+            <div class="contenedor">
+                <div class="contenedorTitulo">
+                    <div class="titulo">
+                        <i class="pi pi-user"></i><h1>Personal</h1>
+                    </div>
+                </div>
+                <h2 class="tituloSeccion">
+                    Datos Personales
+                    <span class="linea"></span>
+                </h2>
+                <p:panel class="panel" header="Registrar Nuevo Personal">
+                    <div class="contenedorInput">
+                        <h5 class="tituloInput">Documento de Identificación</h5>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-id-card"></i>
+                            <p:inputText placeholder="DPI" required="true" styleClass="longitud"/>
+                        </span>
+                    </div>
+                    <div class="contenedorInput">
+                        <h5 class="tituloInput">Nombre Completo</h5>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-user"></i>
+                            <p:inputText placeholder="Nombre y apellidos" required="true" styleClass="longitud"/>
+                        </span>
+                    </div>
+                    <div class="contenedorInput">
+                        <h5 class="tituloInput">Número de Telefono</h5>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-phone"></i>
+                            <p:inputText placeholder="(+502)" required="true" styleClass="longitud"/>
+                        </span>
+                    </div>
+                    <div class="contenedorInput">                    
+                        <h5 class="tituloInput">Departamento de Residencia</h5>
+                        <p:selectOneMenu styleClass="ui-selectonemenu">
+                            <f:selectItem itemLabel="Seleccionar departamento" itemValue="0"/>
+                        </p:selectOneMenu> 
+                    </div>
+                    <div class="contenedorInput">                    
+                        <h5 class="tituloInput">Población Institucional</h5>
+                        <p:selectOneMenu styleClass="ui-selectonemenu">
+                            <f:selectItem itemLabel="Seleccionar población" itemValue="0"/>
+                        </p:selectOneMenu> 
+                    </div>
+                    <div class="contenedorInput">                    
+                        <h5 class="tituloInput">Grado Militar</h5>
+                        <p:selectOneMenu styleClass="ui-selectonemenu">
+                            <f:selectItem itemLabel="Seleccionar grado militar" itemValue="0"/>
+                        </p:selectOneMenu> 
+                    </div>   
+                    <div class="contenedorBoton">
+                        <p:commandButton type="button" value="Registrar Personal" icon="pi pi-user-plus" class="boton"/> 
+                        <p:commandButton type="button" value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
+                    </div>
+                    
+                </p:panel>
+            </div>                 
+        </h:form>
+    </h:body>
+</html>

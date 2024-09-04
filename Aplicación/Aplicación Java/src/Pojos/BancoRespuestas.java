@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Aug 21, 2024 1:22:45 PM by Hibernate Tools 4.3.1
+// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class BancoRespuestas  implements java.io.Serializable {
 
 
-     private int codigoPregunta;
+     private int codigoRespuesta;
      private Usuario usuarioByUsuarioModifica;
      private Usuario usuarioByUsuarioIngreso;
      private Boolean estado;
@@ -25,11 +25,11 @@ public class BancoRespuestas  implements java.io.Serializable {
     }
 
 	
-    public BancoRespuestas(int codigoPregunta) {
-        this.codigoPregunta = codigoPregunta;
+    public BancoRespuestas(int codigoRespuesta) {
+        this.codigoRespuesta = codigoRespuesta;
     }
-    public BancoRespuestas(int codigoPregunta, Usuario usuarioByUsuarioModifica, Usuario usuarioByUsuarioIngreso, Boolean estado, String respuesta, Date fechaIngreso, Date fechaModifica, Set preguntas) {
-       this.codigoPregunta = codigoPregunta;
+    public BancoRespuestas(int codigoRespuesta, Usuario usuarioByUsuarioModifica, Usuario usuarioByUsuarioIngreso, Boolean estado, String respuesta, Date fechaIngreso, Date fechaModifica, Set preguntas) {
+       this.codigoRespuesta = codigoRespuesta;
        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
        this.estado = estado;
@@ -39,12 +39,12 @@ public class BancoRespuestas  implements java.io.Serializable {
        this.preguntas = preguntas;
     }
    
-    public int getCodigoPregunta() {
-        return this.codigoPregunta;
+    public int getCodigoRespuesta() {
+        return this.codigoRespuesta;
     }
     
-    public void setCodigoPregunta(int codigoPregunta) {
-        this.codigoPregunta = codigoPregunta;
+    public void setCodigoRespuesta(int codigoRespuesta) {
+        this.codigoRespuesta = codigoRespuesta;
     }
     public Usuario getUsuarioByUsuarioModifica() {
         return this.usuarioByUsuarioModifica;

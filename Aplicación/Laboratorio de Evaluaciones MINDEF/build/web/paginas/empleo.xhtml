@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton icon="pi pi-bars" styleClass="botonMenu"/>
+                    <h:graphicImage value="src/img/logotipo.png" alt="Logo" styleClass="logo" />
+                    <div class="ui-input-icon-left mr-2">
+                        <i class="pi pi-fw pi-search"></i>
+                        <p:inputText placeholder="Buscar" />
+                    </div>
+                    <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/>
+                    <div class="linea"></div>
+                    <h:graphicImage value="src/img/icono_usuario.png" alt="Icono Usuario" styleClass="iconoUsuario" />
+                    <div class="usuario-info">
+                        <h:outputText value="Nombre del Usuario" styleClass="nombreUsuario" />
+                        <h:outputText value="Rol del Usuario" styleClass="rolUsuario" />
+                    </div>
+                </p:toolbarGroup>
+            </p:toolbar>
+        </h:form>
+        <h:form>
+            <div class="contenedor">
+                <div class="contenedorTitulo">
+                    <div class="titulo">
+                        <i class="pi pi-briefcase"></i><h1>Empleo a Solicitar</h1>
+                    </div>
+                </div>
+                <h2 class="tituloSeccion">
+                    Información del Empleo
+                    <span class="linea"></span>
+                </h2>
+                <p:panel class="panel" header="Registrar Nuevo Empleo Disponible">
+                    <div class="contenedorInput">
+                        <h5 class="tituloInput">Especialidad Ocupacional Militar</h5>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-briefcase"></i>
+                            <p:inputText placeholder="CEOM" required="true" styleClass="longitud"/>
+                        </span>
+                    </div> 
+                    <div class="contenedorInput">
+                        <h5 class="tituloInput">Descripción del Empleo</h5>
+                        <span class="ui-input-icon-left">
+                            <i class="pi pi-briefcase"></i>
+                            <p:inputText placeholder="Descripción" required="true" styleClass="longitud"/>
+                        </span>
+                    </div>   
+                    <div class="contenedorBoton">
+                        <p:commandButton type="button" value="Registrar Empleo" icon="pi pi-briefcase" class="boton"/> 
+                        <p:commandButton type="button" value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
+                    </div>
+
+                </p:panel>
+            </div>                 
+        </h:form>
+    </h:body>
+</html>

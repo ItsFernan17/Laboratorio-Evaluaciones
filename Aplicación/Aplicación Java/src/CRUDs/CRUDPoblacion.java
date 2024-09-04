@@ -19,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
 
 public class CRUDPoblacion {
 
-    public static boolean insert(Boolean estado, String nombrePoblacion, Integer usuarioIngreso) {
+    public static boolean insert(String nombrePoblacion, Integer usuarioIngreso) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -32,7 +32,7 @@ public class CRUDPoblacion {
             transaction = session.beginTransaction();
             if (insert == null) {
                 insert = new Poblacion();
-                insert.setEstado(estado);
+                insert.setEstado(true);
                 insert.setNombrePoblacion(nombrePoblacion);
                 Usuario usuario = new Usuario();
                 usuario.setCodigoUsuario(usuarioIngreso);
@@ -53,7 +53,7 @@ public class CRUDPoblacion {
         return flag;
     }
 
-    public static boolean update(Integer codigoPoblacion, Boolean estado, String nombrePoblacion, Integer usuarioModifica) {
+    public static boolean update(Integer codigoPoblacion, String nombrePoblacion, Integer usuarioModifica) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -64,7 +64,7 @@ public class CRUDPoblacion {
         try {
             transaction = session.beginTransaction();
             if (update != null) {
-                update.setEstado(estado);
+                update.setEstado(true);
                 update.setNombrePoblacion(nombrePoblacion);
                 Usuario usuario = new Usuario();
                 usuario.setCodigoUsuario(usuarioModifica);
