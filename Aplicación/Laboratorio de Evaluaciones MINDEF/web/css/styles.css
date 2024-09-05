@@ -241,9 +241,14 @@ html, body {
     padding: 10px 0 !important;
 }
 
-.ui-datatable td, .ui-datatable th {
+.ui-datatable th{
     text-align: center !important;
     color: white !important;
+}
+
+.ui-datatable td {
+    text-align: center !important;
+    color: black !important;
 }
 
 .ui-datatable .botonMenu {
@@ -255,6 +260,7 @@ html, body {
 .ui-datatable tbody td:last-child {
     text-align: center !important;
 }
+
 
 .contenedorCarga{
     display: flex;
