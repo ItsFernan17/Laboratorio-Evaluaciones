@@ -196,7 +196,7 @@ html, body {
     justify-content: center;
 }
 
-.boton {
+.boton{
     background-color: #142957 !important;
     color: white !important;
     border: none !important;
@@ -212,6 +212,10 @@ html, body {
     margin-right: 20px !important;
 }
 
+.boton .ui-icon {
+    font-size: 18px !important;
+    margin-left: 4px;
+}
 
 .boton:hover {
     background-color: white !important;
@@ -228,4 +232,49 @@ html, body {
 
 .fecha .ui-datepicker-trigger .ui-icon {
     color: #ffffff !important;
+}
+
+.ui-datatable thead th {
+    background: #142957 !important;
+    text-align: center !important;
+    font-weight: normal !important;
+    padding: 10px 0 !important;
+}
+
+.ui-datatable td, .ui-datatable th {
+    text-align: center !important;
+    color: white !important;
+}
+
+.ui-datatable .botonMenu {
+    display: inline-block !important;
+    margin: 0 5px !important;
+    text-align: center !important;
+}
+
+.ui-datatable tbody td:last-child {
+    text-align: center !important;
+}
+
+.contenedorCarga{
+    display: flex;
+    width: 100% !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.botonMenuModificar{
+    display: none;
+    margin-right: 15px !important;
+    background-color: #142957 !important;
+    border: none !important;
+    color: azure !important;
+}
+
+.botonMenuAnular{
+    display: none;
+    margin-right: 15px !important;
+    background-color: #142957 !important;
+    border: none !important;
+    color: azure !important;
 }
