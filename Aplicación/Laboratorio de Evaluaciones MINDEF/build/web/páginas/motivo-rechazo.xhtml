@@ -8,6 +8,7 @@
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="../css/styles.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/script.js" type="text/javascript"></script>
     </h:head>
     <h:body>
         <h:form>
@@ -32,8 +33,9 @@
                 </p:toolbarGroup>
             </p:toolbar>
         </h:form>
-        <h:form id="form">
-            <div class="contenedor">
+
+        <div class="contenedor">       
+            <h:form id="form">
                 <div class="contenedorTitulo">
                     <div class="titulo">
                         <i class="pi pi-verified"></i><h1>Certificación</h1>
@@ -56,29 +58,29 @@
                         <p:commandButton value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
                     </div>
                 </p:panel>
-                <h2 class="tituloSeccion" style="margin-top: 35px !important;">
-                    Motivos de Rechazo Disponibles en el Sistema
-                    <span class="linea"></span>
-                </h2>
-                <h:form id="tabla">
-                    <p:dataTable var="row" value="" styleClass="tabla">
-                        <p:column headerText="Código" sortable="false" filterable="false">
-                            <h:outputText value=""/>
-                        </p:column>    
-                        <p:column headerText="Motivo de Rechazo">
-                            <h:outputText value=""/>
-                        </p:column>                       
-                        <p:column  headerText="Acciones">
-                            <p:commandButton id="modificar" icon="pi pi-file-edit" styleClass="botonMenuModificar"/>
-                            <p:commandButton id="anular" icon="pi pi-trash" styleClass="botonMenuAnular"/>
-                        </p:column>                        
-                    </p:dataTable>
-                    <div class="contenedorCarga">
-                        <p:commandButton value="Cargar Registros" icon="pi pi-database" class="boton"  onclick="mostrarBotones();"/> 
-                    </div>
-                </h:form>
-            </div>                 
-        </h:form>
-        <script src="../js/script.js" type="text/javascript"></script>
+            </h:form>
+
+            <h2 class="tituloSeccion" style="margin-top: 35px !important;">
+                Motivos de Rechazo Disponibles en el Sistema
+                <span class="linea"></span>
+            </h2>
+            <h:form id="tabla">
+                <p:dataTable var="row" value="" styleClass="tabla">
+                    <p:column headerText="Código" sortable="false" filterable="false">
+                        <h:outputText value=""/>
+                    </p:column>    
+                    <p:column headerText="Motivo de Rechazo">
+                        <h:outputText value=""/>
+                    </p:column>                       
+                    <p:column  headerText="Acciones">
+                        <p:commandButton id="modificar" icon="pi pi-file-edit" styleClass="botonMenuModificar" style="background-color: #387F39 !important;"/>
+                        <p:commandButton id="anular" icon="pi pi-trash" styleClass="botonMenuAnular" style="background-color: #b60a18 !important;"/>
+                    </p:column>                        
+                </p:dataTable>
+                <div class="contenedorCarga">
+                    <p:commandButton value="Cargar Registros" icon="pi pi-database" class="boton"  onclick="mostrarBotones();"/> 
+                </div>
+            </h:form>
+        </div>                 
     </h:body>
 </html>

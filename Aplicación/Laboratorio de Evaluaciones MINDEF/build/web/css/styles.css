@@ -271,16 +271,12 @@ html, body {
 
 .botonMenuModificar{
     display: none;
-    margin-right: 15px !important;
-    background-color: #142957 !important;
     border: none !important;
     color: azure !important;
 }
 
 .botonMenuAnular{
     display: none;
-    margin-right: 15px !important;
-    background-color: #142957 !important;
     border: none !important;
     color: azure !important;
 }
