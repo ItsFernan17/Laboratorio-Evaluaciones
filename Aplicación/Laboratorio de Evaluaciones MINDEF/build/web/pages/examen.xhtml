@@ -36,6 +36,7 @@
 
         <div class="contenedor">       
             <h:form id="form">
+                <p:growl id="growl" showDetail="true" />
                 <div class="contenedorTitulo">
                     <div class="titulo">
                         <i class="pi pi-file-edit"></i><h1>Examen</h1>
@@ -76,6 +77,8 @@
                     </div>
                     <div class="contenedorBoton">
                         <p:commandButton value="Registrar Examen" icon="pi pi-save" class="boton"/> 
+                        <!--Este boton se va a ocultar con Js-->
+                        <p:commandButton value="Modificar Examen" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>
                         <p:commandButton value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
                     </div>
                 </p:panel>
@@ -104,10 +107,18 @@
                         <p:commandButton id="anular" icon="pi pi-trash" styleClass="botonMenuAnular" style="background-color: #b60a18 !important;"/>
                     </p:column>                        
                 </p:dataTable>
-                <div class="contenedorCarga">
-                    <p:commandButton value="Cargar Registros" icon="pi pi-database" class="boton"  onclick="mostrarBotones();"/> 
-                </div>
             </h:form>
-        </div>                 
+        </div>
+        <!--Cambiar Segun el Bean-->
+        <!--        <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
+                    <h:form id="formAnular">
+                        <h:outputLabel value="¿Desea Anular el siguiente Registro?"/>
+                        <h:outputLabel value="Población Militar: #" style="font-weight: 500; color: #142957;"/>
+                        <center>
+                            <p:commandButton id="si" value="Confirmar" update="tabla" onclick="PF('dlgAnular').close()" action="#" style="background-color: #387F39; border-radius: 10px; margin-top: 20px; border: none; right: 10px;"/>
+                            <p:commandButton id="no" value="Cancelar"  onclick="PF('dlgAnular').close()" action="#" style="background-color: #b60a18 !important; border-radius: 10px !important; margin-top: 20px !important; border: none !important;"/>
+                        </center>    
+                    </h:form>
+                </p:dialog>-->          
     </h:body>
 </html>

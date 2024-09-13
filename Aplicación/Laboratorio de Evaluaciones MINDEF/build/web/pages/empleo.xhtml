@@ -34,80 +34,71 @@
             </p:toolbar>
         </h:form>
 
-        <div class="contenedor">       
+        <div class="contenedor">
             <h:form id="form">
+                <p:growl id="growl" showDetail="true" />
                 <div class="contenedorTitulo">
                     <div class="titulo">
-                        <i class="pi pi-file-edit"></i><h1>Examen</h1>
+                        <i class="pi pi-briefcase"></i><h1>Empleo a Solicitar</h1>
                     </div>
                 </div>
                 <h2 class="tituloSeccion">
-                    Información del Examen
+                    Información del Empleo
                     <span class="linea"></span>
                 </h2>
-                <p:panel class="panel" header="Registrar Nuevo Examen">
+                <p:panel class="panel" header="Registrar Nuevo Empleo Disponible">
                     <div class="contenedorInput">
-                        <h5 class="tituloInput">Fecha de la Evaluacion</h5>
-                        <div class="field col-12 md:col-4">
-                            <p:outputLabel/>
-                            <p:datePicker id="button" value="#{calendarView.date7}" showIcon="true" showOnFocus="false" styleClass="fecha" placeholder="Seleccionar fecha"/>
-                        </div>
-                    </div>
-                    <div class="contenedorInput">
-                        <h5 class="tituloInput">Documento de Identificación</h5>
+                        <h5 class="tituloInput">Especialidad Ocupacional Militar</h5>
                         <span class="ui-input-icon-left">
-                            <i class="pi pi-id-card"></i>
-                            <p:inputText placeholder="DPI" required="true" styleClass="longitud"/>
+                            <i class="pi pi-briefcase"></i>
+                            <p:inputText placeholder="CEOM" required="true" styleClass="longitud"/>
                         </span>
-                    </div>
-                    <div class="contenedorInput">                    
-                        <h5 class="tituloInput">Empleo a Optar</h5>
-                        <p:selectOneMenu value="" id="empelo">
-                            <f:selectItem itemLabel="Seleccionar Empleo" itemValue="0"/>
-                            <f:selectItems value="" var="dep" itemLabel="" itemValue=""/>
-                        </p:selectOneMenu> 
-                    </div>
+                    </div> 
                     <div class="contenedorInput">
-                        <h5 class="tituloInput">Punteo Total Obtenido</h5>
+                        <h5 class="tituloInput">Descripción del Empleo</h5>
                         <span class="ui-input-icon-left">
-                            <i class="pi pi-plus-circle"></i>
-                            <p:inputText placeholder="Punteo" required="true" styleClass="longitud"/>
+                            <i class="pi pi-briefcase"></i>
+                            <p:inputText placeholder="Descripción" required="true" styleClass="longitud"/>
                         </span>
-                    </div>
+                    </div>   
                     <div class="contenedorBoton">
-                        <p:commandButton value="Registrar Examen" icon="pi pi-save" class="boton"/> 
+                        <p:commandButton value="Registrar Empleo" icon="pi pi-save" class="boton"/> 
+                        <!--Este boton se va a ocultar con Js-->
+                        <p:commandButton value="Modificar Empleo" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>
                         <p:commandButton value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
                     </div>
                 </p:panel>
             </h:form>
 
             <h2 class="tituloSeccion" style="margin-top: 35px !important;">
-                Examenes Registrados en el Sistema
+                Empleos Disponibles en el Sistema
                 <span class="linea"></span>
             </h2>
             <h:form id="tabla">
                 <p:dataTable var="row" value="" styleClass="tabla">
-                    <p:column headerText="Fecha de Evaluación" sortable="false" filterable="false">
+                    <p:column headerText="CEOM" sortable="false" filterable="false">
                         <h:outputText value=""/>
                     </p:column>    
-                    <p:column headerText="DPI del Evaluado">
-                        <h:outputText value=""/>
-                    </p:column>
                     <p:column headerText="Empleo">
                         <h:outputText value=""/>
-                    </p:column> 
-                    <p:column headerText="Puntuacion Obtenida">
-                        <h:outputText value=""/>
-                    </p:column>                         
+                    </p:column>   
                     <p:column  headerText="Acciones">
                         <p:commandButton id="modificar" icon="pi pi-file-edit" styleClass="botonMenuModificar" style="background-color: #387F39 !important;"/>
                         <p:commandButton id="anular" icon="pi pi-trash" styleClass="botonMenuAnular" style="background-color: #b60a18 !important;"/>
                     </p:column>                        
                 </p:dataTable>
-                <div class="contenedorCarga">
-                    <p:commandButton value="Cargar Registros" icon="pi pi-database" class="boton"  onclick="mostrarBotones();"/> 
-                </div>
             </h:form>
-        </div>                 
+        </div>
+        <!--Cambiar Segun el Bean-->
+        <!--        <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
+                    <h:form id="formAnular">
+                        <h:outputLabel value="¿Desea Anular el siguiente Registro?"/>
+                        <h:outputLabel value="Población Militar: #" style="font-weight: 500; color: #142957;"/>
+                        <center>
+                            <p:commandButton id="si" value="Confirmar" update="tabla" onclick="PF('dlgAnular').close()" action="#" style="background-color: #387F39; border-radius: 10px; margin-top: 20px; border: none; right: 10px;"/>
+                            <p:commandButton id="no" value="Cancelar"  onclick="PF('dlgAnular').close()" action="#" style="background-color: #b60a18 !important; border-radius: 10px !important; margin-top: 20px !important; border: none !important;"/>
+                        </center>    
+                    </h:form>
+                </p:dialog>-->  
     </h:body>
 </html>

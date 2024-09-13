@@ -36,7 +36,7 @@
 
         <div class="contenedor">        
             <h:form id="form">
-
+                <p:growl id="growl" showDetail="true" />
                 <div class="contenedorTitulo">
                     <div class="titulo">
                         <i class="pi pi-verified"></i><h1>Certificación</h1>
@@ -115,12 +115,9 @@
                         <p:commandButton id="anular" icon="pi pi-trash" styleClass="botonMenuAnular" style="background-color: #b60a18 !important;"/>
                     </p:column>                        
                 </p:dataTable>
-                <div class="contenedorCarga">
-                    <p:commandButton value="Cargar Registros" icon="pi pi-database" class="boton"  onclick="mostrarBotones();"/> 
-                </div>
             </h:form>
         </div> 
-                <!--Cambiar Segun el Bean-->
+        <!--Cambiar Segun el Bean-->
         <!--        <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
                     <h:form id="formAnular">
                         <h:outputLabel value="¿Desea Anular el siguiente Registro?"/>

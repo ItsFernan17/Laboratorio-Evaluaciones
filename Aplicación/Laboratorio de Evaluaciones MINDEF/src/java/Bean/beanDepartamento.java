@@ -21,7 +21,7 @@ public class beanDepartamento {
 
     @PostConstruct
     public void init() {
-        mostrarDepartamentos();
+        mostrarDepartamentos();       
     }
 
     public void mostrarDepartamentos() {
@@ -34,7 +34,7 @@ public class beanDepartamento {
             }
         }
     }
-
+    
     /**
      * @return the departamentos
      */
