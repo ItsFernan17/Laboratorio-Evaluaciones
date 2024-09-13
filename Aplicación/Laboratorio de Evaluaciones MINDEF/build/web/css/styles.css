@@ -218,9 +218,9 @@ html, body {
 }
 
 .boton:hover {
-    background-color: white !important;
-    color: #04243c !important;
-    border: 2px solid #04243c !important;
+    background-color: #4a6bc1 !important;
+    color: white !important;
+    border: 2px solid #4a6bc1 !important;
     height: 45px;
     width: 195px;
 }

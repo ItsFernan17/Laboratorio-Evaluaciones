@@ -16,11 +16,8 @@
                 <p:toolbarGroup>
                     <p:commandButton icon="pi pi-bars" styleClass="botonMenu"/>
                     <h:graphicImage value="../src/img/logotipo.png" alt="Logo" styleClass="logo" />
-                    <div class="ui-input-icon-left mr-2">
-                        <i class="pi pi-fw pi-search"></i>
-                        <p:inputText placeholder="Buscar" />
-                    </div>
-                    <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
+
+
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
                     <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/>
@@ -38,41 +35,51 @@
             <h:form id="form">
                 <p:growl id="growl" showDetail="true" />
                 <div class="contenedorTitulo">
-                    <div class="titulo">
-                        <i class="pi pi-sitemap"></i><h1>Estructura de Mando Militar</h1>
+                    <div class="titulo" style="text-align: center">
+                        <i class="pi pi-sitemap" ></i><h1>Estructura Organizacional</h1>
                     </div>
                 </div>
                 <h2 class="tituloSeccion">
                     Comando Militar
                     <span class="linea"></span>
                 </h2>
-                <p:panel class="panel" header="Registrar Nuevo Comando Militar">
+                <!-- ****************************************************************************************** -->
+                <p:panel class="panel" header="Nuevo Registro" >
                     <div class="contenedorInput">
-                        <h5 class="tituloInput">Nombre del Comando Militar</h5>
+                        <h5 class="tituloInput">Nombre de la Unidad Militar</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-bookmark"></i>
-                            <p:inputText placeholder="Descripción" required="true" styleClass="longitud"/>
+                            <p:inputText placeholder="Nombre de la unidad" required="true" styleClass="longitud" style="width: 70%"/>
                         </span>
                     </div>  
                     <div class="contenedorBoton">
-                        <p:commandButton value="Registrar Comando" icon="pi pi-save" class="boton"/> 
-                         <!--Este boton se va a ocultar con Js-->
-                        <p:commandButton value="Modificar Comando" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>
-                        <p:commandButton value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
+                        <p:commandButton value="Registrar" icon="pi pi-save" class="boton"/> 
+                        <!--Este boton se va a ocultar con Js-->
+                        <p:commandButton value="Modificar" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>
+                        <p:commandButton value="Nuevo" icon="pi pi-plus-circle" class="boton"/>                            
                     </div>
                 </p:panel>
-
+                <!-- ****************************************************************************************** -->
+                <!-- ****************************************************************************************** -->
             </h:form>
             <h2 class="tituloSeccion" style="margin-top: 35px !important;">
-                Comandos Militares Registradas en el Sistema
+                Unidades militares registradas en el Sistema
                 <span class="linea"></span>
             </h2>
+
             <h:form id="tabla">
-                <p:dataTable var="row" value="" styleClass="tabla">
-                    <p:column headerText="Comando No." sortable="false" filterable="false">
+
+                <div class="ui-input-icon-left mr-2" style="width: 100%">
+                    <i class="pi pi-fw pi-search"></i>
+                    <p:inputText placeholder="Buscar" style="width: 50%"/>
+                </div>
+                <br> </br>
+
+                <p:dataTable var="row" value="" styleClass="tabla">    
+                    <p:column headerText="No. Comando" sortable="false" filterable="false">
                         <h:outputText value=""/>
                     </p:column>    
-                    <p:column headerText="Comando Militar">
+                    <p:column headerText="Unidad Militar">
                         <h:outputText value=""/>
                     </p:column>  
                     <p:column  headerText="Acciones">
@@ -81,6 +88,7 @@
                     </p:column>                        
                 </p:dataTable>
             </h:form>
+            <!-- ****************************************************************************************** -->
         </div>
         <!--Cambiar Segun el Bean-->
         <!--        <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">

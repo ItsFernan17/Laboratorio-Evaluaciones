@@ -16,11 +16,8 @@
                 <p:toolbarGroup>
                     <p:commandButton icon="pi pi-bars" styleClass="botonMenu"/>
                     <h:graphicImage value="../src/img/logotipo.png" alt="Logo" styleClass="logo" />
-                    <div class="ui-input-icon-left mr-2">
-                        <i class="pi pi-fw pi-search"></i>
-                        <p:inputText placeholder="Buscar" />
-                    </div>
-                    <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
+
+
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
                     <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/>
@@ -39,33 +36,34 @@
                 <p:growl id="growl" showDetail="true" />
                 <div class="contenedorTitulo">
                     <div class="titulo">
-                        <i class="pi pi-users"></i><h1>Usuarios del Sistema</h1>
+                        <i class="pi pi-users"></i><h1>Usuarios de Administracion de Recursos Humanos</h1>
                     </div>
                 </div>
                 <h2 class="tituloSeccion">
-                    Información de los Usuarios
+                    Información de usuarios
                     <span class="linea"></span>
                 </h2>
-                <p:panel class="panel" header="Registrar Nuevo Usuario">
+                <!-- ****************************************************************************************** -->
+                <p:panel class="panel" header="Nuevo Registro ">
                     <div class="contenedorInput">
                         <h5 class="tituloInput">Nombre del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-user"></i>
-                            <p:inputText placeholder="Username" required="true" styleClass="longitud"/>
+                            <p:inputText placeholder="Nombre Completo" required="true" styleClass="longitud"/>
                         </span>
                     </div> 
                     <div class="contenedorInput">
                         <h5 class="tituloInput">Rol del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-star"></i>
-                            <p:inputText placeholder="Rol" required="true" styleClass="longitud"/>
+                            <p:inputText placeholder="Rol del usuario" required="true" styleClass="longitud"/>
                         </span>
                     </div>  
                     <div class="contenedorInput">
                         <h5 class="tituloInput">Contraseña del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-lock"></i>
-                            <p:inputText placeholder="Password" required="true" styleClass="longitud"/>
+                            <p:inputText placeholder="Contraseña" required="true" styleClass="longitud"/>
                         </span>
                     </div>                      
                     <div class="contenedorBoton">
@@ -75,13 +73,20 @@
                         <p:commandButton value="Nuevo Registro" icon="pi pi-file" class="boton"/>                            
                     </div>
                 </p:panel>
+                <!-- ****************************************************************************************** -->
             </h:form>
 
             <h2 class="tituloSeccion" style="margin-top: 35px !important;">
-                Usuarios Registrados en el Sistema
+                Usuarios registrados en el sistema
                 <span class="linea"></span>
             </h2>
+            <!-- ****************************************************************************************** -->
             <h:form id="tabla">
+                <div class="ui-input-icon-left mr-2" style="width: 100%">
+                    <i class="pi pi-fw pi-search"></i>
+                    <p:inputText placeholder="Buscar" style="width: 50%" />
+                </div>
+                <br> </br>
                 <p:dataTable var="row" value="" styleClass="tabla">
                     <p:column headerText="Usuario" sortable="false" filterable="false">
                         <h:outputText value=""/>
@@ -98,6 +103,7 @@
                     </p:column>                        
                 </p:dataTable>
             </h:form>
+            <!-- ****************************************************************************************** -->
         </div>
         <!--Cambiar Segun el Bean-->
         <!--        <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
