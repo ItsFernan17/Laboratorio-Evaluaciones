@@ -17,6 +17,7 @@ html, body {
 }
 
 .botonMenu{
+    width: 30px !important;
     margin-right: 15px !important;
     background-color: #142957 !important;
     border: none !important;
@@ -30,9 +31,11 @@ html, body {
 }
 
 .logo {
-    height: 68px;
-    margin-right: 20px;
-}
+    width: 150px !important;
+    height: auto;
+    margin: 0px;
+    border: 0px;
+} 
 
 .linea {
     width: 1px;
@@ -218,9 +221,9 @@ html, body {
 }
 
 .boton:hover {
-    background-color: white !important;
-    color: #04243c !important;
-    border: 2px solid #04243c !important;
+    background-color: #4a6bc1 !important;
+    color: white !important;
+    border: 2px solid #4a6bc1 !important;
     height: 45px;
     width: 195px;
 }
