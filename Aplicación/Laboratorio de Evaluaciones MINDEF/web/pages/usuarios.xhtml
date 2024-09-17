@@ -37,10 +37,10 @@
 
 
                     <h:graphicImage value="../src/img/logotipo.png" alt="Logo" styleClass="logo" />
-                   
+
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-                     <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
+                    <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
                     <!-- <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/> -->
                     <div class="linea"></div>
                     <h:graphicImage value="../src/img/logo_dpemdn1.png" alt="Icono Usuario" styleClass="iconoUsuario" />
@@ -70,28 +70,34 @@
                         <h5 class="tituloInput">Nombre del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-user"></i>
-                            <p:inputText placeholder="Nombre Completo" required="true" styleClass="longitud"/>
+                            <p:inputText value="#{beanUsuarios.nombreUsuario}" placeholder="Nombre Completo" required="true" styleClass="longitud"/>
                         </span>
                     </div> 
                     <div class="contenedorInput">
                         <h5 class="tituloInput">Rol del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-star"></i>
-                            <p:inputText placeholder="Rol del usuario" required="true" styleClass="longitud"/>
+                            <p:selectOneMenu value="#{beanUsuarios.rol}" styleClass="longitud" required="true" placeholder="Rol del usuario">
+                                <f:selectItem itemLabel="Selecciona un rol" itemValue="" noSelectionOption="true" />
+                                <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+                                <f:selectItem itemLabel="Evaluador" itemValue="Evaluados" />
+                                <f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" />
+                            </p:selectOneMenu>
+
                         </span>
                     </div>  
                     <div class="contenedorInput">
                         <h5 class="tituloInput">Contraseña del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-lock"></i>
-                            <p:inputText placeholder="Contraseña" required="true" styleClass="longitud"/>
+                            <p:inputText value="#{beanUsuarios.contrasenia}" placeholder="Contraseña" required="true" styleClass="longitud"/>
                         </span>
                     </div>                      
                     <div class="contenedorBoton">
-                        <p:commandButton value="Registrar Usuario" icon="pi pi-save" class="boton"/>
+                        <p:commandButton id="btnGuardarUsuario" update="form, tabla" action="#{beanUsuarios.insertar()}" value="Guardar" icon="pi pi-save" class="boton"/>
                         <!--Este boton se va a ocultar con Js-->
-                        <p:commandButton value="Modificar Usuario" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/> 
-                        <p:commandButton value="Nuevo Registro" icon="pi pi-file" class="boton"/>                            
+                        <p:commandButton id="btnModificarUsuario" update="form, tabla" action="#{beanUsuarios.update()}" value="Modificar" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/> 
+                        <!-- <p:commandButton value="Nuevo Registro" icon="pi pi-file" class="boton"/> -->                        
                     </div>
                 </p:panel>
                 <!-- ****************************************************************************************** -->
@@ -103,27 +109,46 @@
             </h2>
             <!-- ****************************************************************************************** -->
             <h:form id="tabla">
-                <div class="ui-input-icon-left mr-2" style="width: 100%">
-                    <i class="pi pi-fw pi-search"></i>
-                    <p:inputText placeholder="Buscar" style="width: 50%" />
-                </div>
-                <br> </br>
-                <p:dataTable var="row" value="" styleClass="tabla">
-                    <p:column headerText="Usuario" sortable="false" filterable="false">
-                        <h:outputText value=""/>
-                    </p:column>    
-                    <p:column headerText="Contraseña">
-                        <h:outputText value=""/>
+                <p:dataTable var="row" value="#{beanUsuarios.listUsuarios}">
+                    <p:column headerText="Usuario" sortable="true" filterable="true">
+                        <h:outputText value="#{row.nombreUsuario}"/>
                     </p:column>  
                     <p:column headerText="Rol">
-                        <h:outputText value=""/>
+                        <h:outputText value="#{row.rol}"/>
+                    </p:column> 
+                    <p:column headerText="Contraseña">
+                        <h:outputText value="#{row.contrasenia}"/>
                     </p:column>  
-                    <p:column  headerText="Acciones">
-                        <p:commandButton id="modificar" icon="pi pi-file-edit" styleClass="botonMenuModificar" style="background-color: #387F39 !important;"/>
-                        <p:commandButton id="anular" icon="pi pi-trash" styleClass="botonMenuAnular" style="background-color: #b60a18 !important;"/>
-                    </p:column>                        
+
+                    <p:column headerText="Modificar">
+                        <p:commandButton id="modificar2" value="Modificar" oncomplete="" action="#{beanUsuarios.seleccionar(row)}" update="form" /> <!-- Actualiza el formulario de inserción al seleccionar -->
+                    </p:column>
+                    <p:column headerText="Anular">
+                        <p:commandButton  onclick="PF('dlgAnular').show()" id="anular" value="Anular" oncomplete="" action="#{beanUsuarios.seleccionar(row)}" update="form, formAnular" style="background: lightcoral; border-color: lightgray"/> <!-- Actualiza el formulario de inserción al seleccionar -->
+                    </p:column>                       
                 </p:dataTable>
             </h:form>
+
+            <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
+                <p class="m-0">
+                    <h:form id="formAnular"> 
+                        <h:outputFormat value="Desea anular el siguiente registro?"/>
+                        <br></br>
+                        <br></br>
+                        <h:outputLabel value="Nombre: #{beanUsuarios.nombreUsuario}"/>
+                        <br></br>
+                        <br></br>
+                        <center>
+                            <p:commandButton id="si" value="Si" action="#{beanUsuarios.anular()}" update="tabla" onclick="PF('dialogoAnular').close()" style="margin-right: 20px; width: 70px"/>
+                            <p:commandButton id="no" value="No" onclick="PF('dialogoAnular').close()" action="#{beanUsuarios.limpiar()}" style="width: 70px" />
+                        </center>
+                    </h:form>
+                </p>
+            </p:dialog>
+
+
+
+
             <!-- ****************************************************************************************** -->
         </div>
         <!--Cambiar Segun el Bean-->

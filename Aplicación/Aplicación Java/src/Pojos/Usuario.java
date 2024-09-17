@@ -11,7 +11,7 @@ import java.util.Set;
 public class Usuario  implements java.io.Serializable {
 
 
-     private int codigoUsuario;
+     private Integer codigoUsuario;
      private Boolean estado;
      private String nombreUsuario;
      private String rol;
