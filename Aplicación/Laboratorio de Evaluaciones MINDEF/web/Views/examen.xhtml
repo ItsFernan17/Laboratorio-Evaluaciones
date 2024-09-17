@@ -8,7 +8,7 @@
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="../css/styles.css" rel="stylesheet" type="text/css"/>
-        <script src="../js/script.js" type="text/javascript"></script>
+        <script src="../js/script.js" type="text/javascript"></script>        
     </h:head>
     <h:body>
         <h:form>
@@ -17,7 +17,7 @@
                     <!-- <p:commandButton icon="pi pi-bars" styleClass="botonMenu"/> -->
 
                     <div class="card">
-                        <p:commandButton id="dynaButton" value="" icon="pi pi-bars" styleClass="botonMenu"/>
+                        <p:commandButton id="dynaButton" type="button" icon="pi pi-bars" styleClass="botonMenu"/>
                         <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
                             <p:menuitem value="Inicio" action="#{menuView.save}" update="" ajax="false" icon="pi pi-home"/>
                             <p:submenu label="Evaluaciones">
@@ -37,13 +37,13 @@
 
 
                     <h:graphicImage value="../src/img/logotipo.png" alt="Logo" styleClass="logo" />
-                   
+                    
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-                     <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
+                    <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
                     <!-- <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/> -->
                     <div class="linea"></div>
-                    <h:graphicImage value="../src/img/logo_dpemdn1.png" alt="Icono Usuario" styleClass="iconoUsuario" />
+                    <h:graphicImage value="../src/img/icono_usuario.png" alt="Icono Usuario" styleClass="iconoUsuario" />
                     <div class="usuario-info">
                         <h:outputText value="Nombre del Usuario" styleClass="nombreUsuario" />
                         <h:outputText value="Rol del Usuario" styleClass="rolUsuario" />
@@ -57,14 +57,21 @@
                 <p:growl id="growl" showDetail="true" />
                 <div class="contenedorTitulo">
                     <div class="titulo">
-                        <i class="pi pi-user"></i><h1>Personal</h1>
+                        <i class="pi pi-file-edit"></i><h1>Examen</h1>
                     </div>
                 </div>
                 <h2 class="tituloSeccion">
-                    Datos Personales
+                    Información del Examen
                     <span class="linea"></span>
                 </h2>
-                <p:panel class="panel" header="Registrar Nuevo Personal">
+                <p:panel class="panel" header="Registrar Nuevo Examen">
+                    <div class="contenedorInput">
+                        <h5 class="tituloInput">Fecha de la Evaluacion</h5>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel/>
+                            <p:datePicker id="button" value="#{calendarView.date7}" showIcon="true" showOnFocus="false" styleClass="fecha" placeholder="Seleccionar fecha"/>
+                        </div>
+                    </div>
                     <div class="contenedorInput">
                         <h5 class="tituloInput">Documento de Identificación</h5>
                         <span class="ui-input-icon-left">
@@ -72,79 +79,54 @@
                             <p:inputText placeholder="DPI" required="true" styleClass="longitud"/>
                         </span>
                     </div>
+                    <div class="contenedorInput">                    
+                        <h5 class="tituloInput">Empleo a Optar</h5>
+                        <p:selectOneMenu value="" id="empelo">
+                            <f:selectItem itemLabel="Seleccionar Empleo" itemValue="0"/>
+                            <f:selectItems value="" var="dep" itemLabel="" itemValue=""/>
+                        </p:selectOneMenu> 
+                    </div>
                     <div class="contenedorInput">
-                        <h5 class="tituloInput">Nombre Completo</h5>
+                        <h5 class="tituloInput">Punteo Total Obtenido</h5>
                         <span class="ui-input-icon-left">
-                            <i class="pi pi-user"></i>
-                            <p:inputText placeholder="Nombre y apellidos" required="true" styleClass="longitud"/>
+                            <i class="pi pi-plus-circle"></i>
+                            <p:inputText placeholder="Punteo" required="true" styleClass="longitud"/>
                         </span>
                     </div>
-                    <div class="contenedorInput">
-                        <h5 class="tituloInput">Número de Telefono</h5>
-                        <span class="ui-input-icon-left">
-                            <i class="pi pi-phone"></i>
-                            <p:inputText placeholder="Ej. 1234-5678" required="true" styleClass="longitud"/>
-                        </span>
-                    </div>
-                    <div class="contenedorInput">                    
-                        <h5 class="tituloInput">Departamento de Residencia</h5>
-                        <p:selectOneMenu value="" id="departamentos">
-                            <f:selectItem itemLabel="Seleccionar Departamento" itemValue="0"/>
-                            <f:selectItems value="" var="dep" itemLabel="#{dep}" itemValue="#{dep}"/>
-                        </p:selectOneMenu> 
-                    </div>
-                    <div class="contenedorInput">                    
-                        <h5 class="tituloInput">Población Institucional</h5>
-                        <p:selectOneMenu styleClass="ui-selectonemenu">
-                            <f:selectItem itemLabel="Seleccionar Población" itemValue="0"/>
-                        </p:selectOneMenu> 
-                    </div>
-                    <div class="contenedorInput">                    
-                        <h5 class="tituloInput">Grado Militar</h5>
-                        <p:selectOneMenu styleClass="ui-selectonemenu">
-                            <f:selectItem itemLabel="Seleccionar Grado Militar" itemValue="0"/>
-                        </p:selectOneMenu> 
-                    </div>   
                     <div class="contenedorBoton">
-                        <p:commandButton value="Registrar Personal" icon="pi pi-user-plus" class="boton"/> 
+                        <p:commandButton value="Registrar Examen" icon="pi pi-save" class="boton"/> 
                         <!--Este boton se va a ocultar con Js-->
-                        <p:commandButton value="Modificar Personal" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/> 
+                        <p:commandButton value="Modificar Examen" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>
                         <p:commandButton value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
                     </div>
-                </p:panel>            
+                </p:panel>
             </h:form>
 
             <h2 class="tituloSeccion" style="margin-top: 35px !important;">
-                Personal Registrado en el Sistema
+                Examenes Registrados en el Sistema
                 <span class="linea"></span>
             </h2>
             <h:form id="tabla">
                 <p:dataTable var="row" value="" styleClass="tabla">
-                    <p:column headerText="DPI" sortable="false" filterable="false">
+                    <p:column headerText="Fecha de Evaluación" sortable="false" filterable="false">
                         <h:outputText value=""/>
                     </p:column>    
-                    <p:column headerText="Nombre y Apellidos">
+                    <p:column headerText="DPI del Evaluado">
                         <h:outputText value=""/>
-                    </p:column>   
-                    <p:column headerText="Teléfono">
-                        <h:outputText value=""/>
-                    </p:column>   
-                    <p:column headerText="Departamento de Residencia">
+                    </p:column>
+                    <p:column headerText="Empleo">
                         <h:outputText value=""/>
                     </p:column> 
-                    <p:column headerText="Población Institucional">
+                    <p:column headerText="Puntuacion Obtenida">
                         <h:outputText value=""/>
-                    </p:column> 
-                    <p:column headerText="Grado Militar">
-                        <h:outputText value=""/>
-                    </p:column> 
+                    </p:column>                         
                     <p:column  headerText="Acciones">
                         <p:commandButton id="modificar" icon="pi pi-file-edit" styleClass="botonMenuModificar" style="background-color: #387F39 !important;"/>
                         <p:commandButton id="anular" icon="pi pi-trash" styleClass="botonMenuAnular" style="background-color: #b60a18 !important;"/>
                     </p:column>                        
                 </p:dataTable>
             </h:form>
-        </div> 
+        </div>
         <!--Cambiar Segun el Bean-->
         <!--        <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
                     <h:form id="formAnular">
@@ -155,6 +137,6 @@
                             <p:commandButton id="no" value="Cancelar"  onclick="PF('dlgAnular').close()" action="#" style="background-color: #b60a18 !important; border-radius: 10px !important; margin-top: 20px !important; border: none !important;"/>
                         </center>    
                     </h:form>
-                </p:dialog>-->           
+                </p:dialog>-->          
     </h:body>
 </html>
