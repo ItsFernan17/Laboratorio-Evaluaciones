@@ -36,7 +36,6 @@
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
                     <p:commandButton icon="pi pi-home" styleClass="botonMenuHome"/>
-                    <!-- <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/> -->
                     <div class="linea"></div>
                     <h:graphicImage value="../src/img/icono_usuario.png" alt="Icono Usuario" styleClass="iconoUsuario" />
                     <div class="usuario-info">
@@ -47,52 +46,59 @@
             </p:toolbar>
         </h:form>
 
-        <div class="contenedor">
+        <div class="contenedor">      
             <h:form id="form">
                 <p:growl id="growl" showDetail="true" />
                 <div class="contenedorTitulo">
                     <div class="titulo">
-                        <i class="pi pi-briefcase"></i><h1>Empleo a Solicitar</h1>
+                        <i class="pi pi-file-edit"></i><h1>Examen</h1>
                     </div>
                 </div>
                 <h2 class="tituloSeccion">
-                    Información del Empleo
+                    Detalle del Examen
                     <span class="linea"></span>
                 </h2>
-                <p:panel class="panel" header="Registrar Nuevo Empleo Disponible">
+                <p:panel class="panel" header="Registrar Nuevo Detalle de Examen">
                     <div class="contenedorInput">
-                        <h5 class="tituloInput">Especialidad Ocupacional Militar</h5>
+                        <h5 class="tituloInput">Código del Examen</h5>
                         <span class="ui-input-icon-left">
-                            <i class="pi pi-briefcase"></i>
-                            <p:inputText placeholder="CEOM" required="true" styleClass="longitud"/>
+                            <i class="pi pi-file-edit"></i>
+                            <p:inputText placeholder="Examen No." required="true" styleClass="longitud"/>
                         </span>
-                    </div> 
+                    </div>
+                    <div class="contenedorInput">                    
+                        <h5 class="tituloInput">Enunciado del Examen</h5>
+                        <p:selectOneMenu value="" id="enunciado">
+                            <f:selectItem itemLabel="Seleccionar Pregunta" itemValue="0"/>
+                            <f:selectItems value="" var="dep" itemLabel="" itemValue=""/>
+                        </p:selectOneMenu> 
+                    </div>
                     <div class="contenedorInput">
-                        <h5 class="tituloInput">Descripción del Empleo</h5>
+                        <h5 class="tituloInput">Respuesta a la pregunta</h5>
                         <span class="ui-input-icon-left">
-                            <i class="pi pi-briefcase"></i>
-                            <p:inputText placeholder="Descripción" required="true" styleClass="longitud"/>
+                            <i class="pi pi-check-square"></i>
+                            <p:inputText placeholder="Respuesta" required="true" styleClass="longitud"/>
                         </span>
-                    </div>   
+                    </div>
                     <div class="contenedorBoton">
-                        <p:commandButton value="Registrar Empleo" icon="pi pi-save" class="boton"/> 
+                        <p:commandButton value="Registrar Detalle" icon="pi pi-save" class="boton"/> 
                         <!--Este boton se va a ocultar con Js-->
-                        <p:commandButton value="Modificar Empleo" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>
+                        <p:commandButton value="Modificar Detalle" icon="pi pi-file-edit" class="boton"/>
                         <p:commandButton value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
                     </div>
                 </p:panel>
-            </h:form>
 
+            </h:form>
             <h2 class="tituloSeccion" style="margin-top: 35px !important;">
-                Empleos Disponibles en el Sistema
+                Preguntas de Examen Registradas en el Sistema
                 <span class="linea"></span>
-            </h2>
+            </h2>         
             <h:form id="tabla">
                 <p:dataTable var="row" value="" styleClass="tabla">
-                    <p:column headerText="CEOM" sortable="false" filterable="false">
+                    <p:column headerText="Enunciado del Examen" sortable="false" filterable="false">
                         <h:outputText value=""/>
                     </p:column>    
-                    <p:column headerText="Empleo">
+                    <p:column headerText="Respuesta Correspondiente">
                         <h:outputText value=""/>
                     </p:column>   
                     <p:column  headerText="Acciones">
@@ -101,7 +107,7 @@
                     </p:column>                        
                 </p:dataTable>
             </h:form>
-        </div>
+        </div>    
         <!--Cambiar Segun el Bean-->
         <!--        <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
                     <h:form id="formAnular">
@@ -112,6 +118,6 @@
                             <p:commandButton id="no" value="Cancelar"  onclick="PF('dlgAnular').close()" action="#" style="background-color: #b60a18 !important; border-radius: 10px !important; margin-top: 20px !important; border: none !important;"/>
                         </center>    
                     </h:form>
-                </p:dialog>-->  
+                </p:dialog>-->           
     </h:body>
 </html>

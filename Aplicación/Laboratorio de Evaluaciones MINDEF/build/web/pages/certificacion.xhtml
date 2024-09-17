@@ -12,38 +12,33 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:toolbar style="border: none !important">
+            <p:toolbar style="border: none !important; border-radius: 0 !important">
                 <p:toolbarGroup>
-                    <!-- <p:commandButton icon="pi pi-bars" styleClass="botonMenu"/> -->
-
                     <div class="card">
-                        <p:commandButton id="dynaButton" value="" icon="pi pi-bars" styleClass="botonMenu"/>
+                        <p:commandButton id="dynaButton" type="button" icon="pi pi-bars" styleClass="botonMenu"/>                       
                         <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
-                            <p:menuitem value="Inicio" action="#{menuView.save}" update="" ajax="false" icon="pi pi-home"/>
-                            <p:submenu label="Evaluaciones">
-                                <p:menuitem value="Personas" action="#{menuView.save}" update="" ajax="false" icon="pi pi-users"/>
-                                <p:menuitem value="Evaluaciones" action="#{menuView.update}" update="" icon="pi pi-book"/>
-                                <p:menuitem value="Certificacaiones" action="#{menuView.delete}" update="" icon="pi pi-check"/>
+                            <p:submenu label="Evaluaciones" styleClass="etiquetas">
+                                <p:menuitem value="Personas" icon="pi pi-users"/>
+                                <p:menuitem value="Evaluaciones" icon="pi pi-book"/>
+                                <p:menuitem value="Certificaciones" icon="pi pi-check"/>
                             </p:submenu>
-                            <p:submenu label="Administracion">
-                                <p:menuitem value="Comandos" url="http://www.primefaces.org" icon="pi pi-sitemap"/>
-                                <p:menuitem value="Empleos" outcome="" icon="pi pi-briefcase"/>
-                                <p:menuitem value="Usuarios RRHH" action="#{menuView.update}" update="" icon="pi pi-user"/>
-                                <p:menuitem value=" Adm. Examenes" outcome="" icon="pi pi-cog"/>
-                                <p:menuitem value="Salir del sistema" icon="pi pi-power-off" disabled="false"/>
+                            <p:submenu label="Administración" styleClass="etiquetas">
+                                <p:menuitem value="Comandos" icon="pi pi-sitemap"/>
+                                <p:menuitem value="Empleos" icon="pi pi-briefcase"/>
+                                <p:menuitem value="Usuarios RRHH" icon="pi pi-user"/>
+                                <p:menuitem value="Adm. Examenes"  icon="pi pi-cog"/>
+                                <p:separator/>
+                                <p:menuitem value="Cerrar Sesión" icon="pi pi-power-off" disabled="false" styleClass="logout"/>
                             </p:submenu>
                         </p:menu>
                     </div>
-
-
-                    <h:graphicImage value="../src/img/logotipo.png" alt="Logo" styleClass="logo" />
-                    
+                    <h:graphicImage value="../src/img/logotipo.png" styleClass="logo" />
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-                    <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
+                    <p:commandButton icon="pi pi-home" styleClass="botonMenuHome"/>
                     <!-- <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/> -->
                     <div class="linea"></div>
-                    <h:graphicImage value="../src/img/logo_dpemdn1.png" alt="Icono Usuario" styleClass="iconoUsuario" />
+                    <h:graphicImage value="../src/img/icono_usuario.png" alt="Icono Usuario" styleClass="iconoUsuario" />
                     <div class="usuario-info">
                         <h:outputText value="Nombre del Usuario" styleClass="nombreUsuario" />
                         <h:outputText value="Rol del Usuario" styleClass="rolUsuario" />
@@ -99,9 +94,9 @@
                         </span>
                     </div>
                     <div class="contenedorBoton">
-                        <p:commandButton value="Registrar Certificado" icon="pi pi-save" class="boton" style="font-size: 15px !important;"/> 
+                        <p:commandButton value="Registrar Certificado" icon="pi pi-save" class="boton"/> 
                         <!--Este boton se va a ocultar con Js-->
-                        <p:commandButton value="Modificar Certificado" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>
+                        <p:commandButton value="Modificar Certificado" icon="pi pi-file-edit" class="boton"/>
                         <p:commandButton value="Nuevo Registro" icon="pi pi-plus-circle" class="boton"/>                            
                     </div>
                 </p:panel>

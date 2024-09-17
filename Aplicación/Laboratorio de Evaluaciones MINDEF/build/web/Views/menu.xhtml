@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="../css/styles.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/script.js" type="text/javascript"></script>
+        <link href="../css/styleMenu.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+
+    <body>
+        <h:form>
+            <p:toolbar style="border: none !important; border-radius: 0 !important">
+                <p:toolbarGroup>
+                    <div class="card">
+                        <p:commandButton id="dynaButton" type="button" icon="pi pi-bars" styleClass="botonMenu"/>                       
+                        <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
+                            <p:submenu label="Evaluaciones" styleClass="etiquetas">
+                                <p:menuitem value="Personas" icon="pi pi-users"/>
+                                <p:menuitem value="Evaluaciones" icon="pi pi-book"/>
+                                <p:menuitem value="Certificaciones" icon="pi pi-check"/>
+                            </p:submenu>
+                            <p:submenu label="Administración" styleClass="etiquetas">
+                                <p:menuitem value="Comandos" icon="pi pi-sitemap"/>
+                                <p:menuitem value="Empleos" icon="pi pi-briefcase"/>
+                                <p:menuitem value="Usuarios RRHH" icon="pi pi-user"/>
+                                <p:menuitem value="Adm. Examenes"  icon="pi pi-cog"/>
+                                <p:separator/>
+                                <p:menuitem value="Cerrar Sesión" icon="pi pi-power-off" disabled="false" styleClass="logout"/>
+                            </p:submenu>
+                        </p:menu>
+                    </div>
+                    <h:graphicImage value="../src/img/logotipo.png" styleClass="logo" />
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton icon="pi pi-home" styleClass="botonMenuHome"/>
+                    <div class="linea"></div>
+                    <h:graphicImage value="../src/img/icono_usuario.png" alt="Icono Usuario" styleClass="iconoUsuario" />
+                    <div class="usuario-info">
+                        <h:outputText value="Nombre del Usuario" styleClass="nombreUsuario" />
+                        <h:outputText value="Rol del Usuario" styleClass="rolUsuario" />
+                    </div>
+                </p:toolbarGroup>
+            </p:toolbar>
+        </h:form>
+
+        <div class="contenedor">       
+            <h:form id="form">
+                <p:panel header="¡Hola! Usuario" style="width: 400px;">
+                    <h:outputText value="Bienvenido al Laboratorio de Evaluaciones del MINDEF"/>
+                    <br/>
+                    <h:outputText value="descripcion"/>
+                </p:panel>
+            </h:form>
+        </div> 
+    </body>
+</html>

@@ -17,7 +17,7 @@
                     <!-- <p:commandButton icon="pi pi-bars" styleClass="botonMenu"/> -->
 
                     <div class="card">
-                        <p:commandButton id="dynaButton" value="" icon="pi pi-bars" styleClass="botonMenu"/>
+                        <p:commandButton id="dynaButton" type="button" icon="pi pi-bars" styleClass="botonMenu"/>
                         <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
                             <p:menuitem value="Inicio" action="#{menuView.save}" update="" ajax="false" icon="pi pi-home"/>
                             <p:submenu label="Evaluaciones">
@@ -43,7 +43,7 @@
                      <p:commandButton icon="pi pi-home" styleClass="botonMenu"/>
                     <!-- <p:commandButton icon="pi pi-power-off" styleClass="botonMenu"/> -->
                     <div class="linea"></div>
-                    <h:graphicImage value="../src/img/logo_dpemdn1.png" alt="Icono Usuario" styleClass="iconoUsuario" />
+                    <h:graphicImage value="../src/img/icono_usuario.png" alt="Icono Usuario" styleClass="iconoUsuario" />
                     <div class="usuario-info">
                         <h:outputText value="Nombre del Usuario" styleClass="nombreUsuario" />
                         <h:outputText value="Rol del Usuario" styleClass="rolUsuario" />
