@@ -100,6 +100,9 @@
                     <div class="contenedorBoton">
                         <p:commandButton id="btnGuardarUsuario" update="form, tabla" action="#{beanUsuarios.insertar()}" value="Guardar" icon="pi pi-save" class="boton"/>
                         <!--Este boton se va a ocultar con Js-->
+<<<<<<< HEAD
+                        <p:commandButton value="Modificar Usuario" icon="pi pi-file-edit" class="boton"/>                          
+=======
 <<<<<<< HEAD:Aplicación/Laboratorio de Evaluaciones MINDEF/web/pages/usuarios.xhtml
                         <p:commandButton id="btnModificarUsuario" update="form, tabla" action="#{beanUsuarios.update()}" value="Modificar" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/> 
                         <!-- <p:commandButton value="Nuevo Registro" icon="pi pi-file" class="boton"/> -->                        
@@ -107,6 +110,7 @@
                         <p:commandButton value="Modificar Usuario" icon="pi pi-file-edit" class="boton"/> 
                         <p:commandButton value="Nuevo Registro" icon="pi pi-file" class="boton"/>                            
 >>>>>>> ddce03341709a302eea8939c80732b02dfe93d3b:Aplicación/Laboratorio de Evaluaciones MINDEF/build/web/Views/usuarios.xhtml
+>>>>>>> 8b4b0d2d01e603327423c462c0d3e3e7058fa4be
                     </div>
                 </p:panel>
             </h:form>
@@ -135,6 +139,14 @@
                     <p:column headerText="Contraseña">
                         <h:outputText value="#{row.contrasenia}"/>
                     </p:column>  
+<<<<<<< HEAD
+                    <p:column  headerText="Acciones">
+                        <p:commandButton id="modificar" icon="pi pi-file-edit" styleClass="botonMenu" style="background-color: #387F39 !important;"/>
+                        <p:commandButton id="anular" icon="pi pi-trash" styleClass="botonMenu" style="background-color: #b60a18 !important;"/>
+                    </p:column>                        
+                </p:dataTable>
+            </h:form>
+=======
 
                     <p:column headerText="Modificar">
                         <p:commandButton id="modificar2" value="Modificar" oncomplete="" action="#{beanUsuarios.seleccionar(row)}" update="form" /> <!-- Actualiza el formulario de inserción al seleccionar -->
@@ -166,6 +178,7 @@
 
 
             <!-- ****************************************************************************************** -->
+>>>>>>> 8b4b0d2d01e603327423c462c0d3e3e7058fa4be
         </div>
         <!--Cambiar Segun el Bean-->
         <!--        <p:dialog header="Anular Registro" widgetVar="dlgAnular" minHeight="40" width="350" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
