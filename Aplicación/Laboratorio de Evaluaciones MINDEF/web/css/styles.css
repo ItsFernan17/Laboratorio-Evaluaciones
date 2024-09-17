@@ -294,18 +294,6 @@ html, body {
     justify-content: center !important;
 }
 
-.botonMenuModificar{
-    display: none;
-    border: none !important;
-    color: azure !important;
-}
-
-.botonMenuAnular{
-    display: none;
-    border: none !important;
-    color: azure !important;
-}
-
 .ui-menu{
     width: 350px !important;
     top: 15% !important;
