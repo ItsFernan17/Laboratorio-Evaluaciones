@@ -28,6 +28,7 @@ public class CRUDUsuario {
             transaction = session.beginTransaction();
             if (insert == null) {
                 insert = new Usuario();
+                insert.setCodigoUsuario(0);
                 insert.setEstado(true);
                 insert.setNombreUsuario(nombreUsuario);
                 insert.setRol(rol);
