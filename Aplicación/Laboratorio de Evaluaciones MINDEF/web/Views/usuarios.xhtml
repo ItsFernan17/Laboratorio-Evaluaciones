@@ -4,13 +4,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="../css/styles.css" rel="stylesheet" type="text/css"/>
-        <script src="../js/script.js" type="text/javascript"></script>
+        <script src="../js/usuarios.js" type="text/javascript"></script>
     </h:head>
-    <h:body>
+    <h:body onload="foco('form:nombreUsuario'); habilitarGuardar('form:btnGuardarUsuario', 'form:btnModificarUsuario')">
         <h:form>
             <p:toolbar style="border: none !important; border-radius: 0 !important">
                 <p:toolbarGroup>
@@ -45,7 +44,6 @@
                 </p:toolbarGroup>
             </p:toolbar>
         </h:form>
-
         <div class="contenedor">       
             <h:form id="form">
                 <p:growl id="growl" showDetail="true" />
@@ -63,38 +61,44 @@
                         <h5 class="tituloInput">Nombre del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-user"></i>
-                            <p:inputText value="#{beanUsuarios.nombreUsuario}" placeholder="Nombre Completo" required="true" styleClass="longitud"/>
+                            <p:inputText id="nombreUsuario" value="#{beanUsuarios.nombreUsuario}" placeholder="Nombre Completo" required="true" styleClass="longitud" onkeypress="if (event.keyCode === 13)
+                                    {
+                                        foco('form:rolUsuario');
+                                        return false;
+                                    }"/>
                         </span>
                     </div> 
                     <div class="contenedorInput">
                         <h5 class="tituloInput">Rol del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-star"></i>
-                            <!--<p:inputText placeholder="Rol del usuario" required="true" styleClass="longitud"/>-->
-                            <p:selectOneMenu value="#{beanUsuarios.rol}" styleClass="longitud" required="true" placeholder="Rol del usuario">
+                            <p:selectOneMenu id="rolUsuario" value="#{beanUsuarios.rol}" styleClass="longitud" required="true" >
                                 <f:selectItem itemLabel="Selecciona un rol" itemValue="" noSelectionOption="true" />
                                 <f:selectItem itemLabel="Evaluado" itemValue="Evaluado" />
                                 <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-                                <f:selectItem itemLabel="Evaluador" itemValue="Evaluados" />
+                                <f:selectItem itemLabel="Evaluador" itemValue="Evaluador" />
                                 <f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" /> 
                             </p:selectOneMenu>
-
                         </span>
                     </div>  
                     <div class="contenedorInput">
                         <h5 class="tituloInput">Contraseña del Usuario</h5>
                         <span class="ui-input-icon-left">
                             <i class="pi pi-lock"></i>
-                            <p:inputText value="#{beanUsuarios.contrasenia}" placeholder="Contraseña" required="true" styleClass="longitud"/>
+                            <p:inputText id="contrasenia" value="#{beanUsuarios.contrasenia}" placeholder="Contraseña" required="true" styleClass="longitud" onkeypress="if (event.keyCode === 13)
+                                    {
+                                        foco('form:btnGuardarUsuario');
+                                        return false;
+                                    }"/>
                         </span>
                     </div>                      
                     <div class="contenedorBoton">
-                        <p:commandButton id="btnGuardarUsuario" update="form, tabla" action="#{beanUsuarios.insertar()}" value="Guardar" icon="pi pi-save" class="boton"/>
-                        <!--Este boton se va a ocultar con Js-->
-                        <p:commandButton id="btnModificarUsuario" update="form, tabla" action="#{beanUsuarios.update()}" value="Modificar" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>                          
+                        <p:commandButton id="btnGuardarUsuario" oncomplete="habilitarGuardar('form:btnGuardarUsuario', 'form:btnModificarUsuario')" update="form, tabla" action="#{beanUsuarios.insertar()}" value="Guardar" icon="pi pi-save" class="boton" />
+                        <p:commandButton id="btnModificarUsuario" oncomplete="habilitarGuardar('form:btnGuardarUsuario', 'form:btnModificarUsuario')" update="form, tabla" action="#{beanUsuarios.update()}" value="Modificar" icon="pi pi-file-edit" class="boton" style="font-size: 15px !important;"/>                          
                     </div>
                 </p:panel>
             </h:form>
+
             <h2 class="tituloSeccion" style="margin-top: 35px !important;">
                 Usuarios registrados en el sistema
                 <span class="linea"></span>
@@ -111,8 +115,8 @@
                         <h:outputText value="#{row.contrasenia}"/>
                     </p:column>  
                     <p:column  headerText="Acciones">
-                        <p:commandButton id="modificar2" oncomplete="" action="#{beanUsuarios.seleccionar(row)}" update="form" icon="pi pi-file-edit" styleClass="botonMenu" style="background-color: #387F39 !important;" title="Editar"/>
-                        <p:commandButton id="anular" onclick="PF('dlgAnular').show()" icon="pi pi-trash" styleClass="botonMenuAnular"  style="background-color: #b60a18 !important;" title="Anular"/>
+                        <p:commandButton id="modificar2" oncomplete="habilitarModificar('form:btnGuardarUsuario', 'form:btnModificarUsuario'); desplazarse()" action="#{beanUsuarios.seleccionar(row)}" update="form" icon="pi pi-file-edit" styleClass="botonMenu" style="background-color: #387F39 !important;" title="Editar"/>
+                        <p:commandButton id="anular" oncomplete="ocultar('form:btnGuardarUsuario', 'form:btnModificarUsuario')"  onclick="PF('dlgAnular').show()" action="#{beanUsuarios.seleccionar(row)}" icon="pi pi-trash" styleClass="botonMenuAnular"  style="background-color: #b60a18 !important;" title="Anular" update="formAnular, form"/>
                     </p:column> 
                 </p:dataTable>
             </h:form>

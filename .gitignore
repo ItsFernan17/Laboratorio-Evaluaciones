@@ -2,3 +2,14 @@
 /Aplicación/Aplicación Java/dist/
 /Aplicación/Laboratorio de Evaluaciones MINDEF/build/
 /Aplicación/Laboratorio de Evaluaciones MINDEF/nbproject/private/
+
+# Archivos de compilación
+/build/
+/dist/
+*.class
+*.jar
+
+# Archivos de configuración del IDE
+/nbproject/private/
+*.properties
+*.xml
