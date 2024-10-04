@@ -1,8 +1,7 @@
 package Pojos;
-// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
+// Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,13 +12,9 @@ public class Poblacion  implements java.io.Serializable {
 
 
      private int codigoPoblacion;
-     private Usuario usuarioByUsuarioIngreso;
-     private Usuario usuarioByUsuarioModifica;
      private Boolean estado;
      private String nombrePoblacion;
-     private Date fechaIngreso;
-     private Date fechaModifica;
-     private Set personas = new HashSet(0);
+     private Set usuarios = new HashSet(0);
 
     public Poblacion() {
     }
@@ -28,15 +23,11 @@ public class Poblacion  implements java.io.Serializable {
     public Poblacion(int codigoPoblacion) {
         this.codigoPoblacion = codigoPoblacion;
     }
-    public Poblacion(int codigoPoblacion, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, String nombrePoblacion, Date fechaIngreso, Date fechaModifica, Set personas) {
+    public Poblacion(int codigoPoblacion, Boolean estado, String nombrePoblacion, Set usuarios) {
        this.codigoPoblacion = codigoPoblacion;
-       this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
-       this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
        this.estado = estado;
        this.nombrePoblacion = nombrePoblacion;
-       this.fechaIngreso = fechaIngreso;
-       this.fechaModifica = fechaModifica;
-       this.personas = personas;
+       this.usuarios = usuarios;
     }
    
     public int getCodigoPoblacion() {
@@ -45,20 +36,6 @@ public class Poblacion  implements java.io.Serializable {
     
     public void setCodigoPoblacion(int codigoPoblacion) {
         this.codigoPoblacion = codigoPoblacion;
-    }
-    public Usuario getUsuarioByUsuarioIngreso() {
-        return this.usuarioByUsuarioIngreso;
-    }
-    
-    public void setUsuarioByUsuarioIngreso(Usuario usuarioByUsuarioIngreso) {
-        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
-    }
-    public Usuario getUsuarioByUsuarioModifica() {
-        return this.usuarioByUsuarioModifica;
-    }
-    
-    public void setUsuarioByUsuarioModifica(Usuario usuarioByUsuarioModifica) {
-        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
     }
     public Boolean getEstado() {
         return this.estado;
@@ -74,26 +51,12 @@ public class Poblacion  implements java.io.Serializable {
     public void setNombrePoblacion(String nombrePoblacion) {
         this.nombrePoblacion = nombrePoblacion;
     }
-    public Date getFechaIngreso() {
-        return this.fechaIngreso;
+    public Set getUsuarios() {
+        return this.usuarios;
     }
     
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-    public Date getFechaModifica() {
-        return this.fechaModifica;
-    }
-    
-    public void setFechaModifica(Date fechaModifica) {
-        this.fechaModifica = fechaModifica;
-    }
-    public Set getPersonas() {
-        return this.personas;
-    }
-    
-    public void setPersonas(Set personas) {
-        this.personas = personas;
+    public void setUsuarios(Set usuarios) {
+        this.usuarios = usuarios;
     }
 
 

@@ -5,7 +5,8 @@
  */
 package CRUDs;
 
-import Pojos.Comando;
+import Pojos.Empleo;
+import Pojos.Examen;
 import Pojos.Usuario;
 import java.util.Date;
 import java.util.List;
@@ -16,23 +17,32 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-public class CRUDComando {
-    
-    public static boolean insert(String nombreComando, String usuarioIngreso) {
+/**
+ *
+ * @author ferna
+ */
+public class CRUDExamen {
+
+    public static boolean insert(Date fechaEvaluacion, String usuarioEvaluado, String empelo, Integer punteoTotal, String usuarioIngreso) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Comando.class);
-        criteria.add(Restrictions.eq("nombreComando", nombreComando));
+        Criteria criteria = session.createCriteria(Examen.class);
         criteria.add(Restrictions.eq("estado", true));
-        Comando insert = (Comando) criteria.uniqueResult();
+        Examen insert = (Examen) criteria.uniqueResult();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             if (insert == null) {
-                insert = new Comando();
+                insert = new Examen();
                 insert.setEstado(true);
-                insert.setNombreComando(nombreComando);
+                insert.setFechaEvaluacion(fechaEvaluacion);
+                Usuario user = new Usuario();
+                user.setDpi(usuarioEvaluado);
+                insert.setUsuarioByUsuario(user);
+                Empleo empleo = new Empleo();
+                empleo.setCeom(empelo);
+                insert.setPunteoTotal(punteoTotal);
                 Usuario usuario = new Usuario();
                 usuario.setDpi(usuarioIngreso);
                 insert.setUsuarioByUsuarioIngreso(usuario);
@@ -41,57 +51,65 @@ public class CRUDComando {
                 flag = true;
             }
             transaction.commit();
-            
+
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-        
+
         return flag;
     }
-    
-    public static boolean update(Integer codigoComando, String nombreComando, String usuarioModifica) {
+
+    public static boolean update(Integer codigoExamen, Date fechaEvaluacion, String usuarioEvaluado, String empelo, Integer punteoTotal, String usuarioModifica) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Comando.class);
-        criteria.add(Restrictions.eq("codigoComando", codigoComando));
-        Comando update = (Comando) criteria.uniqueResult();
+        Criteria criteria = session.createCriteria(Examen.class);
+        criteria.add(Restrictions.eq("codigoExamen", codigoExamen));
+        Examen update = (Examen) criteria.uniqueResult();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             if (update != null) {
                 update.setEstado(true);
-                update.setNombreComando(nombreComando);
+                update.setFechaEvaluacion(fechaEvaluacion);
+                Usuario user = new Usuario();
+                user.setDpi(usuarioEvaluado);
+                update.setUsuarioByUsuario(user);
+                Empleo empleo = new Empleo();
+                empleo.setCeom(empelo);
+                update.setPunteoTotal(punteoTotal);
                 Usuario usuario = new Usuario();
                 usuario.setDpi(usuarioModifica);
                 update.setUsuarioByUsuarioModifica(usuario);
-                update.setFechaModifica(fecha);
+                update.setFechaIngreso(fecha);
                 session.update(update);
                 flag = true;
             }
             transaction.commit();
-            
+
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-        
+
         return flag;
     }
-    
-    public static List<Comando> universo() {
+
+    public static List<Examen> universo() {
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession();
-        List<Comando> lista = null;
+        List<Examen> lista = null;
         try {
             session.beginTransaction();
-            Criteria criteria = session.createCriteria(Comando.class);
+            Criteria criteria = session.createCriteria(Examen.class);
+            criteria.createAlias("empleo", "emp");
+            criteria.createAlias("usuarioByUsuario", "usuario");
             criteria.add(Restrictions.eq("estado", true));
-            criteria.addOrder(Order.asc("codigoComando"));
+            criteria.addOrder(Order.asc("codigoExamen"));
             lista = criteria.list();
         } catch (HibernateException e) {
             System.out.println("Error " + e);
@@ -100,13 +118,13 @@ public class CRUDComando {
         }
         return lista;
     }
-    
-    public static boolean anular(Integer codigoComando) {
+
+    public static boolean anular(Integer codigoExamen) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Comando.class);
-        criteria.add(Restrictions.eq("codigoComando", codigoComando));
-        Comando update = (Comando) criteria.uniqueResult();
+        Criteria criteria = session.createCriteria(Examen.class);
+        criteria.add(Restrictions.eq("codigoExamen", codigoExamen));
+        Examen update = (Examen) criteria.uniqueResult();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -116,15 +134,15 @@ public class CRUDComando {
                 flag = true;
             }
             transaction.commit();
-            
+
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-        
+
         return flag;
     }
-    
+
 }

@@ -1,18 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 3, 2024 5:05:11 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojos.Usuario" table="usuario" catalog="laboratorio_evaluados" optimistic-lock="version">
-        <id name="codigoUsuario" type="int">
-            <column name="CODIGO_USUARIO" />
+        <id name="dpi" type="string">
+            <column name="DPI" length="25" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="departamentoResidencia" class="Pojos.DepartamentoResidencia" fetch="select">
+            <column name="RESIDENCIA" />
+        </many-to-one>
+        <many-to-one name="grado" class="Pojos.Grado" fetch="select">
+            <column name="GRADO" />
+        </many-to-one>
+        <many-to-one name="poblacion" class="Pojos.Poblacion" fetch="select">
+            <column name="POBLACION" />
+        </many-to-one>
         <property name="estado" type="java.lang.Boolean">
             <column name="ESTADO" />
         </property>
+        <property name="nombreCompleto" type="string">
+            <column name="NOMBRE_COMPLETO" length="100" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="25" />
+        </property>
         <property name="nombreUsuario" type="string">
-            <column name="NOMBRE_USUARIO" length="75" />
+            <column name="NOMBRE_USUARIO" length="10" />
         </property>
         <property name="rol" type="string">
             <column name="ROL" length="45" />
@@ -20,159 +35,117 @@
         <property name="contrasenia" type="string">
             <column name="CONTRASENIA" length="45" />
         </property>
-        <set name="preguntasForUsuarioModifica" table="pregunta" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_MODIFICA" />
-            </key>
-            <one-to-many class="Pojos.Pregunta" />
-        </set>
-        <set name="certificacionsForUsarioIngresa" table="certificacion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USARIO_INGRESA" />
-            </key>
-            <one-to-many class="Pojos.Certificacion" />
-        </set>
-        <set name="gradosForUsuarioIngreso" table="grado" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_INGRESO" />
-            </key>
-            <one-to-many class="Pojos.Grado" />
-        </set>
-        <set name="certificacionsForUsuarioModifica" table="certificacion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_MODIFICA" />
-            </key>
-            <one-to-many class="Pojos.Certificacion" />
-        </set>
-        <set name="poblacionsForUsuarioIngreso" table="poblacion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_INGRESO" />
-            </key>
-            <one-to-many class="Pojos.Poblacion" />
-        </set>
-        <set name="gradosForUsuarioModifica" table="grado" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_MODIFICA" />
-            </key>
-            <one-to-many class="Pojos.Grado" />
-        </set>
         <set name="bancoRespuestasesForUsuarioModifica" table="banco_respuestas" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
             <one-to-many class="Pojos.BancoRespuestas" />
         </set>
         <set name="motivoEvaluacionsForUsuarioModifica" table="motivo_evaluacion" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
             <one-to-many class="Pojos.MotivoEvaluacion" />
         </set>
         <set name="motivoNoAptosForUsuarioIngreso" table="motivo_no_apto" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.MotivoNoApto" />
         </set>
-        <set name="departamentoResidenciasForUsuarioIngreso" table="departamento_residencia" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_INGRESO" />
-            </key>
-            <one-to-many class="Pojos.DepartamentoResidencia" />
-        </set>
         <set name="bancoRespuestasesForUsuarioIngreso" table="banco_respuestas" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.BancoRespuestas" />
         </set>
         <set name="detalleExamensForUsuarioIngreso" table="detalle_examen" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.DetalleExamen" />
         </set>
         <set name="motivoEvaluacionsForUsuarioIngreso" table="motivo_evaluacion" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.MotivoEvaluacion" />
         </set>
         <set name="detalleExamensForUsuarioModifica" table="detalle_examen" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
             <one-to-many class="Pojos.DetalleExamen" />
         </set>
-        <set name="personasForUsuarioIngreso" table="persona" inverse="true" lazy="true" fetch="select">
+        <set name="preguntasForUsuarioModifica" table="pregunta" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
-            <one-to-many class="Pojos.Persona" />
+            <one-to-many class="Pojos.Pregunta" />
         </set>
-        <set name="poblacionsForUsuarioModifica" table="poblacion" inverse="true" lazy="true" fetch="select">
+        <set name="certificacionsForUsarioIngresa" table="certificacion" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" />
+                <column name="USARIO_INGRESA" length="25" />
             </key>
-            <one-to-many class="Pojos.Poblacion" />
-        </set>
-        <set name="personasForUsuarioModifica" table="persona" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_MODIFICA" />
-            </key>
-            <one-to-many class="Pojos.Persona" />
-        </set>
-        <set name="departamentoResidenciasForUsuarioModifica" table="departamento_residencia" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_MODIFICA" />
-            </key>
-            <one-to-many class="Pojos.DepartamentoResidencia" />
+            <one-to-many class="Pojos.Certificacion" />
         </set>
         <set name="empleosForUsuarioModifica" table="empleo" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
             <one-to-many class="Pojos.Empleo" />
         </set>
+        <set name="certificacionsForUsuarioModifica" table="certificacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USUARIO_MODIFICA" length="25" />
+            </key>
+            <one-to-many class="Pojos.Certificacion" />
+        </set>
+        <set name="examensForUsuario" table="examen" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USUARIO" length="25" />
+            </key>
+            <one-to-many class="Pojos.Examen" />
+        </set>
         <set name="empleosForUsuarioIngreso" table="empleo" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.Empleo" />
         </set>
         <set name="preguntasForUsuarioIngreso" table="pregunta" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.Pregunta" />
         </set>
         <set name="comandosForUsuarioIngreso" table="comando" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.Comando" />
         </set>
         <set name="examensForUsuarioIngreso" table="examen" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_INGRESO" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.Examen" />
         </set>
         <set name="motivoNoAptosForUsuarioModifica" table="motivo_no_apto" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
             <one-to-many class="Pojos.MotivoNoApto" />
         </set>
         <set name="comandosForUsuarioModifica" table="comando" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
             <one-to-many class="Pojos.Comando" />
         </set>
         <set name="examensForUsuarioModifica" table="examen" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
             <one-to-many class="Pojos.Examen" />
         </set>

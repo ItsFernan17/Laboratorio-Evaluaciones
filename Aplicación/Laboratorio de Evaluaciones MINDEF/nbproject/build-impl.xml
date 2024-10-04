@@ -1008,8 +1008,8 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${libs.jpa20-persistence.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.MySQL8.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.Laboratorio_Evaluaciones.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
-        <copyfiles files="${libs.PrimeFaces.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.hibernate4-support.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.PrimeFaces13.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
@@ -1017,8 +1017,8 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${libs.jpa20-persistence.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.MySQL8.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${reference.Laboratorio_Evaluaciones.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${libs.PrimeFaces.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.hibernate4-support.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.PrimeFaces13.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>

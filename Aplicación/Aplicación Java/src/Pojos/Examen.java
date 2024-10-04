@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
+// Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,7 +14,7 @@ public class Examen  implements java.io.Serializable {
 
      private int codigoExamen;
      private Empleo empleo;
-     private Persona persona;
+     private Usuario usuarioByUsuario;
      private Usuario usuarioByUsuarioIngreso;
      private Usuario usuarioByUsuarioModifica;
      private Boolean estado;
@@ -32,10 +32,10 @@ public class Examen  implements java.io.Serializable {
     public Examen(int codigoExamen) {
         this.codigoExamen = codigoExamen;
     }
-    public Examen(int codigoExamen, Empleo empleo, Persona persona, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, Date fechaEvaluacion, Integer punteoTotal, Date fechaIngreso, Date fechaModifica, Set certificacions, Set detalleExamens) {
+    public Examen(int codigoExamen, Empleo empleo, Usuario usuarioByUsuario, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, Date fechaEvaluacion, Integer punteoTotal, Date fechaIngreso, Date fechaModifica, Set certificacions, Set detalleExamens) {
        this.codigoExamen = codigoExamen;
        this.empleo = empleo;
-       this.persona = persona;
+       this.usuarioByUsuario = usuarioByUsuario;
        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
        this.estado = estado;
@@ -61,12 +61,12 @@ public class Examen  implements java.io.Serializable {
     public void setEmpleo(Empleo empleo) {
         this.empleo = empleo;
     }
-    public Persona getPersona() {
-        return this.persona;
+    public Usuario getUsuarioByUsuario() {
+        return this.usuarioByUsuario;
     }
     
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setUsuarioByUsuario(Usuario usuarioByUsuario) {
+        this.usuarioByUsuario = usuarioByUsuario;
     }
     public Usuario getUsuarioByUsuarioIngreso() {
         return this.usuarioByUsuarioIngreso;

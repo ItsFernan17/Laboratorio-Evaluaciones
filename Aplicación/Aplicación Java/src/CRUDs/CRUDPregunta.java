@@ -5,7 +5,8 @@
  */
 package CRUDs;
 
-import Pojos.Comando;
+import Pojos.BancoRespuestas;
+import Pojos.Pregunta;
 import Pojos.Usuario;
 import java.util.Date;
 import java.util.List;
@@ -16,23 +17,30 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-public class CRUDComando {
-    
-    public static boolean insert(String nombreComando, String usuarioIngreso) {
+/**
+ *
+ * @author ferna
+ */
+public class CRUDPregunta {
+
+    public static boolean insert(String enunciado, Integer codigoRespuesta, String usuarioIngreso) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Comando.class);
-        criteria.add(Restrictions.eq("nombreComando", nombreComando));
+        Criteria criteria = session.createCriteria(Pregunta.class);
+        criteria.add(Restrictions.eq("enunciado", enunciado));
         criteria.add(Restrictions.eq("estado", true));
-        Comando insert = (Comando) criteria.uniqueResult();
+        Pregunta insert = (Pregunta) criteria.uniqueResult();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             if (insert == null) {
-                insert = new Comando();
+                insert = new Pregunta();
                 insert.setEstado(true);
-                insert.setNombreComando(nombreComando);
+                insert.setEnunciado(enunciado);
+                BancoRespuestas res = new BancoRespuestas();
+                res.setCodigoRespuesta(codigoRespuesta);
+                insert.setBancoRespuestas(res);
                 Usuario usuario = new Usuario();
                 usuario.setDpi(usuarioIngreso);
                 insert.setUsuarioByUsuarioIngreso(usuario);
@@ -41,57 +49,61 @@ public class CRUDComando {
                 flag = true;
             }
             transaction.commit();
-            
+
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-        
+
         return flag;
     }
-    
-    public static boolean update(Integer codigoComando, String nombreComando, String usuarioModifica) {
+
+    public static boolean update(Integer codigoPregunta, String enunciado, Integer codigoRespuesta, String usuarioModifica) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Comando.class);
-        criteria.add(Restrictions.eq("codigoComando", codigoComando));
-        Comando update = (Comando) criteria.uniqueResult();
+        Criteria criteria = session.createCriteria(Pregunta.class);
+        criteria.add(Restrictions.eq("codigoPregunta", codigoPregunta));
+        Pregunta update = (Pregunta) criteria.uniqueResult();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             if (update != null) {
                 update.setEstado(true);
-                update.setNombreComando(nombreComando);
+                update.setEnunciado(enunciado);
+                BancoRespuestas res = new BancoRespuestas();
+                res.setCodigoRespuesta(codigoRespuesta);
+                update.setBancoRespuestas(res);
                 Usuario usuario = new Usuario();
                 usuario.setDpi(usuarioModifica);
                 update.setUsuarioByUsuarioModifica(usuario);
-                update.setFechaModifica(fecha);
+                update.setFechaIngreso(fecha);
                 session.update(update);
                 flag = true;
             }
             transaction.commit();
-            
+
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-        
+
         return flag;
     }
-    
-    public static List<Comando> universo() {
+
+    public static List<Pregunta> universo() {
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession();
-        List<Comando> lista = null;
+        List<Pregunta> lista = null;
         try {
             session.beginTransaction();
-            Criteria criteria = session.createCriteria(Comando.class);
+            Criteria criteria = session.createCriteria(Pregunta.class);
+            criteria.createAlias("bancoRespuestas", "resp");
             criteria.add(Restrictions.eq("estado", true));
-            criteria.addOrder(Order.asc("codigoComando"));
+            criteria.addOrder(Order.asc("codigoPregunta"));
             lista = criteria.list();
         } catch (HibernateException e) {
             System.out.println("Error " + e);
@@ -100,13 +112,13 @@ public class CRUDComando {
         }
         return lista;
     }
-    
-    public static boolean anular(Integer codigoComando) {
+
+    public static boolean anular(Integer codigoPregunta) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Comando.class);
-        criteria.add(Restrictions.eq("codigoComando", codigoComando));
-        Comando update = (Comando) criteria.uniqueResult();
+        Criteria criteria = session.createCriteria(Pregunta.class);
+        criteria.add(Restrictions.eq("codigoPregunta", codigoPregunta));
+        Pregunta update = (Pregunta) criteria.uniqueResult();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -116,15 +128,15 @@ public class CRUDComando {
                 flag = true;
             }
             transaction.commit();
-            
+
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-        
+
         return flag;
     }
-    
+
 }

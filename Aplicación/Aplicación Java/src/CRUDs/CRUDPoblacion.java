@@ -16,10 +16,9 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-
 public class CRUDPoblacion {
 
-    public static boolean insert(String nombrePoblacion, Integer usuarioIngreso) {
+    public static boolean insert(String nombrePoblacion) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -34,43 +33,7 @@ public class CRUDPoblacion {
                 insert = new Poblacion();
                 insert.setEstado(true);
                 insert.setNombrePoblacion(nombrePoblacion);
-                Usuario usuario = new Usuario();
-                usuario.setCodigoUsuario(usuarioIngreso);
-                insert.setUsuarioByUsuarioIngreso(usuario);
-                insert.setFechaIngreso(fecha);
                 session.save(insert);
-                flag = true;
-            }
-            transaction.commit();
-
-        } catch (HibernateException e) {
-            transaction.rollback();
-            System.out.println("Error " + e);
-        } finally {
-            session.close();
-        }
-
-        return flag;
-    }
-
-    public static boolean update(Integer codigoPoblacion, String nombrePoblacion, Integer usuarioModifica) {
-        boolean flag = false;
-        Date fecha = new Date();
-        Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Poblacion.class);
-        criteria.add(Restrictions.eq("codigoPoblacion", codigoPoblacion));
-        Poblacion update = (Poblacion) criteria.uniqueResult();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            if (update != null) {
-                update.setEstado(true);
-                update.setNombrePoblacion(nombrePoblacion);
-                Usuario usuario = new Usuario();
-                usuario.setCodigoUsuario(usuarioModifica);
-                update.setUsuarioByUsuarioModifica(usuario);
-                update.setFechaModifica(fecha);
-                session.update(update);
                 flag = true;
             }
             transaction.commit();
@@ -100,32 +63,6 @@ public class CRUDPoblacion {
             session.getTransaction().commit();
         }
         return lista;
-    }
-
-    public static boolean anular(Integer codigoPoblacion) {
-        boolean flag = false;
-        Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Poblacion.class);
-        criteria.add(Restrictions.eq("codigoPoblacion", codigoPoblacion));
-        Poblacion update = (Poblacion) criteria.uniqueResult();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            if (update != null) {
-                update.setEstado(false);
-                session.update(update);
-                flag = true;
-            }
-            transaction.commit();
-
-        } catch (HibernateException e) {
-            transaction.rollback();
-            System.out.println("Error " + e);
-        } finally {
-            session.close();
-        }
-
-        return flag;
     }
 
 }

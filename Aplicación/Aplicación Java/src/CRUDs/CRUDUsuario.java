@@ -5,6 +5,9 @@
  */
 package CRUDs;
 
+import Pojos.DepartamentoResidencia;
+import Pojos.Grado;
+import Pojos.Poblacion;
 import Pojos.Usuario;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -16,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
 
 public class CRUDUsuario {
 
-    public static boolean insert(String nombreUsuario, String rol, String contrasenia) {
+    public static boolean insert(String dpi, String nombreCompleto, String telefono, String nombreUsuario, String rol, String contrasenia, Integer grado, Integer poblacion, Integer departamento) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Usuario.class);
@@ -29,9 +32,20 @@ public class CRUDUsuario {
             if (insert == null) {
                 insert = new Usuario();
                 insert.setEstado(true);
+                insert.setNombreCompleto(nombreCompleto);
+                insert.setTelefono(telefono);
                 insert.setNombreUsuario(nombreUsuario);
                 insert.setRol(rol);
                 insert.setContrasenia(contrasenia);
+                Grado grd = new Grado();
+                grd.setCodigoGrado(grado);
+                insert.setGrado(grd);
+                Poblacion pob = new Poblacion();
+                pob.setCodigoPoblacion(poblacion);
+                insert.setPoblacion(pob);
+                DepartamentoResidencia dep = new DepartamentoResidencia();
+                dep.setCodigoDepartamento(departamento);
+                insert.setDepartamentoResidencia(dep);
                 session.save(insert);
                 flag = true;
             }
@@ -47,20 +61,32 @@ public class CRUDUsuario {
         return flag;
     }
 
-    public static boolean update(Integer codigoUsuario, String nombreUsuario, String rol, String contrasenia) {
+    public static boolean update(String dpi, String nombreCompleto, String telefono, String nombreUsuario, String rol, String contrasenia, Integer grado, Integer poblacion, Integer departamento) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Usuario.class);
-        criteria.add(Restrictions.eq("codigoUsuario", codigoUsuario));
+        criteria.add(Restrictions.eq("dpi", dpi));
         Usuario update = (Usuario) criteria.uniqueResult();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             if (update != null) {
                 update.setEstado(true);
+                update.setEstado(true);
+                update.setNombreCompleto(nombreCompleto);
+                update.setTelefono(telefono);
                 update.setNombreUsuario(nombreUsuario);
                 update.setRol(rol);
                 update.setContrasenia(contrasenia);
+                Grado grd = new Grado();
+                grd.setCodigoGrado(grado);
+                update.setGrado(grd);
+                Poblacion pob = new Poblacion();
+                pob.setCodigoPoblacion(poblacion);
+                update.setPoblacion(pob);
+                DepartamentoResidencia dep = new DepartamentoResidencia();
+                dep.setCodigoDepartamento(departamento);
+                update.setDepartamentoResidencia(dep);
                 session.update(update);
                 flag = true;
             }
@@ -82,8 +108,11 @@ public class CRUDUsuario {
         try {
             session.beginTransaction();
             Criteria criteria = session.createCriteria(Usuario.class);
+            criteria.createAlias("departamentoResidencia", "dep");
+            criteria.createAlias("grado", "grad");
+            criteria.createAlias("poblacion", "pob");
             criteria.add(Restrictions.eq("estado", true));
-            criteria.addOrder(Order.asc("codigoUsuario"));
+            criteria.addOrder(Order.asc("dpi"));
             lista = criteria.list();
         } catch (HibernateException e) {
             System.out.println("Error " + e);
@@ -93,11 +122,11 @@ public class CRUDUsuario {
         return lista;
     }
 
-    public static boolean anular(Integer codigoUsuario) {
+    public static boolean anular(String dpi) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Usuario.class);
-        criteria.add(Restrictions.eq("codigoUsuario", codigoUsuario));
+        criteria.add(Restrictions.eq("dpi", dpi));
         Usuario update = (Usuario) criteria.uniqueResult();
         Transaction transaction = null;
         try {

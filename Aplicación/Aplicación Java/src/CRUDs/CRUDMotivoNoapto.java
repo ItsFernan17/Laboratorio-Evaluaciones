@@ -17,8 +17,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 public class CRUDMotivoNoapto {
-
-    public static boolean insert(String nombreMotivo, Integer usuarioIngreso) {
+    
+    public static boolean insert(String nombreMotivo, String usuarioIngreso) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -34,25 +34,25 @@ public class CRUDMotivoNoapto {
                 insert.setEstado(true);
                 insert.setNombreMotivo(nombreMotivo);
                 Usuario usuario = new Usuario();
-                usuario.setCodigoUsuario(usuarioIngreso);
+                usuario.setDpi(usuarioIngreso);
                 insert.setUsuarioByUsuarioIngreso(usuario);
                 insert.setFechaIngreso(fecha);
                 session.save(insert);
                 flag = true;
             }
             transaction.commit();
-
+            
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-
+        
         return flag;
     }
-
-    public static boolean update(Integer codigoNoApto, String nombreMotivo, Integer usuarioModifica) {
+    
+    public static boolean update(Integer codigoNoApto, String nombreMotivo, String usuarioModifica) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -66,24 +66,24 @@ public class CRUDMotivoNoapto {
                 update.setEstado(true);
                 update.setNombreMotivo(nombreMotivo);
                 Usuario usuario = new Usuario();
-                usuario.setCodigoUsuario(usuarioModifica);
+                usuario.setDpi(usuarioModifica);
                 update.setUsuarioByUsuarioModifica(usuario);
                 update.setFechaModifica(fecha);
                 session.update(update);
                 flag = true;
             }
             transaction.commit();
-
+            
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-
+        
         return flag;
     }
-
+    
     public static List<MotivoNoApto> universo() {
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession();
         List<MotivoNoApto> lista = null;
@@ -100,7 +100,7 @@ public class CRUDMotivoNoapto {
         }
         return lista;
     }
-
+    
     public static boolean anular(Integer codigoNoApto) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -116,15 +116,15 @@ public class CRUDMotivoNoapto {
                 flag = true;
             }
             transaction.commit();
-
+            
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-
+        
         return flag;
     }
-
+    
 }

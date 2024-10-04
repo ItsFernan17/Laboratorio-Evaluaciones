@@ -45,21 +45,20 @@ Contributor(s):
     <!--<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/laboratorio_evaluados?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>-->
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/laboratorio_evaluados?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">MySQL2023**</property>
+    <property name="hibernate.connection.password">sierraF017</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="Pojos/Grado.hbm.xml"/>
-    <mapping resource="Pojos/Usuario.hbm.xml"/>
-    <mapping resource="Pojos/BancoRespuestas.hbm.xml"/>
-    <mapping resource="Pojos/Poblacion.hbm.xml"/>
-    <mapping resource="Pojos/Examen.hbm.xml"/>
-    <mapping resource="Pojos/DetalleExamen.hbm.xml"/>
-    <mapping resource="Pojos/Certificacion.hbm.xml"/>
     <mapping resource="Pojos/Empleo.hbm.xml"/>
-    <mapping resource="Pojos/MotivoEvaluacion.hbm.xml"/>
-    <mapping resource="Pojos/Pregunta.hbm.xml"/>
-    <mapping resource="Pojos/MotivoNoApto.hbm.xml"/>
-    <mapping resource="Pojos/Persona.hbm.xml"/>
-    <mapping resource="Pojos/DepartamentoResidencia.hbm.xml"/>
     <mapping resource="Pojos/Comando.hbm.xml"/>
+    <mapping resource="Pojos/DetalleExamen.hbm.xml"/>
+    <mapping resource="Pojos/DepartamentoResidencia.hbm.xml"/>
+    <mapping resource="Pojos/Usuario.hbm.xml"/>
+    <mapping resource="Pojos/Examen.hbm.xml"/>
+    <mapping resource="Pojos/Grado.hbm.xml"/>
+    <mapping resource="Pojos/BancoRespuestas.hbm.xml"/>
+    <mapping resource="Pojos/Certificacion.hbm.xml"/>
+    <mapping resource="Pojos/MotivoNoApto.hbm.xml"/>
+    <mapping resource="Pojos/Poblacion.hbm.xml"/>
+    <mapping resource="Pojos/Pregunta.hbm.xml"/>
+    <mapping resource="Pojos/MotivoEvaluacion.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

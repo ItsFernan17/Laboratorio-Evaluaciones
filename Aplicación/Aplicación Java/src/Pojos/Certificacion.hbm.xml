@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 3, 2024 5:05:11 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojos.Certificacion" table="certificacion" catalog="laboratorio_evaluados" optimistic-lock="version">
         <id name="numeroCertificacion" type="int">
@@ -21,10 +21,10 @@
             <column name="MOTIVO_NO_APTO" />
         </many-to-one>
         <many-to-one name="usuarioByUsarioIngresa" class="Pojos.Usuario" fetch="select">
-            <column name="USARIO_INGRESA" />
+            <column name="USARIO_INGRESA" length="25" />
         </many-to-one>
         <many-to-one name="usuarioByUsuarioModifica" class="Pojos.Usuario" fetch="select">
-            <column name="USUARIO_MODIFICA" />
+            <column name="USUARIO_MODIFICA" length="25" />
         </many-to-one>
         <property name="estado" type="boolean">
             <column name="ESTADO" not-null="true" />

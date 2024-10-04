@@ -17,8 +17,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 public class CURDRespuestas {
-
-    public static boolean insert(String respuesta, Integer usuarioIngreso) {
+    
+    public static boolean insert(String respuesta, String usuarioIngreso) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -34,25 +34,25 @@ public class CURDRespuestas {
                 insert.setEstado(true);
                 insert.setRespuesta(respuesta);
                 Usuario usuario = new Usuario();
-                usuario.setCodigoUsuario(usuarioIngreso);
+                usuario.setDpi(usuarioIngreso);
                 insert.setUsuarioByUsuarioIngreso(usuario);
                 insert.setFechaIngreso(fecha);
                 session.save(insert);
                 flag = true;
             }
             transaction.commit();
-
+            
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-
+        
         return flag;
     }
-
-    public static boolean update(Integer codigoRespuesta, String respuesta, Integer usuarioModifica) {
+    
+    public static boolean update(Integer codigoRespuesta, String respuesta, String usuarioModifica) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -66,24 +66,24 @@ public class CURDRespuestas {
                 update.setEstado(true);
                 update.setRespuesta(respuesta);
                 Usuario usuario = new Usuario();
-                usuario.setCodigoUsuario(usuarioModifica);
+                usuario.setDpi(usuarioModifica);
                 update.setUsuarioByUsuarioModifica(usuario);
                 update.setFechaModifica(fecha);
                 session.update(update);
                 flag = true;
             }
             transaction.commit();
-
+            
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-
+        
         return flag;
     }
-
+    
     public static List<BancoRespuestas> universo() {
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession();
         List<BancoRespuestas> lista = null;
@@ -100,7 +100,7 @@ public class CURDRespuestas {
         }
         return lista;
     }
-
+    
     public static boolean anular(Integer codigoRespuesta) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -116,15 +116,15 @@ public class CURDRespuestas {
                 flag = true;
             }
             transaction.commit();
-
+            
         } catch (HibernateException e) {
             transaction.rollback();
             System.out.println("Error " + e);
         } finally {
             session.close();
         }
-
+        
         return flag;
     }
-
+    
 }

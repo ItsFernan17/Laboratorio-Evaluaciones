@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
+// Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Pregunta  implements java.io.Serializable {
 
 
-     private int codigoRespuesta;
+     private int codigoPregunta;
      private BancoRespuestas bancoRespuestas;
      private Usuario usuarioByUsuarioModifica;
      private Usuario usuarioByUsuarioIngreso;
@@ -26,11 +26,11 @@ public class Pregunta  implements java.io.Serializable {
     }
 
 	
-    public Pregunta(int codigoRespuesta) {
-        this.codigoRespuesta = codigoRespuesta;
+    public Pregunta(int codigoPregunta) {
+        this.codigoPregunta = codigoPregunta;
     }
-    public Pregunta(int codigoRespuesta, BancoRespuestas bancoRespuestas, Usuario usuarioByUsuarioModifica, Usuario usuarioByUsuarioIngreso, Boolean estado, String enunciado, Date fechaIngreso, Date fechaModifica, Set detalleExamens) {
-       this.codigoRespuesta = codigoRespuesta;
+    public Pregunta(int codigoPregunta, BancoRespuestas bancoRespuestas, Usuario usuarioByUsuarioModifica, Usuario usuarioByUsuarioIngreso, Boolean estado, String enunciado, Date fechaIngreso, Date fechaModifica, Set detalleExamens) {
+       this.codigoPregunta = codigoPregunta;
        this.bancoRespuestas = bancoRespuestas;
        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
@@ -41,12 +41,12 @@ public class Pregunta  implements java.io.Serializable {
        this.detalleExamens = detalleExamens;
     }
    
-    public int getCodigoRespuesta() {
-        return this.codigoRespuesta;
+    public int getCodigoPregunta() {
+        return this.codigoPregunta;
     }
     
-    public void setCodigoRespuesta(int codigoRespuesta) {
-        this.codigoRespuesta = codigoRespuesta;
+    public void setCodigoPregunta(int codigoPregunta) {
+        this.codigoPregunta = codigoPregunta;
     }
     public BancoRespuestas getBancoRespuestas() {
         return this.bancoRespuestas;
