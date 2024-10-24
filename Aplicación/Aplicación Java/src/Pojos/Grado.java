@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1
+// Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Grado  implements java.io.Serializable {
 
 
-     private int codigoGrado;
+     private Integer codigoGrado;
      private Boolean estado;
      private String nombreGrado;
      private Set usuarios = new HashSet(0);
@@ -19,22 +19,17 @@ public class Grado  implements java.io.Serializable {
     public Grado() {
     }
 
-	
-    public Grado(int codigoGrado) {
-        this.codigoGrado = codigoGrado;
-    }
-    public Grado(int codigoGrado, Boolean estado, String nombreGrado, Set usuarios) {
-       this.codigoGrado = codigoGrado;
+    public Grado(Boolean estado, String nombreGrado, Set usuarios) {
        this.estado = estado;
        this.nombreGrado = nombreGrado;
        this.usuarios = usuarios;
     }
    
-    public int getCodigoGrado() {
+    public Integer getCodigoGrado() {
         return this.codigoGrado;
     }
     
-    public void setCodigoGrado(int codigoGrado) {
+    public void setCodigoGrado(Integer codigoGrado) {
         this.codigoGrado = codigoGrado;
     }
     public Boolean getEstado() {

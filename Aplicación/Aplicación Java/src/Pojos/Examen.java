@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1
+// Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,6 +14,7 @@ public class Examen  implements java.io.Serializable {
 
      private int codigoExamen;
      private Empleo empleo;
+     private Motivo motivo;
      private Usuario usuarioByUsuario;
      private Usuario usuarioByUsuarioIngreso;
      private Usuario usuarioByUsuarioModifica;
@@ -22,8 +23,7 @@ public class Examen  implements java.io.Serializable {
      private Integer punteoTotal;
      private Date fechaIngreso;
      private Date fechaModifica;
-     private Set certificacions = new HashSet(0);
-     private Set detalleExamens = new HashSet(0);
+     private Set detalles = new HashSet(0);
 
     public Examen() {
     }
@@ -32,9 +32,10 @@ public class Examen  implements java.io.Serializable {
     public Examen(int codigoExamen) {
         this.codigoExamen = codigoExamen;
     }
-    public Examen(int codigoExamen, Empleo empleo, Usuario usuarioByUsuario, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, Date fechaEvaluacion, Integer punteoTotal, Date fechaIngreso, Date fechaModifica, Set certificacions, Set detalleExamens) {
+    public Examen(int codigoExamen, Empleo empleo, Motivo motivo, Usuario usuarioByUsuario, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, Date fechaEvaluacion, Integer punteoTotal, Date fechaIngreso, Date fechaModifica, Set detalles) {
        this.codigoExamen = codigoExamen;
        this.empleo = empleo;
+       this.motivo = motivo;
        this.usuarioByUsuario = usuarioByUsuario;
        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
@@ -43,8 +44,7 @@ public class Examen  implements java.io.Serializable {
        this.punteoTotal = punteoTotal;
        this.fechaIngreso = fechaIngreso;
        this.fechaModifica = fechaModifica;
-       this.certificacions = certificacions;
-       this.detalleExamens = detalleExamens;
+       this.detalles = detalles;
     }
    
     public int getCodigoExamen() {
@@ -60,6 +60,13 @@ public class Examen  implements java.io.Serializable {
     
     public void setEmpleo(Empleo empleo) {
         this.empleo = empleo;
+    }
+    public Motivo getMotivo() {
+        return this.motivo;
+    }
+    
+    public void setMotivo(Motivo motivo) {
+        this.motivo = motivo;
     }
     public Usuario getUsuarioByUsuario() {
         return this.usuarioByUsuario;
@@ -117,19 +124,12 @@ public class Examen  implements java.io.Serializable {
     public void setFechaModifica(Date fechaModifica) {
         this.fechaModifica = fechaModifica;
     }
-    public Set getCertificacions() {
-        return this.certificacions;
+    public Set getDetalles() {
+        return this.detalles;
     }
     
-    public void setCertificacions(Set certificacions) {
-        this.certificacions = certificacions;
-    }
-    public Set getDetalleExamens() {
-        return this.detalleExamens;
-    }
-    
-    public void setDetalleExamens(Set detalleExamens) {
-        this.detalleExamens = detalleExamens;
+    public void setDetalles(Set detalles) {
+        this.detalles = detalles;
     }
 
 

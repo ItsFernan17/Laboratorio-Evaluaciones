@@ -1,21 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 3, 2024 5:05:11 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojos.Pregunta" table="pregunta" catalog="laboratorio_evaluados" optimistic-lock="version">
-        <id name="codigoRespuesta" type="int">
-            <column name="CODIGO_RESPUESTA" />
+        <id name="codigoPregunta" type="int">
+            <column name="CODIGO_PREGUNTA" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="bancoRespuestas" class="Pojos.BancoRespuestas" fetch="select">
-            <column name="BANCO_RESPUESTAS" />
+        <many-to-one name="usuarioByUsuarioIngreso" class="Pojos.Usuario" fetch="select">
+            <column name="USUARIO_INGRESO" length="25" />
         </many-to-one>
         <many-to-one name="usuarioByUsuarioModifica" class="Pojos.Usuario" fetch="select">
-            <column name="USUARIO_MODIFICA" />
-        </many-to-one>
-        <many-to-one name="usuarioByUsuarioIngreso" class="Pojos.Usuario" fetch="select">
-            <column name="USUARIO_INGRESO" />
+            <column name="USUARIO_MODIFICA" length="25" />
         </many-to-one>
         <property name="estado" type="java.lang.Boolean">
             <column name="ESTADO" />
@@ -23,17 +20,26 @@
         <property name="enunciado" type="string">
             <column name="ENUNCIADO" length="150" />
         </property>
+        <property name="punteo" type="big_decimal">
+            <column name="PUNTEO" precision="9" />
+        </property>
         <property name="fechaIngreso" type="timestamp">
             <column name="FECHA_INGRESO" length="19" />
         </property>
         <property name="fechaModifica" type="timestamp">
             <column name="FECHA_MODIFICA" length="19" />
         </property>
-        <set name="detalleExamens" table="detalle_examen" inverse="true" lazy="true" fetch="select">
+        <set name="detalles" table="detalle" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="PREGUNTA" />
             </key>
-            <one-to-many class="Pojos.DetalleExamen" />
+            <one-to-many class="Pojos.Detalle" />
+        </set>
+        <set name="respuestas" table="respuesta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PREGUNTA" />
+            </key>
+            <one-to-many class="Pojos.Respuesta" />
         </set>
     </class>
 </hibernate-mapping>

@@ -23,7 +23,7 @@ public class CRUDEmpleo {
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Empleo.class);
-        criteria.add(Restrictions.eq("descripcion", descripcion));
+        criteria.add(Restrictions.eq("ceom", ceom));
         criteria.add(Restrictions.eq("estado", true));
         Empleo insert = (Empleo) criteria.uniqueResult();
         Transaction transaction = null;
@@ -64,9 +64,7 @@ public class CRUDEmpleo {
         try {
             transaction = session.beginTransaction();
             if (update != null) {
-                update.setEstado(true);
                 update.setCeom(ceom);
-                update.setEstado(true);
                 update.setDescripcion(descripcion);
                 Usuario usuario = new Usuario();
                 usuario.setDpi(usuarioModifica);

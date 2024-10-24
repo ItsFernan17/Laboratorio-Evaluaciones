@@ -5,9 +5,9 @@
  */
 package CRUDs;
 
-import Pojos.BancoRespuestas;
 import Pojos.Pregunta;
 import Pojos.Usuario;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -19,11 +19,11 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author ferna
+ * @author erick
  */
 public class CRUDPregunta {
 
-    public static boolean insert(String enunciado, Integer codigoRespuesta, String usuarioIngreso) {
+    public static boolean insert(String enunciado, BigDecimal punteo, String usuarioIngreso) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -38,9 +38,7 @@ public class CRUDPregunta {
                 insert = new Pregunta();
                 insert.setEstado(true);
                 insert.setEnunciado(enunciado);
-                BancoRespuestas res = new BancoRespuestas();
-                res.setCodigoRespuesta(codigoRespuesta);
-                insert.setBancoRespuestas(res);
+                insert.setPunteo(punteo);
                 Usuario usuario = new Usuario();
                 usuario.setDpi(usuarioIngreso);
                 insert.setUsuarioByUsuarioIngreso(usuario);
@@ -60,7 +58,7 @@ public class CRUDPregunta {
         return flag;
     }
 
-    public static boolean update(Integer codigoPregunta, String enunciado, Integer codigoRespuesta, String usuarioModifica) {
+    public static boolean update(Integer codigoPregunta, String enunciado, BigDecimal punteo, String usuarioModifica) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -73,9 +71,7 @@ public class CRUDPregunta {
             if (update != null) {
                 update.setEstado(true);
                 update.setEnunciado(enunciado);
-                BancoRespuestas res = new BancoRespuestas();
-                res.setCodigoRespuesta(codigoRespuesta);
-                update.setBancoRespuestas(res);
+                update.setPunteo(punteo);
                 Usuario usuario = new Usuario();
                 usuario.setDpi(usuarioModifica);
                 update.setUsuarioByUsuarioModifica(usuario);
@@ -101,7 +97,6 @@ public class CRUDPregunta {
         try {
             session.beginTransaction();
             Criteria criteria = session.createCriteria(Pregunta.class);
-            criteria.createAlias("bancoRespuestas", "resp");
             criteria.add(Restrictions.eq("estado", true));
             criteria.addOrder(Order.asc("codigoPregunta"));
             lista = criteria.list();

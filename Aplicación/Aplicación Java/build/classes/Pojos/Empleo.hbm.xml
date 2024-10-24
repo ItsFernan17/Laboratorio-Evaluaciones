@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 3, 2024 5:05:11 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojos.Empleo" table="empleo" catalog="laboratorio_evaluados" optimistic-lock="version">
         <id name="ceom" type="string">
@@ -9,10 +9,10 @@
             <generator class="assigned" />
         </id>
         <many-to-one name="usuarioByUsuarioModifica" class="Pojos.Usuario" fetch="select">
-            <column name="USUARIO_MODIFICA" />
+            <column name="USUARIO_MODIFICA" length="25" />
         </many-to-one>
         <many-to-one name="usuarioByUsuarioIngreso" class="Pojos.Usuario" fetch="select">
-            <column name="USUARIO_INGRESO" />
+            <column name="USUARIO_INGRESO" length="25" />
         </many-to-one>
         <property name="estado" type="java.lang.Boolean">
             <column name="ESTADO" />

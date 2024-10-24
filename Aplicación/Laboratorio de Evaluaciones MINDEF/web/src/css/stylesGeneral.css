@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.ui-toolbar{
+    background-color: #d4b991 !important;    
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+h3{
+    color:#142957; 
+    margin-bottom: 30px; 
+    margin-top: 20px; 
+    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+}
+
+.h4, h4 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #142957;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contenedor {
+    width: 60% !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+    margin-top: 20px !important;
+}
+
+.panel{   
+    padding-left: 40px !important;
+    padding-top: 20px !important;
+    background-color: white !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 5px !important;
+}
+
+.panelInformacion{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 20px !important;
+    padding: 5px;
+}
+
+.inputData h5{
+    margin-bottom: none !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+body .ui-panel .ui-panel-content{
+    background: none;
+    border: none;
+}
+
+.label{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px !important;
+    color: #142957 !important;   
+    font-weight: 700;
+}
+
+.input{
+    background-color: #ebf2fb !important;
+    border: 1px solid #142957 !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px !important;
+    font-weight: 500;
+    margin-bottom: 15px !important;
+    color: black !important;
+}
+
+.ui-calendar input{
+    background-color: #ece3d4 !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px !important;
+    font-weight: 500;
+    color: #9b8b71 !important; 
+    margin-bottom: 15px !important;
+}
+
+.contenedorBoton{
+    display: flex;
+    justify-content: center !important;
+}
+
+.boton {
+    background-color: #142957 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 20px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+    height: 50px;
+    width: 320px;
+    margin-bottom: 30px !important;
+
+}
+
+.boton:hover {
+    background-color: white !important;
+    color: #04243c !important;
+    border: 2px solid #04243c !important;
+}
+
+
+
+
+.anular {
+    background-color: #ED8080 !important;
+    color: black !important;
+    border: none !important;
+    font-family: 'Poppins', sans-serif !important;;
+    border-radius: 20px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+    height: 50px ;
+    font-weight: 800;
+    width: 320px;
+    margin-bottom: 30px !important;
+
+}
+
+.anular:hover {
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid #ED8080 !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.aceptar {
+    background-color: #0f763d !important;
+    color: white !important;
+    border: none !important;
+    font-family: 'Poppins', sans-serif !important;;
+    border-radius: 20px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+    height: 50px ;
+    font-weight: 800;
+    width: 320px;
+    margin-bottom: 30px !important;
+
+}
+
+.aceptar:hover {
+    background-color: white !important;
+    color: #0f763d !important;
+    border: 2px solid #0f763d !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+.ui-datatable {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.ui-datatable th {
+    background-color: white !important;
+    color: #142957 !important;
+    padding: 0.75rem !important;
+    text-align: center !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+.ui-datatable td {
+    padding: 0.75rem !important;
+    border-bottom: 1px solid #ddd !important;
+    font-family: 'Poppins', sans-serif;
+    text-align: center !important;
+    color: #142957 !important;
+    font-weight: 400 !important;
+}
+
+.ui-datatable tr:nth-child(even) {
+    background-color: #f8f8f8 !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background-color: #142957 !important;
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 24px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 20px !important;
+    border-radius: 5px 5px 0 0 !important;
+}
+
+.ui-dialog {
+    width: 800px;
+    border-radius: 5px;
+}

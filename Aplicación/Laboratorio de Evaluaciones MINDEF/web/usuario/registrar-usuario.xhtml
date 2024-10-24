@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="#{sessionBean.template}">
+        <ui:define name="content">
+            <h:head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <link href="../src/css/stylesGeneral.css" rel="stylesheet" type="text/css"/>
+                <script src="../js/script.js" type="text/javascript"></script>
+
+            </h:head>
+            <h:body onload="foco('form:dpi')">
+
+                <div class="contenedor">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 45px !important; font-weight: 800; color: #142957;">
+                        Usuarios del Sistema
+                    </h1>
+                    <h3>
+                        Complete el formulario a continuación para registrar un nuevo usuario.
+                    </h3>
+                    <h:form id="form"> 
+                        <p:growl id="growl" showDetail="true" />
+                        <div class="panel">
+                            <h4>
+                                Información del Personal
+                            </h4>
+                            <div class="panelInformacion">
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="DPI" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:inputText placeholder="1234567891234" id="dpi" type="text" value="#{beanUsuario.dpi}" styleClass="input" 
+                                                         style="width: 90%;" required="true" requiredMessage="*El DPI es obligatorio"
+                                                         validatorMessage="El DPI debe tener una longitud de 13 dígitos">
+                                                <!-- Validación JSF: Aceptar solo 13 dígitos numéricos -->
+                                                <f:validateRegex pattern="\d{13}" />
+                                            </p:inputText>
+                                            <p:message for="dpi" display="text" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Número Telefónico" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:inputText placeholder="12345678" id="telefono" type="text" value="#{beanUsuario.telefono}" styleClass="input" 
+                                                         style="width: 90%;" required="true" requiredMessage="*El número telefónico es obligatorio" 
+                                                         validatorMessage="El número telefónico debe tener exactamente 8 dígitos">
+                                                <!-- Validación JSF: Aceptar exactamente 8 dígitos numéricos -->
+                                                <f:validateRegex pattern="\d{8}" />
+                                            </p:inputText>
+                                            <p:message for="telefono" display="text" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Rol" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="rol" value="#{beanUsuario.rol}" styleClass="input" style="width: 90%; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El rol es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Rol" itemValue="inicio" />
+                                                <f:selectItem itemLabel="Administrador" itemValue="admin" />
+                                                <f:selectItem itemLabel="Evaluador" itemValue="evaluador" />
+                                                <f:selectItem itemLabel="Auxiliar" itemValue="auxiliar" />
+                                                <f:selectItem itemLabel="Evaluado" itemValue="evaluado" />
+                                            </p:selectOneMenu>
+                                            <p:message for="rol" display="text" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Grado" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="grado" value="#{beanUsuario.codigo_grado}" styleClass="input" style="width: 90%; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El grado es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Grado" itemValue="" />
+                                                <f:selectItems value="#{beanUsuario.listGrados}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="grado" display="text" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Comando" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="comando" value="#{beanUsuario.codigo_comando}" styleClass="input" style="width: 90%; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El comando es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Comando" itemValue="" />
+                                                <f:selectItems value="#{beanUsuario.listComandos}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="comando" display="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Nombre Completo" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:inputText placeholder="Nombres y Apellidos" id="nombre" value="#{beanUsuario.nombreApellido}" styleClass="input" style="width: 90%;" required="true" requiredMessage="*El nombre completo es obligatorio"
+                                                         onkeypress="if (event.keyCode === 13) {
+                                                                     foco('form:telefono');
+                                                                     return false
+                                                                 }"/>                                                        
+                                            <p:message for="nombre" display="text" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Contraseña" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:password placeholder="ejemploNo1" id="contrasena" value="#{beanUsuario.password}" styleClass="input" style="width: 90%;" required="true" requiredMessage="*La contraseña es obligatoria"/>                                                           
+                                            <p:message for="contrasena" display="text" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Departamento" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="residencia" value="#{beanUsuario.codigo_residencia}" styleClass="input" style="width: 90%; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El departamento es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Departamento" itemValue="" />
+                                                <f:selectItems value="#{beanUsuario.listDepartamentos}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="residencia" display="text" />
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Poblacion" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="poblacion" value="#{beanUsuario.codigo_poblacion}" styleClass="input" style="width: 90%; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*La población es obligatoria">
+                                                <f:selectItem itemLabel="Seleccione una Población" itemValue="" />
+                                                <f:selectItems value="#{beanUsuario.listPoblaciones}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="poblacion" display="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenedorBoton">
+                                <p:commandButton value="Crear Usuario" update="form growl" action="#{beanUsuario.insertar}" class="boton" style="font-weight:400; font-size: 18px !important; font-family: 'Poppins', sans-serif; "/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </h:body> 
+        </ui:define>
+    </ui:composition>
+</html>

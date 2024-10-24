@@ -1,7 +1,8 @@
 package Pojos;
-// Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1
+// Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,14 +14,15 @@ public class Pregunta  implements java.io.Serializable {
 
 
      private int codigoPregunta;
-     private BancoRespuestas bancoRespuestas;
-     private Usuario usuarioByUsuarioModifica;
      private Usuario usuarioByUsuarioIngreso;
+     private Usuario usuarioByUsuarioModifica;
      private Boolean estado;
      private String enunciado;
+     private BigDecimal punteo;
      private Date fechaIngreso;
      private Date fechaModifica;
-     private Set detalleExamens = new HashSet(0);
+     private Set detalles = new HashSet(0);
+     private Set respuestas = new HashSet(0);
 
     public Pregunta() {
     }
@@ -29,16 +31,17 @@ public class Pregunta  implements java.io.Serializable {
     public Pregunta(int codigoPregunta) {
         this.codigoPregunta = codigoPregunta;
     }
-    public Pregunta(int codigoPregunta, BancoRespuestas bancoRespuestas, Usuario usuarioByUsuarioModifica, Usuario usuarioByUsuarioIngreso, Boolean estado, String enunciado, Date fechaIngreso, Date fechaModifica, Set detalleExamens) {
+    public Pregunta(int codigoPregunta, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, String enunciado, BigDecimal punteo, Date fechaIngreso, Date fechaModifica, Set detalles, Set respuestas) {
        this.codigoPregunta = codigoPregunta;
-       this.bancoRespuestas = bancoRespuestas;
-       this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
+       this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
        this.estado = estado;
        this.enunciado = enunciado;
+       this.punteo = punteo;
        this.fechaIngreso = fechaIngreso;
        this.fechaModifica = fechaModifica;
-       this.detalleExamens = detalleExamens;
+       this.detalles = detalles;
+       this.respuestas = respuestas;
     }
    
     public int getCodigoPregunta() {
@@ -48,12 +51,12 @@ public class Pregunta  implements java.io.Serializable {
     public void setCodigoPregunta(int codigoPregunta) {
         this.codigoPregunta = codigoPregunta;
     }
-    public BancoRespuestas getBancoRespuestas() {
-        return this.bancoRespuestas;
+    public Usuario getUsuarioByUsuarioIngreso() {
+        return this.usuarioByUsuarioIngreso;
     }
     
-    public void setBancoRespuestas(BancoRespuestas bancoRespuestas) {
-        this.bancoRespuestas = bancoRespuestas;
+    public void setUsuarioByUsuarioIngreso(Usuario usuarioByUsuarioIngreso) {
+        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
     }
     public Usuario getUsuarioByUsuarioModifica() {
         return this.usuarioByUsuarioModifica;
@@ -61,13 +64,6 @@ public class Pregunta  implements java.io.Serializable {
     
     public void setUsuarioByUsuarioModifica(Usuario usuarioByUsuarioModifica) {
         this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
-    }
-    public Usuario getUsuarioByUsuarioIngreso() {
-        return this.usuarioByUsuarioIngreso;
-    }
-    
-    public void setUsuarioByUsuarioIngreso(Usuario usuarioByUsuarioIngreso) {
-        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
     }
     public Boolean getEstado() {
         return this.estado;
@@ -83,6 +79,13 @@ public class Pregunta  implements java.io.Serializable {
     public void setEnunciado(String enunciado) {
         this.enunciado = enunciado;
     }
+    public BigDecimal getPunteo() {
+        return this.punteo;
+    }
+    
+    public void setPunteo(BigDecimal punteo) {
+        this.punteo = punteo;
+    }
     public Date getFechaIngreso() {
         return this.fechaIngreso;
     }
@@ -97,12 +100,19 @@ public class Pregunta  implements java.io.Serializable {
     public void setFechaModifica(Date fechaModifica) {
         this.fechaModifica = fechaModifica;
     }
-    public Set getDetalleExamens() {
-        return this.detalleExamens;
+    public Set getDetalles() {
+        return this.detalles;
     }
     
-    public void setDetalleExamens(Set detalleExamens) {
-        this.detalleExamens = detalleExamens;
+    public void setDetalles(Set detalles) {
+        this.detalles = detalles;
+    }
+    public Set getRespuestas() {
+        return this.respuestas;
+    }
+    
+    public void setRespuestas(Set respuestas) {
+        this.respuestas = respuestas;
     }
 
 

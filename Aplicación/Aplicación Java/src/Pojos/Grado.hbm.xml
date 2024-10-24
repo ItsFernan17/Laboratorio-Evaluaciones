@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 3, 2024 9:49:53 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojos.Grado" table="grado" catalog="laboratorio_evaluados" optimistic-lock="version">
-        <id name="codigoGrado" type="int">
+        <id name="codigoGrado" type="java.lang.Integer">
             <column name="CODIGO_GRADO" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="estado" type="java.lang.Boolean">
             <column name="ESTADO" />
