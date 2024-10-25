@@ -856,9 +856,15 @@ exists or setup the property manually. For example like this:
         <ant antfile="${project.Laboratorio_Evaluaciones}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
+        <ant antfile="${project.ReportesMINDEF}/build.xml" inheritall="false" target="jar">
+            <property name="deploy.on.save" value="false"/>
+        </ant>
     </target>
     <target depends="init" if="dist.ear.dir" name="deps-ear-jar" unless="no.deps">
         <ant antfile="${project.Laboratorio_Evaluaciones}/build.xml" inheritall="false" target="jar">
+            <property name="deploy.on.save" value="false"/>
+        </ant>
+        <ant antfile="${project.ReportesMINDEF}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
     </target>
@@ -1010,6 +1016,8 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${reference.Laboratorio_Evaluaciones.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.hibernate4-support.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.PrimeFaces13.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.ReportesMINDEF.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.iReport.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
@@ -1019,6 +1027,8 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${reference.Laboratorio_Evaluaciones.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.hibernate4-support.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.PrimeFaces13.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${reference.ReportesMINDEF.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.iReport.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>
@@ -1433,6 +1443,7 @@ exists or setup the property manually. For example like this:
             -->
     <target depends="init" name="deps-clean" unless="no.deps">
         <ant antfile="${project.Laboratorio_Evaluaciones}/build.xml" inheritall="false" target="clean"/>
+        <ant antfile="${project.ReportesMINDEF}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="do-clean">
         <condition property="build.dir.to.clean" value="${build.web.dir}">

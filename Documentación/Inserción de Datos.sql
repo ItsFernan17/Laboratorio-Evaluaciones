@@ -223,3 +223,76 @@ INSERT INTO respuesta (CODIGO_RESPUESTA, ESTADO, RESPUESTA, ESCORRECTA, PREGUNTA
 (70, 1, 'Thomas Edison', 1, 24, '1724271260706', NOW()),
 (71, 1, 'Nikola Tesla', 0, 24, '1724271260706', NOW()),
 (72, 1, 'Benjamin Franklin', 0, 24, '1724271260706', NOW());
+
+DELIMITER //
+
+CREATE PROCEDURE ObtenerDatosAsignacionPorDPIyExamen(IN p_dpi VARCHAR(25), IN p_codigo_examen INT)
+BEGIN
+    SELECT 
+        u.DPI,
+        u.NOMBRE_COMPLETO,
+        u.TELEFONO,
+        g.NOMBRE_GRADO AS GRADO,
+        p.NOMBRE_POBLACION AS POBLACION,
+        d.NOMBRE_DEPARTAMENTO AS RESIDENCIA,
+        c.NOMBRE_COMANDO AS COMANDO,
+        e.FECHA_EVALUACION,
+        m.NOMBRE_MOTIVO AS MOTIVO,
+        em.DESCRIPCION AS EMPLEO
+
+    FROM asignacion a
+    INNER JOIN usuario u ON a.EVALUADO = u.DPI
+    INNER JOIN examen e ON a.EXAMEN = e.CODIGO_EXAMEN
+    
+    -- Relaciones adicionales para obtener descripciones
+    LEFT JOIN grado g ON u.GRADO = g.CODIGO_GRADO
+    LEFT JOIN poblacion p ON u.POBLACION = p.CODIGO_POBLACION
+    LEFT JOIN departamento_residencia d ON u.RESIDENCIA = d.CODIGO_DEPARTAMENTO
+    LEFT JOIN comando c ON u.COMANDO = c.CODIGO_COMANDO
+    LEFT JOIN motivo m ON e.MOTIVO = m.CODIGO_MOTIVO
+    LEFT JOIN empleo em ON e.EMPLEO = em.CEOM
+
+    WHERE u.DPI = p_dpi AND e.CODIGO_EXAMEN = p_codigo_examen;
+END //
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE ObtenerDatosExamenPorUsuarioYExamen(IN p_dpi VARCHAR(25), IN p_codigo_examen INT)
+BEGIN
+    SELECT 
+        u.NOMBRE_COMPLETO AS NOMBRE_EVALUADO,
+        e.FECHA_EVALUACION,
+        IFNULL(em.DESCRIPCION, 'Vacío') AS EMPLEO,
+        
+        -- Campos del detalle (Serie e Instrucción)
+        IFNULL(d.SERIE, 'Vacío') AS SERIE,
+        IFNULL(d.INSTRUCCION, 'Vacío') AS INSTRUCCION,
+        
+        -- Campos de la pregunta
+        IFNULL(p.ENUNCIADO, 'Vacío') AS PREGUNTA,
+        IFNULL(p.PUNTEO, 0) AS PUNTEO_PREGUNTA,
+        
+        -- Respuestas divididas en columnas
+        MAX(CASE WHEN rnum = 1 THEN r.RESPUESTA END) AS OPCION1,
+        MAX(CASE WHEN rnum = 2 THEN r.RESPUESTA END) AS OPCION2,
+        MAX(CASE WHEN rnum = 3 THEN r.RESPUESTA END) AS OPCION3
+        
+    FROM asignacion a
+    INNER JOIN usuario u ON a.EVALUADO = u.DPI
+    INNER JOIN examen e ON a.EXAMEN = e.CODIGO_EXAMEN
+    LEFT JOIN empleo em ON e.EMPLEO = em.CEOM
+    LEFT JOIN detalle d ON e.CODIGO_EXAMEN = d.EXAMEN
+    LEFT JOIN pregunta p ON d.PREGUNTA = p.CODIGO_PREGUNTA
+    LEFT JOIN (
+        SELECT 
+            respuesta.*, 
+            ROW_NUMBER() OVER(PARTITION BY pregunta ORDER BY CODIGO_RESPUESTA) AS rnum
+        FROM respuesta
+    ) r ON p.CODIGO_PREGUNTA = r.PREGUNTA
+    WHERE u.DPI = p_dpi AND e.CODIGO_EXAMEN = p_codigo_examen
+    GROUP BY u.NOMBRE_COMPLETO, e.FECHA_EVALUACION, e.MOTIVO, em.DESCRIPCION, d.SERIE, d.INSTRUCCION, p.ENUNCIADO, p.PUNTEO, p.CODIGO_PREGUNTA
+    ORDER BY d.SERIE, p.CODIGO_PREGUNTA;
+END //
+
+DELIMITER ;

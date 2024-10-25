@@ -3,13 +3,16 @@ package CRUDs;
 import Pojos.Asignacion;
 import Pojos.Examen;
 import Pojos.Usuario;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 public class CRUDAsignacion {
@@ -120,7 +123,7 @@ public class CRUDAsignacion {
             criteria.createAlias("examen", "ex");
             criteria.createAlias("usuarioByEvaluado", "us");
             criteria.createAlias("ex.motivo", "mot");
-            criteria.createAlias("ex.empleo", "emp");            
+            criteria.createAlias("ex.empleo", "emp");
             criteria.add(Restrictions.eq("estado", true));
             criteria.addOrder(Order.asc("codigoAsignacion"));
             lista = criteria.list();
@@ -130,7 +133,7 @@ public class CRUDAsignacion {
             session.getTransaction().commit();
         }
         return lista;
-    } 
+    }
 
     public static List<Asignacion> asignacionPorEvaluado(String dpiEvaluado) {
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession();
@@ -154,8 +157,7 @@ public class CRUDAsignacion {
         }
         return lista;
     }
-    
-    
+
     public static boolean anular(Integer codigoAsignacion) {
         boolean flag = false;
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -181,5 +183,60 @@ public class CRUDAsignacion {
 
         return flag;
     }
+
+    public static List<Asignacion> reporteAsignacion() {
+        Session session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession();
+        List<Asignacion> lista = null;
+        try {
+            session.beginTransaction();
+            Criteria criteria = session.createCriteria(Asignacion.class);
+            criteria.createAlias("examen", "ex");
+            criteria.createAlias("usuarioByEvaluado", "us");
+            criteria.createAlias("ex.motivo", "mot");
+            criteria.createAlias("ex.empleo", "emp");
+            criteria.setProjection(Projections.projectionList()
+                    .add(Projections.property("us.dpi"))
+                    .add(Projections.property("us.nombreCompleto"))
+                    .add(Projections.property("mot.nombreMotivo"))
+                    .add(Projections.property("emp.descripcion"))
+                    .add(Projections.property("ex.fechaEvaluacion"))
+                    .add(Projections.property("ex.punteoMaximo"))
+            );
+            criteria.add(Restrictions.eq("estado", true));
+            criteria.addOrder(Order.asc("codigoAsignacion"));
+            lista = criteria.list();
+        } catch (HibernateException e) {
+            System.out.println("Error " + e);
+        } finally {
+            session.getTransaction().commit();
+        }
+        return lista;
+    }
+
+public static List<Asignacion> reporteCertificacion(Integer examen, String evaluado) throws ParseException {
+    Session session = null;
+    List<Asignacion> listDatos = null;
+
+    try {
+        session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession(); // Obtener sesión actual
+        session.beginTransaction(); // Iniciar transacción si no está activa
+
+        Query query = session.createSQLQuery("call ObtenerDatosAsignacionPorDPIyExamen(:evaluado, :examen)")
+                             .setParameter("evaluado", evaluado)
+                             .setParameter("examen", examen);
+
+        listDatos = query.list(); // Ejecutar la consulta
+
+        session.getTransaction().commit(); // Confirmar la transacción
+    } catch (Exception e) {
+        if (session.getTransaction() != null && session.getTransaction().isActive()) {
+            session.getTransaction().rollback(); // Revertir la transacción en caso de error
+        }
+        e.printStackTrace();
+    }
+
+    return listDatos;
+}
+
 
 }

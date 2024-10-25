@@ -49,9 +49,8 @@
                                                  style="background: none !important; color: #0f763d !important; border: none !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>                                                       
                             </p:column>
                             <p:column headerText="Certificación">
-                                <p:commandButton id="certificacion" value="Generar PDF"                                                                
-                                                 style="background: none !important; border: none !important; color: #142957 !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>                            
-                            </p:column>                               
+                                <h:commandLink id="reporte" value="Certificación" actionListener="#{beanReporte.reporteCertificacion(row.usuarioByEvaluado.dpi, row.examen.codigoExamen)}" target="_blank"  style="background: none !important; text-decoration: none; border: none !important; color: #142957 !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>    
+                            </p:column>
                         </p:dataTable>
                     </h:form>
 

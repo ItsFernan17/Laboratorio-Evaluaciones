@@ -17,6 +17,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 public class CRUDUsuario {
@@ -178,8 +179,8 @@ public class CRUDUsuario {
 
         return select;
     }
-    
-        public static boolean dpiExiste(String dpi) {
+
+    public static boolean dpiExiste(String dpi) {
         boolean flag = false;
         Session session = null;
 
@@ -208,6 +209,37 @@ public class CRUDUsuario {
         }
 
         return flag;
+    }
+
+    public static List<Usuario> reporteUsuarios() {
+        Session session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession();
+        List<Usuario> lista = null;
+        try {
+            session.beginTransaction();
+            Criteria criteria = session.createCriteria(Usuario.class);
+            criteria.createAlias("departamentoResidencia", "dep");
+            criteria.createAlias("grado", "grad");
+            criteria.createAlias("poblacion", "pob");
+            criteria.createAlias("comando", "com");
+            criteria.setProjection(Projections.projectionList()
+                    .add(Projections.property("dpi"))
+                    .add(Projections.property("nombreCompleto"))
+                    .add(Projections.property("telefono"))
+                    .add(Projections.property("rol"))
+                    .add(Projections.property("dep.nombreDepartamento"))      
+                    .add(Projections.property("grad.nombreGrado"))    
+                    .add(Projections.property("pob.nombrePoblacion"))    
+                    .add(Projections.property("com.nombreComando"))                        
+            );
+            criteria.add(Restrictions.eq("estado", true));
+            criteria.addOrder(Order.asc("dpi"));
+            lista = criteria.list();
+        } catch (HibernateException e) {
+            System.out.println("Error " + e);
+        } finally {
+            session.getTransaction().commit();
+        }
+        return lista;
     }
 
 }

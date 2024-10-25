@@ -20,7 +20,10 @@
                 <div style="margin-left: 50px !important; margin-right: 50px !important; margin-bottom: 20px; margin-top: 30px !important;">
                     <h1 style="font-family: 'Poppins', sans-serif; font-size: 45px !important; font-weight: 800; color: #142957;">
                         Usuarios Registrados en el Sistema
-                    </h1>   
+                    </h1>  
+                    <h:form>
+                        <h:commandLink id="reporte" value="Generar Reporte Personal en PDF" actionListener="#{beanReporte.reporteUsuarios()}" target="_blank" style="text-align: center; font-size: 18px !important; color: #3f3c3a !important; text-decoration: none; font-weight: 600;"/>
+                    </h:form>
 
                     <h:form id="tabla">
                         <p:dataTable var="row" value="#{beanUsuario.listUsuarios}">

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteCertificacion" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3bfa5ff7-20cc-452b-a0d6-b06127579486">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="311"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="comando" class="java.lang.String">
+		<fieldDescription><![CDATA[comando]]></fieldDescription>
+	</field>
+	<field name="departamento" class="java.lang.String">
+		<fieldDescription><![CDATA[departamento]]></fieldDescription>
+	</field>
+	<field name="dpi" class="java.lang.String">
+		<fieldDescription><![CDATA[dpi]]></fieldDescription>
+	</field>
+	<field name="empleo" class="java.lang.String">
+		<fieldDescription><![CDATA[empleo]]></fieldDescription>
+	</field>
+	<field name="fechaEvaluacion" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaEvaluacion]]></fieldDescription>
+	</field>
+	<field name="grado" class="java.lang.String">
+		<fieldDescription><![CDATA[grado]]></fieldDescription>
+	</field>
+	<field name="motivo" class="java.lang.String">
+		<fieldDescription><![CDATA[motivo]]></fieldDescription>
+	</field>
+	<field name="nombreCompleto" class="java.lang.String">
+		<fieldDescription><![CDATA[nombreCompleto]]></fieldDescription>
+	</field>
+	<field name="poblacion" class="java.lang.String">
+		<fieldDescription><![CDATA[poblacion]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="188" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="213" y="4" width="117" height="81" uuid="bb9fa1aa-cb81-4d16-8c40-82021a8f1ff7"/>
+				<imageExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto Final\\Laboratorio-Evaluaciones\\Aplicación\\Laboratorio de Evaluaciones MINDEF\\web\\resources\\img\\EMDN1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="96" y="91" width="364" height="32" uuid="03321ae1-def7-43b6-9e57-8cbd7fb15b46"/>
+				<textElement>
+					<font fontName="Arial" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado Mayor de la Defensa Nacional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="123" width="402" height="20" uuid="35796d15-9ed5-475a-8fea-b7aedd1b3370"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ Dirección de Personal Del Estado Mayor de la Defensa Nacional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="96" y="148" width="364" height="32" uuid="6b6de6fb-958d-44c6-b2ae-6535aa232fb9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certificado de Evaluación]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="343" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="343" uuid="30e156c5-7033-421c-b658-04d4557d886e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="11" width="174" height="27" uuid="1ae86561-ca36-42a3-ae4c-74858ec6b00e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos del Evaluado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="49" width="100" height="20" uuid="309a117d-d8d7-42aa-966d-f6c16e79cc22"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DPI: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="49" width="163" height="20" uuid="47c89bf7-9988-437a-b944-55e6c309f0f0"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dpi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="71" width="117" height="20" uuid="d883b5cc-86ea-4045-a509-5a645cf20743"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Completo: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="71" width="163" height="20" uuid="7dfc79f0-846d-4886-b2b8-c5853bf2c34b"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreCompleto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="93" width="100" height="20" uuid="ec775bb4-e911-456c-948c-29f5bb840463"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="93" width="163" height="20" uuid="8e7f5aae-7729-4a1f-9d5f-911c72966163"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="114" width="100" height="20" uuid="bf4204b0-c56e-4024-8ce9-91a58aceaf12"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Residencia: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="114" width="100" height="20" uuid="29662d73-42b4-45aa-b481-c77edd4699b3"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="136" width="100" height="20" uuid="e86372f0-d58a-43bc-877e-0627bc01a118"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grado Militar:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="136" width="100" height="20" uuid="20380ee4-134c-4724-96eb-56601f12132d"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="158" width="100" height="20" uuid="8898b6bf-ea3b-4082-ae8a-c4975e87bee9"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Población Militar:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="158" width="100" height="20" uuid="1ede623a-0d6e-41b9-b848-d6f338567cac"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{poblacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="180" width="100" height="20" uuid="752a4e7a-6be8-4d37-80e6-a1bb0fe05961"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comando Militar:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="180" width="100" height="20" uuid="affecfaf-0b46-4681-bf81-ea13a5ca35ba"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{comando}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="229" width="174" height="27" uuid="9d4f8412-58c9-49c3-bcd4-402c2929c610"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos del Examen]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="212" width="555" height="1" uuid="f87b1acb-4c37-4e2e-bbc5-2729386ac0e6"/>
+			</line>
+			<staticText>
+				<reportElement x="11" y="267" width="117" height="20" uuid="4c6e572a-c607-4198-86e6-35cd7b8164b1"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Evaluacion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="267" width="100" height="20" uuid="6ef6a43a-1026-4a62-ad93-254ee7ee8cb0"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaEvaluacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="289" width="100" height="20" uuid="2cacab11-2a9c-4e1c-9a86-ac2764867a7c"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Exámen:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="289" width="100" height="20" uuid="9a818bba-4513-4c4d-b1c6-8fe186930223"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="311" width="100" height="20" uuid="80688719-aa5b-4667-9d31-4f80e8518bb6"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleo a Optar:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="311" width="100" height="20" uuid="63f6010f-d10d-475e-9a96-30b017e52c40"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleo}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="460" y="256" width="92" height="60" uuid="7756672e-1aef-4a10-a69c-e7c4d8e41562"/>
+				<imageExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto Final\\Laboratorio-Evaluaciones\\Aplicación\\Laboratorio de Evaluaciones MINDEF\\web\\resources\\img\\logo_dpemdn.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="460" y="316" width="92" height="27" uuid="7d5cb524-3da2-4f12-97dc-92a002858ad2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Exámen Válido]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>
