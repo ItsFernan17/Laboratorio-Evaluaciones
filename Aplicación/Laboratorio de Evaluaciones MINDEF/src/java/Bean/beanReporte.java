@@ -72,7 +72,7 @@ public class beanReporte {
                 byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), null, ds);
                 HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
                 response.setContentType("application/pdf");
-                response.setHeader("Content-Disposition", "attachment; filename=\"Certificación.pdf\"");
+                response.setHeader("Content-Disposition", "attachment; filename=\"Certificacion.pdf\"");
                 response.setContentLength(bytes.length);
                 ServletOutputStream outStream = response.getOutputStream();
                 outStream.write(bytes, 0, bytes.length);
@@ -80,14 +80,41 @@ public class beanReporte {
                 outStream.close();
                 FacesContext.getCurrentInstance().responseComplete();
             } else {
-                context.addMessage(null, new FacesMessage("Error", "No existe información de Personas"));
+                context.addMessage(null, new FacesMessage("Error", "No existe información"));
             }
         } catch (JRException e) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error", "Error al cargar el reporte " + e));
         }
     }     
-        
+
+    public void reporteExamen(String evaluado, Integer examen) throws IOException, JRException, ParseException {
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            Integer estado = CRUDs.CRUDExamenDetalle.reporteExamen(examen, evaluado).size();
+            if (estado != 0) {
+                reportesmindef.ReportesMINDEF.reporteExamen(evaluado, examen);
+                setListaReporte(factory.reporteExamen());
+                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(listaReporte);
+                File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteExamen.jasper"));
+                byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), null, ds);
+                HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+                response.setContentType("application/pdf");
+                response.setHeader("Content-Disposition", "attachment; filename=\"Examen.pdf\"");
+                response.setContentLength(bytes.length);
+                ServletOutputStream outStream = response.getOutputStream();
+                outStream.write(bytes, 0, bytes.length);
+                outStream.flush();
+                outStream.close();
+                FacesContext.getCurrentInstance().responseComplete();
+            } else {
+                context.addMessage(null, new FacesMessage("Error", "No existe información"));
+            }
+        } catch (JRException e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Error", "Error al cargar el reporte " + e));
+        }
+    } 
 
     /**
      * @return the listaReporte

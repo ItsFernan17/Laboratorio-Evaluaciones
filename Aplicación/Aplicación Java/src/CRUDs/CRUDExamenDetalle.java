@@ -174,45 +174,29 @@ public class CRUDExamenDetalle {
         return flag;
     }
 
-    public static List<Object[]> obtenerExamenesPorUsuarioYCodigoExamen(int codigoExamen, String evaluadoDpi) {
-        Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();  // Ajusté la clase HibernetUtil
-        List<Object[]> listaExamenes = null;
+    public static List<Detalle> reporteExamen(Integer examen, String evaluado) throws ParseException {
+        Session session = null;
+        List<Detalle> listDatos = null;
 
         try {
-            Transaction transaction = session.beginTransaction();
+            session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession(); 
+            session.beginTransaction();
 
-            listaExamenes = session.createQuery(
-                    "SELECT e.codigoExamen, e.fechaEvaluacion, m.nombreMotivo, emp.descripcion AS empleo, e.punteoMaximo, "
-                    + "de.codigoDetalle, de.serie, de.instruccion, p.enunciado AS pregunta, "
-                    + "MAX(CASE WHEN r.codigoRespuesta = (SELECT MIN(r2.codigoRespuesta) FROM Respuesta r2 WHERE r2.pregunta = p.codigoPregunta) THEN r.respuesta ELSE NULL END) AS respuesta1, "
-                    + "MAX(CASE WHEN r.codigoRespuesta = (SELECT MIN(r2.codigoRespuesta) + 1 FROM Respuesta r2 WHERE r2.pregunta = p.codigoPregunta) THEN r.respuesta ELSE NULL END) AS respuesta2, "
-                    + "MAX(CASE WHEN r.codigoRespuesta = (SELECT MIN(r2.codigoRespuesta) + 2 FROM Respuesta r2 WHERE r2.pregunta = p.codigoPregunta) THEN r.respuesta ELSE NULL END) AS respuesta3 "
-                    + "FROM Asignacion a "
-                    + "JOIN a.examen e "
-                    + "JOIN e.motivo m "
-                    + "JOIN e.empleo emp "
-                    + "JOIN e.detalles de "
-                    + "JOIN de.pregunta p "
-                    + "JOIN p.respuestas r "
-                    + "WHERE e.codigoExamen = :codigoExamen AND a.usuarioByEvaluado.dpi = :usuarioByEvaluado "
-                    + // Usamos "usuarioByEvaluado" para el evaluado
-                    "GROUP BY e.codigoExamen, e.fechaEvaluacion, m.nombreMotivo, emp.descripcion, e.punteoMaximo, "
-                    + "de.codigoDetalle, de.serie, de.instruccion, p.enunciado"
-            )
-                    .setParameter("codigoExamen", codigoExamen)
-                    .setParameter("usuarioByEvaluado", evaluadoDpi)
-                    .list();
+            Query query = session.createSQLQuery("call ObtenerDatosExamenPorUsuarioYExamen(:evaluado, :examen)")
+                    .setParameter("evaluado", evaluado)
+                    .setParameter("examen", examen);
 
-            transaction.commit();
+            listDatos = query.list();
+
+            session.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null) {
-                session.close();
+            if (session.getTransaction() != null && session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
             }
+            e.printStackTrace();
         }
 
-        return listaExamenes;
+        return listDatos;
     }
 
 }

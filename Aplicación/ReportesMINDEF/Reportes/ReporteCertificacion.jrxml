@@ -75,7 +75,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="343" splitType="Stretch">
+		<band height="351" splitType="Stretch">
 			<rectangle>
 				<reportElement x="0" y="0" width="555" height="343" uuid="30e156c5-7033-421c-b658-04d4557d886e"/>
 			</rectangle>

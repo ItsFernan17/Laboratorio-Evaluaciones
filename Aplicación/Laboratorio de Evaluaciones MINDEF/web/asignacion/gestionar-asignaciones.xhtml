@@ -20,12 +20,7 @@
                 <div style="margin-left: 50px !important; margin-right: 50px !important; margin-bottom: 20px; margin-top: 30px !important;">
                     <h1 style="font-family: 'Poppins', sans-serif; font-size: 45px !important; font-weight: 800; color: #142957;">
                         Asignaciones registradas en el Sistema
-                    </h1>   
-                    
-                    <h:form>
-                        <h:commandLink id="reporte" value="Generar Reporte Personal en PDF" actionListener="#{beanReporte.reporteAsignaciones()}" target="_blank" style="text-align: center; font-size: 18px !important; color: #3f3c3a !important; text-decoration: none; font-weight: 600;"/>
-                    </h:form>
-                    
+                    </h1>                                       
                     <h:form id="tabla">
                         <p:dataTable var="row" value="#{beanAsignacion.listAsignaciones}">
                             <p:column headerText="DPI">
@@ -53,7 +48,10 @@
                                                  action="#{beanAsignacion.seleccionar(row)}" 
                                                  oncomplete="PF('dlgAnular').show()" 
                                                  update=":formAnular" styleClass="anular" style="border-radius: 5px !important; height:  45px" />
-                            </p:column>                            
+                            </p:column>  
+                            <p:column headerText="Certificación">
+                                <h:commandLink id="reporte" value="Generar Certificación" actionListener="#{beanReporte.reporteCertificacion(row.usuarioByEvaluado.dpi, row.examen.codigoExamen)}" target="_blank"  style="background: none !important; text-decoration: none; border: none !important; color: #142957 !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>    
+                            </p:column>
                         </p:dataTable>
                     </h:form>
                     <p:dialog header="Anular Asignacion" style="overflow: hidden" widgetVar="dlgAnular" width="600" showEffect="fade" modal="true" closeOnEscape="false" closable="false">

@@ -6,7 +6,9 @@
 package reportesmindef;
 
 import Reportes.ReporteCertificacion;
+import Reportes.ReporteExamen;
 import Reportes.ReporteUsuarios;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +56,23 @@ public class ReportesMINDEF {
         }
         return list;
     }
+     
+     public static List reporteExamen(String evaluado, Integer examen) {
+        List<ReporteExamen> list = new ArrayList<ReporteExamen>();
+        try {
+            for (Iterator it = CRUDs.CRUDExamenDetalle.reporteExamen(examen, evaluado).iterator(); it.hasNext();) {
+                Object[] item = (Object[]) it.next();
+                list.add(new ReporteExamen((String)item[0], (Date)item[1], (String)item[2], (String)item[3], (String)item[4], (String)item[5], (BigDecimal)item[6], (String)item[7], (String)item[8], (String)item[9]));
+                factory reporte = new factory();
+                reporte.setReporteExamen((ArrayList<ReporteExamen>) list);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ReportesMINDEF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+         
+     
     
 
 }

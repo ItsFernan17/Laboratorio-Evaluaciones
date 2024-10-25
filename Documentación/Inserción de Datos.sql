@@ -258,6 +258,8 @@ DELIMITER ;
 
 DELIMITER //
 
+DELIMITER //
+
 CREATE PROCEDURE ObtenerDatosExamenPorUsuarioYExamen(IN p_dpi VARCHAR(25), IN p_codigo_examen INT)
 BEGIN
     SELECT 
@@ -266,17 +268,17 @@ BEGIN
         IFNULL(em.DESCRIPCION, 'Vacío') AS EMPLEO,
         
         -- Campos del detalle (Serie e Instrucción)
-        IFNULL(d.SERIE, 'Vacío') AS SERIE,
-        IFNULL(d.INSTRUCCION, 'Vacío') AS INSTRUCCION,
+        d.SERIE,
+        d.INSTRUCCION,
         
         -- Campos de la pregunta
-        IFNULL(p.ENUNCIADO, 'Vacío') AS PREGUNTA,
-        IFNULL(p.PUNTEO, 0) AS PUNTEO_PREGUNTA,
+        p.ENUNCIADO AS PREGUNTA,
+        p.PUNTEO AS PUNTEO_PREGUNTA,
         
-        -- Respuestas divididas en columnas
-        MAX(CASE WHEN rnum = 1 THEN r.RESPUESTA END) AS OPCION1,
-        MAX(CASE WHEN rnum = 2 THEN r.RESPUESTA END) AS OPCION2,
-        MAX(CASE WHEN rnum = 3 THEN r.RESPUESTA END) AS OPCION3
+        -- Respuestas divididas en columnas (Hasta 3 respuestas)
+        r1.RESPUESTA AS OPCION1,
+        r2.RESPUESTA AS OPCION2,
+        r3.RESPUESTA AS OPCION3
         
     FROM asignacion a
     INNER JOIN usuario u ON a.EVALUADO = u.DPI
@@ -284,14 +286,18 @@ BEGIN
     LEFT JOIN empleo em ON e.EMPLEO = em.CEOM
     LEFT JOIN detalle d ON e.CODIGO_EXAMEN = d.EXAMEN
     LEFT JOIN pregunta p ON d.PREGUNTA = p.CODIGO_PREGUNTA
-    LEFT JOIN (
-        SELECT 
-            respuesta.*, 
-            ROW_NUMBER() OVER(PARTITION BY pregunta ORDER BY CODIGO_RESPUESTA) AS rnum
-        FROM respuesta
-    ) r ON p.CODIGO_PREGUNTA = r.PREGUNTA
+    
+    -- Obtener las respuestas asociadas a cada pregunta
+    LEFT JOIN respuesta r1 ON p.CODIGO_PREGUNTA = r1.PREGUNTA AND r1.CODIGO_RESPUESTA = (
+        SELECT CODIGO_RESPUESTA FROM respuesta WHERE PREGUNTA = p.CODIGO_PREGUNTA ORDER BY CODIGO_RESPUESTA LIMIT 1)
+    
+    LEFT JOIN respuesta r2 ON p.CODIGO_PREGUNTA = r2.PREGUNTA AND r2.CODIGO_RESPUESTA = (
+        SELECT CODIGO_RESPUESTA FROM respuesta WHERE PREGUNTA = p.CODIGO_PREGUNTA ORDER BY CODIGO_RESPUESTA LIMIT 1, 1)
+    
+    LEFT JOIN respuesta r3 ON p.CODIGO_PREGUNTA = r3.PREGUNTA AND r3.CODIGO_RESPUESTA = (
+        SELECT CODIGO_RESPUESTA FROM respuesta WHERE PREGUNTA = p.CODIGO_PREGUNTA ORDER BY CODIGO_RESPUESTA LIMIT 2, 1)
+    
     WHERE u.DPI = p_dpi AND e.CODIGO_EXAMEN = p_codigo_examen
-    GROUP BY u.NOMBRE_COMPLETO, e.FECHA_EVALUACION, e.MOTIVO, em.DESCRIPCION, d.SERIE, d.INSTRUCCION, p.ENUNCIADO, p.PUNTEO, p.CODIGO_PREGUNTA
     ORDER BY d.SERIE, p.CODIGO_PREGUNTA;
 END //
 

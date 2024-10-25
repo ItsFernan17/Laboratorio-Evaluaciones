@@ -44,12 +44,11 @@
                             <p:column headerText="Puneto Neto">
                                 <h:outputText value="#{row.examen.punteoMaximo}" />
                             </p:column>                             
-                            <p:column headerText="Realizar Examen">
-                                <p:commandButton id="hacer" value="Imprimir Examen"                                      
-                                                 style="background: none !important; color: #0f763d !important; border: none !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>                                                       
+                            <p:column headerText="Realizar Exámen">
+                                <h:commandLink id="examen" value="Imprimir Examen" actionListener="#{beanReporte.reporteExamen(row.usuarioByEvaluado.dpi, row.examen.codigoExamen)}" target="_blank"  style="background: none !important; text-decoration: none; color: #0f763d !important; border: none !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>
                             </p:column>
                             <p:column headerText="Certificación">
-                                <h:commandLink id="reporte" value="Certificación" actionListener="#{beanReporte.reporteCertificacion(row.usuarioByEvaluado.dpi, row.examen.codigoExamen)}" target="_blank"  style="background: none !important; text-decoration: none; border: none !important; color: #142957 !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>    
+                                <h:commandLink id="reporte" value="Generar Certificación" actionListener="#{beanReporte.reporteCertificacion(row.usuarioByEvaluado.dpi, row.examen.codigoExamen)}" target="_blank"  style="background: none !important; text-decoration: none; border: none !important; color: #142957 !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>    
                             </p:column>
                         </p:dataTable>
                     </h:form>
@@ -59,3 +58,4 @@
         </ui:define>
     </ui:composition>
 </html>
+                         

@@ -218,19 +218,19 @@ public static List<Asignacion> reporteCertificacion(Integer examen, String evalu
     List<Asignacion> listDatos = null;
 
     try {
-        session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession(); // Obtener sesión actual
-        session.beginTransaction(); // Iniciar transacción si no está activa
+        session = HibernetUtil.HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
 
         Query query = session.createSQLQuery("call ObtenerDatosAsignacionPorDPIyExamen(:evaluado, :examen)")
                              .setParameter("evaluado", evaluado)
                              .setParameter("examen", examen);
 
-        listDatos = query.list(); // Ejecutar la consulta
+        listDatos = query.list();
 
-        session.getTransaction().commit(); // Confirmar la transacción
+        session.getTransaction().commit();
     } catch (Exception e) {
         if (session.getTransaction() != null && session.getTransaction().isActive()) {
-            session.getTransaction().rollback(); // Revertir la transacción en caso de error
+            session.getTransaction().rollback();
         }
         e.printStackTrace();
     }
