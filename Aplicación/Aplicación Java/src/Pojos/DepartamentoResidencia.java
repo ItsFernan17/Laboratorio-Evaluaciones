@@ -1,8 +1,7 @@
 package Pojos;
-// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,53 +11,26 @@ import java.util.Set;
 public class DepartamentoResidencia  implements java.io.Serializable {
 
 
-     private int codigoDepartamento;
-     private Usuario usuarioByUsuarioIngreso;
-     private Usuario usuarioByUsuarioModifica;
+     private Integer codigoDepartamento;
      private Boolean estado;
      private String nombreDepartamento;
-     private Date fechaIngreso;
-     private Date fechaModifica;
-     private Set personas = new HashSet(0);
+     private Set usuarios = new HashSet(0);
 
     public DepartamentoResidencia() {
     }
 
-	
-    public DepartamentoResidencia(int codigoDepartamento) {
-        this.codigoDepartamento = codigoDepartamento;
-    }
-    public DepartamentoResidencia(int codigoDepartamento, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, String nombreDepartamento, Date fechaIngreso, Date fechaModifica, Set personas) {
-       this.codigoDepartamento = codigoDepartamento;
-       this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
-       this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
+    public DepartamentoResidencia(Boolean estado, String nombreDepartamento, Set usuarios) {
        this.estado = estado;
        this.nombreDepartamento = nombreDepartamento;
-       this.fechaIngreso = fechaIngreso;
-       this.fechaModifica = fechaModifica;
-       this.personas = personas;
+       this.usuarios = usuarios;
     }
    
-    public int getCodigoDepartamento() {
+    public Integer getCodigoDepartamento() {
         return this.codigoDepartamento;
     }
     
-    public void setCodigoDepartamento(int codigoDepartamento) {
+    public void setCodigoDepartamento(Integer codigoDepartamento) {
         this.codigoDepartamento = codigoDepartamento;
-    }
-    public Usuario getUsuarioByUsuarioIngreso() {
-        return this.usuarioByUsuarioIngreso;
-    }
-    
-    public void setUsuarioByUsuarioIngreso(Usuario usuarioByUsuarioIngreso) {
-        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
-    }
-    public Usuario getUsuarioByUsuarioModifica() {
-        return this.usuarioByUsuarioModifica;
-    }
-    
-    public void setUsuarioByUsuarioModifica(Usuario usuarioByUsuarioModifica) {
-        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
     }
     public Boolean getEstado() {
         return this.estado;
@@ -74,26 +46,12 @@ public class DepartamentoResidencia  implements java.io.Serializable {
     public void setNombreDepartamento(String nombreDepartamento) {
         this.nombreDepartamento = nombreDepartamento;
     }
-    public Date getFechaIngreso() {
-        return this.fechaIngreso;
+    public Set getUsuarios() {
+        return this.usuarios;
     }
     
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-    public Date getFechaModifica() {
-        return this.fechaModifica;
-    }
-    
-    public void setFechaModifica(Date fechaModifica) {
-        this.fechaModifica = fechaModifica;
-    }
-    public Set getPersonas() {
-        return this.personas;
-    }
-    
-    public void setPersonas(Set personas) {
-        this.personas = personas;
+    public void setUsuarios(Set usuarios) {
+        this.usuarios = usuarios;
     }
 
 

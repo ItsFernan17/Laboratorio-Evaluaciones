@@ -1,8 +1,7 @@
 package Pojos;
-// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,53 +11,26 @@ import java.util.Set;
 public class Comando  implements java.io.Serializable {
 
 
-     private int codigoComando;
-     private Usuario usuarioByUsuarioIngreso;
-     private Usuario usuarioByUsuarioModifica;
+     private Integer codigoComando;
      private Boolean estado;
      private String nombreComando;
-     private Date fechaIngreso;
-     private Date fechaModifica;
-     private Set certificacions = new HashSet(0);
+     private Set usuarios = new HashSet(0);
 
     public Comando() {
     }
 
-	
-    public Comando(int codigoComando) {
-        this.codigoComando = codigoComando;
-    }
-    public Comando(int codigoComando, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, String nombreComando, Date fechaIngreso, Date fechaModifica, Set certificacions) {
-       this.codigoComando = codigoComando;
-       this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
-       this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
+    public Comando(Boolean estado, String nombreComando, Set usuarios) {
        this.estado = estado;
        this.nombreComando = nombreComando;
-       this.fechaIngreso = fechaIngreso;
-       this.fechaModifica = fechaModifica;
-       this.certificacions = certificacions;
+       this.usuarios = usuarios;
     }
    
-    public int getCodigoComando() {
+    public Integer getCodigoComando() {
         return this.codigoComando;
     }
     
-    public void setCodigoComando(int codigoComando) {
+    public void setCodigoComando(Integer codigoComando) {
         this.codigoComando = codigoComando;
-    }
-    public Usuario getUsuarioByUsuarioIngreso() {
-        return this.usuarioByUsuarioIngreso;
-    }
-    
-    public void setUsuarioByUsuarioIngreso(Usuario usuarioByUsuarioIngreso) {
-        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
-    }
-    public Usuario getUsuarioByUsuarioModifica() {
-        return this.usuarioByUsuarioModifica;
-    }
-    
-    public void setUsuarioByUsuarioModifica(Usuario usuarioByUsuarioModifica) {
-        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
     }
     public Boolean getEstado() {
         return this.estado;
@@ -74,26 +46,12 @@ public class Comando  implements java.io.Serializable {
     public void setNombreComando(String nombreComando) {
         this.nombreComando = nombreComando;
     }
-    public Date getFechaIngreso() {
-        return this.fechaIngreso;
+    public Set getUsuarios() {
+        return this.usuarios;
     }
     
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-    public Date getFechaModifica() {
-        return this.fechaModifica;
-    }
-    
-    public void setFechaModifica(Date fechaModifica) {
-        this.fechaModifica = fechaModifica;
-    }
-    public Set getCertificacions() {
-        return this.certificacions;
-    }
-    
-    public void setCertificacions(Set certificacions) {
-        this.certificacions = certificacions;
+    public void setUsuarios(Set usuarios) {
+        this.usuarios = usuarios;
     }
 
 

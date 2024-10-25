@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="#{sessionBean.template}">
+        <ui:define name="content">
+            <h:head>
+                <f:event type="preRenderView" listener="#{beanValidator.verificarSesion()}"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <link href="../src/css/stylesGeneral.css" rel="stylesheet" type="text/css"/>
+            </h:head>
+
+            <h:body>
+                <p:growl id="growl" showDetail="true" />
+
+                <div style="margin-left: 50px !important; margin-right: 50px !important; margin-bottom: 20px; margin-top: 30px !important;">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 45px !important; font-weight: 800; color: #142957;">
+                        Usuarios Registrados en el Sistema
+                    </h1>  
+                <h:form>
+                    <div style="text-align: right; display: flex; align-items: center; justify-content: flex-end; margin-bottom: 30px;">
+                        <h:outputText value="Generar Reporte de los Usuarios" style="font-size: 20px !important; color: #3f3c3a !important; font-weight: 600; margin-right: 10px; font-family: 'Poppins', sans-serif; color: #142957 !important;"/>
+
+                        <h:commandLink id="reporte" actionListener="#{beanReporte.reporteUsuarios()}" target="_blank" style="background-color: #D20005; border-radius: 5px; padding: 10px; color: white !important; text-decoration: none;">
+                            <i class="pi pi-file-pdf" style="font-size: 18px;"></i>
+                        </h:commandLink>
+                    </div>
+                </h:form>
+
+                    <h:form id="tabla">
+                        <p:dataTable var="row" value="#{beanUsuario.listUsuarios}">
+                            <p:column headerText="DPI">
+                                <h:outputText value="#{row.dpi}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{row.nombreCompleto}"/>
+                            </p:column>
+                            <p:column headerText="Usuario">
+                                <h:outputText value="#{row.nombreUsuario}"/>                                 
+                            </p:column>
+                            <p:column headerText="Teléfono">
+                                <h:outputText value="#{row.telefono}"/>
+                            </p:column>
+                            <p:column headerText="Rol">
+                                <h:outputText value="#{row.rol}"/>
+                            </p:column>
+                            <p:column headerText="Residencia">
+                                <h:outputText value="#{row.departamentoResidencia.nombreDepartamento}"/>                         
+                            </p:column>
+                            <p:column headerText="Comando">
+                                <h:outputText value="#{row.comando.nombreComando}"/>                         
+                            </p:column>
+                            <p:column headerText="Grado">
+                                <h:outputText value="#{row.grado.nombreGrado}"/>                         
+                            </p:column>
+                            <p:column headerText="Población">
+                                <h:outputText value="#{row.poblacion.nombrePoblacion}"/>                         
+                            </p:column>
+                            <p:column headerText="Acciones">
+                                <p:commandButton id="modificar" icon="pi pi-file-edit" 
+                                                 action="#{beanUsuario.seleccionar(row)}" 
+                                                 oncomplete="PF('dlgEditar').show()" update=":formEditar" 
+                                                 styleClass="aceptar" style="margin-right: 5px; border-radius: 5px !important; height:  45px !important" />
+                                <p:commandButton id="anular" icon="pi pi-trash" 
+                                                 action="#{beanUsuario.seleccionar(row)}" 
+                                                 oncomplete="PF('dlgAnular').show()" 
+                                                 update=":formAnular" styleClass="anular" style="border-radius: 5px !important; height:  45px" />
+                            </p:column>                            
+                        </p:dataTable>
+                    </h:form>
+
+                    <p:dialog header="Anular Usuario" style="overflow: hidden" widgetVar="dlgAnular" width="600" showEffect="fade" modal="true" closeOnEscape="false" closable="false">
+                        <f:facet name="header">
+                            <h:panelGroup style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                <h:outputText value="Anular Usuario" style="font-size: 24px; font-weight: bold; color: white; margin-right: 270px !important; " />
+                                <h:graphicImage url="../resources/img/EMDN1.png" style="width: 70px; height: auto;" />
+                            </h:panelGroup>
+
+                        </f:facet>
+                        <h:form id="formAnular">
+                            <h:outputLabel value="¿Desea Anular el siguiente Registro?" style="font-family: 'Poppins', sans-serif; margin-top: 20px !important; font-size:25px; font-weight: 800; color:#142957"/>
+                            <br></br>
+                            <br></br>
+                            <h:outputLabel value="DPI: #{beanUsuario.dpi}" style="font-family: 'Poppins', sans-serif;"/>
+                            <br></br>
+                            <h:outputLabel value="Nombre Completo: #{beanUsuario.nombreApellido}" style="font-family: 'Poppins', sans-serif;"/>
+                            <br></br>
+                            <h:outputLabel value="Usuario: #{beanUsuario.nombreUsuario}" style="font-family: 'Poppins', sans-serif;"/>
+                            <br></br>
+                            <center>
+                                <p:commandButton id="si" value="Confirmar" update=":tabla :growl" onclick="PF('dlgAnular').hide()" action="#{beanUsuario.anular()}" styleClass="anular" style="width: 30%; margin-bottom: 0 !important;"/>
+                                <p:commandButton id="no" value="Cancelar" onclick="PF('dlgAnular').hide()" styleClass="boton" style="margin-left: 20px !important; justify-content: center; font-weight:800; margin-bottom: 0 !important; font-family: 'Poppis', sans-serif; margin-top: 20px; width: 30%;"/>
+                            </center>    
+                        </h:form>
+                    </p:dialog>
+
+                    <p:dialog id="formEditar" header="Actualizar Usuario" widgetVar="dlgEditar" draggable="false" modal="true" width="720" height="500px" showEffect="fade" closeOnEscape="false" closable="false">
+                        <f:facet name="header">
+                            <h:panelGroup style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                <h:outputText value="Actualizar Usuario" style="font-size: 24px; font-weight: bold; color: white; margin-right: 350px !important; " />
+                                <h:graphicImage url="../resources/img/EMDN1.png" style="width: 70px; height: auto;" />
+                            </h:panelGroup>
+
+                        </f:facet>
+                        <h:form id="formActualizar">
+                            <div class="panelInformacion" style="padding: 0 !important;">
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="DPI" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:inputText placeholder="1234567891234" id="dpi" value="#{beanUsuario.dpi}" disabled="true" styleClass="input" style="width: 300px !important;" required="true" requiredMessage="*El DPI es obligatorio" />
+                                            <p:message for="dpi" display="text" />
+                                        </div>
+
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Número Telefónico" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:inputText placeholder="12345678" id="telefono" value="#{beanUsuario.telefono}" styleClass="input" style="width: 300px !important;"   required="true" requiredMessage="*El número telefónico es obligatorio" />
+                                            <p:message for="telefono" display="text" />
+                                        </div>
+
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Rol" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="rol" value="#{beanUsuario.rol}" styleClass="input" style="width: 300px; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El rol es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Rol" itemValue="" /> 
+                                                <f:selectItems value="#{beanUsuario.comboRoles()}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="rol" display="text" />
+                                        </div>
+
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Grado" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="grado" value="#{beanUsuario.codigo_grado}" styleClass="input" style="width: 300px; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El grado es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Grado" itemValue="" />
+                                                <f:selectItems value="#{beanUsuario.listGrados}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="grado" display="text" />
+                                        </div>
+
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Comando" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="comando" value="#{beanUsuario.codigo_comando}" styleClass="input" style="width: 300px; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El comando es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Comando" itemValue="" />
+                                                <f:selectItems value="#{beanUsuario.listComandos}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="comando" display="text" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Nombre Completo" styleClass="label" style="margin-bottom: 5px;" />
+                                            <p:inputText placeholder="Nombres y Apellidos" id="nombre" value="#{beanUsuario.nombreApellido}" styleClass="input" style=" width: 300px !important;"   required="true" requiredMessage="*El nombre completo es obligatorio" />
+                                            <p:message for="nombre" display="text" />
+                                        </div>
+
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Contraseña" styleClass="label" style="margin-bottom: 5px;" />
+                                            <p:password placeholder="ejemploNo1" id="contrasena" value="#{beanUsuario.password}" styleClass="input" style="width: 300px !important;" required="true" requiredMessage="*La contraseña es obligatoria" />
+                                            <p:message for="contrasena" display="text" />
+                                        </div>
+
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Departamento" styleClass="label" style="margin-bottom: 5px;" />
+                                            <p:selectOneMenu id="residencia" value="#{beanUsuario.codigo_residencia}" styleClass="input" style="width: 300px !important;  font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El departamento es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Departamento" itemValue="" />
+                                                <f:selectItems value="#{beanUsuario.listDepartamentos}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="residencia" display="text" />
+                                        </div>
+
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Población" styleClass="label" style="margin-bottom: 5px;" />
+                                            <p:selectOneMenu id="poblacion" value="#{beanUsuario.codigo_poblacion}" styleClass="input" style="width: 300px !important;  font-family: 'Poppins', sans-serif;"  required="true" requiredMessage="*La población es obligatoria">
+                                                <f:selectItem itemLabel="Seleccione una Población" itemValue="" />
+                                                <f:selectItems value="#{beanUsuario.listPoblaciones}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="poblacion" display="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="text-align: right;">
+                                <p:commandButton value="Actualizar" action="#{beanUsuario.update()}" update=":tabla :growl" 
+                                                 onclick="PF('dlgEditar').hide()" 
+                                                 styleClass="aceptar" style="width: 20%; border-radius: 10px !important; margin-right: 10px; margin-bottom: 0"/>
+
+                                <p:commandButton value="Cancelar" onclick="PF('dlgEditar').hide()" 
+                                                 styleClass="anular" style="width: 20%; border-radius: 10px !important; margin-bottom: 0"/>
+                            </div>
+                        </h:form>
+                    </p:dialog>
+                </div>
+            </h:body> 
+        </ui:define>
+    </ui:composition>
+</html>

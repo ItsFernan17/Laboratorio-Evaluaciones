@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Navbar</title>
+        <h:outputStylesheet name="css/stylesNavbar.css"/>
+    </h:head>
+    <h:body>
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="#{facesContext.externalContext.requestContextPath}/menu.xhtml">
+                    <h:graphicImage name="img/logotipo.png" style="height: 73px;" />
+                </a>
+            </div>
+
+            <div>
+                <ul class="navbar-nav">
+                    <!-- Asignaciones Dropdown -->
+                    <li class="nav-item" style="position: relative;">
+                        <a class="nav-link" style="cursor: default;">
+                            Asignaciones
+                        </a>
+                        <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; width: 200px;">
+                            <li style="list-style: none;"><strong style="color: #142957;">Asignación</strong></li>
+                            <li style="list-style: none;"><a class="dropdown-item" href="#{facesContext.externalContext.requestContextPath}/asignacion/registrar-asignacion.xhtml">Nueva Asignación</a></li>
+                            <li style="list-style: none;"><a class="dropdown-item" href="#{facesContext.externalContext.requestContextPath}/asignacion/gestionar-asignaciones.xhtml">Ver Asignaciones</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item" style="position: relative;">
+                        <a class="nav-link" style="cursor: default;">
+                            Examenes
+                        </a>
+                        <ul class="dropdown-menu" style="position: absolute; list-style:none; width: 350px; font-family: 'Poppins', sans-serif; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                            <li style="grid-column: span 1;">
+                                <strong style="color: #142957;">Examen</strong>
+                                <ul style="list-style:none;">
+                                    <li><a class="dropdown-item" href="#{facesContext.externalContext.requestContextPath}/examen/registrar-examen.xhtml">Nuevo Examen</a></li>
+                                    <li><a class="dropdown-item" href="#{facesContext.externalContext.requestContextPath}/examen/gestionar-examen.xhtml">Ver Examenes</a></li>
+                                </ul>
+                            </li>
+
+                            <li style="grid-column: span 1;">
+                                <strong style="color: #142957;">Pregunta</strong>
+                                <ul style="list-style:none;">
+                                    <li><a class="dropdown-item" href="#{facesContext.externalContext.requestContextPath}/pregunta/registrar-pregunta.xhtml">Crear Pregunta</a></li>
+                                    <li><a class="dropdown-item" href="#{facesContext.externalContext.requestContextPath}/pregunta/gestionar-preguntas.xhtml">Ver Preguntas</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <li class="nav-item" style="position: relative;">
+                         <a class="nav-link" style="cursor: default;">
+                            Empleos
+                        </a>
+                        <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; width: 150px;">
+                            <li style="list-style: none;"><strong style="color: #142957;">Empleo</strong></li>
+                            <li style="list-style: none;"><a class="dropdown-item" href="#{facesContext.externalContext.requestContextPath}/empleo/registrar-empleo.xhtml">Crear Empleo</a></li>
+                            <li style="list-style: none;"><a class="dropdown-item" href="#{facesContext.externalContext.requestContextPath}/empleo/gestionar-empleos.xhtml">Ver Empleos</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <ul class="navbar-right">
+                <li class="nav-item" style="position: relative;  list-style: none;">
+                   <h:graphicImage name="img/perfil.png" style="width: 80px; border: 2px solid #fab91d; margin-right: 50px; border-radius: 50%;" />
+                    <ul class="dropdown-menu" style="width: 150px; transform: translateX(-20%); list-style: none;">
+                        <li><strong style="color: #142957; margin-left: 10px;">Mi Cuenta</strong></li>                      
+                        <h:form>
+                            <p:menubar style="background: none; border: none; padding: 0;"> 
+                                <p:menuitem value="Cerrar Sesión" action="#{beanLogin.cancelarLogin()}" style="background: none; padding: 0; margin-bottom: 2px; "/> 
+                            </p:menubar>
+                        </h:form>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="bar-container">
+            <div class="bar-segment bg-blue"></div>
+            <div class="bar-segment bg-white"></div>
+            <div class="bar-segment bg-blue"></div>
+        </div>
+
+        <script>
+            // Mostrar dropdowns al pasar el ratón
+            const dropdowns = document.querySelectorAll('.nav-item');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('mouseover', () => {
+                    dropdown.querySelector('.dropdown-menu').classList.add('show');
+                });
+                dropdown.addEventListener('mouseout', () => {
+                    dropdown.querySelector('.dropdown-menu').classList.remove('show');
+                });
+            });
+        </script>
+    </h:body>
+</html>

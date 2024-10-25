@@ -1,8 +1,7 @@
 package Pojos;
-// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,53 +11,26 @@ import java.util.Set;
 public class Grado  implements java.io.Serializable {
 
 
-     private int codigoGrado;
-     private Usuario usuarioByUsuarioIngreso;
-     private Usuario usuarioByUsuarioModifica;
+     private Integer codigoGrado;
      private Boolean estado;
      private String nombreGrado;
-     private Date fechaIngreso;
-     private Date fechaModifica;
-     private Set personas = new HashSet(0);
+     private Set usuarios = new HashSet(0);
 
     public Grado() {
     }
 
-	
-    public Grado(int codigoGrado) {
-        this.codigoGrado = codigoGrado;
-    }
-    public Grado(int codigoGrado, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, String nombreGrado, Date fechaIngreso, Date fechaModifica, Set personas) {
-       this.codigoGrado = codigoGrado;
-       this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
-       this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
+    public Grado(Boolean estado, String nombreGrado, Set usuarios) {
        this.estado = estado;
        this.nombreGrado = nombreGrado;
-       this.fechaIngreso = fechaIngreso;
-       this.fechaModifica = fechaModifica;
-       this.personas = personas;
+       this.usuarios = usuarios;
     }
    
-    public int getCodigoGrado() {
+    public Integer getCodigoGrado() {
         return this.codigoGrado;
     }
     
-    public void setCodigoGrado(int codigoGrado) {
+    public void setCodigoGrado(Integer codigoGrado) {
         this.codigoGrado = codigoGrado;
-    }
-    public Usuario getUsuarioByUsuarioIngreso() {
-        return this.usuarioByUsuarioIngreso;
-    }
-    
-    public void setUsuarioByUsuarioIngreso(Usuario usuarioByUsuarioIngreso) {
-        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
-    }
-    public Usuario getUsuarioByUsuarioModifica() {
-        return this.usuarioByUsuarioModifica;
-    }
-    
-    public void setUsuarioByUsuarioModifica(Usuario usuarioByUsuarioModifica) {
-        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
     }
     public Boolean getEstado() {
         return this.estado;
@@ -74,26 +46,12 @@ public class Grado  implements java.io.Serializable {
     public void setNombreGrado(String nombreGrado) {
         this.nombreGrado = nombreGrado;
     }
-    public Date getFechaIngreso() {
-        return this.fechaIngreso;
+    public Set getUsuarios() {
+        return this.usuarios;
     }
     
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-    public Date getFechaModifica() {
-        return this.fechaModifica;
-    }
-    
-    public void setFechaModifica(Date fechaModifica) {
-        this.fechaModifica = fechaModifica;
-    }
-    public Set getPersonas() {
-        return this.personas;
-    }
-    
-    public void setPersonas(Set personas) {
-        this.personas = personas;
+    public void setUsuarios(Set usuarios) {
+        this.usuarios = usuarios;
     }
 
 

@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,85 +11,99 @@ import java.util.Set;
 public class Usuario  implements java.io.Serializable {
 
 
-     private Integer codigoUsuario;
+     private String dpi;
+     private Comando comando;
+     private DepartamentoResidencia departamentoResidencia;
+     private Grado grado;
+     private Poblacion poblacion;
      private Boolean estado;
+     private String nombreCompleto;
+     private String telefono;
      private String nombreUsuario;
      private String rol;
      private String contrasenia;
+     private Set asignacionsForUsuarioIngreso = new HashSet(0);
+     private Set detallesForUsuarioIngreso = new HashSet(0);
+     private Set asignacionsForUsuarioModifica = new HashSet(0);
+     private Set detallesForUsuarioModifica = new HashSet(0);
      private Set preguntasForUsuarioModifica = new HashSet(0);
-     private Set certificacionsForUsarioIngresa = new HashSet(0);
-     private Set gradosForUsuarioIngreso = new HashSet(0);
-     private Set certificacionsForUsuarioModifica = new HashSet(0);
-     private Set poblacionsForUsuarioIngreso = new HashSet(0);
-     private Set gradosForUsuarioModifica = new HashSet(0);
-     private Set bancoRespuestasesForUsuarioModifica = new HashSet(0);
-     private Set motivoEvaluacionsForUsuarioModifica = new HashSet(0);
-     private Set motivoNoAptosForUsuarioIngreso = new HashSet(0);
-     private Set departamentoResidenciasForUsuarioIngreso = new HashSet(0);
-     private Set bancoRespuestasesForUsuarioIngreso = new HashSet(0);
-     private Set detalleExamensForUsuarioIngreso = new HashSet(0);
-     private Set motivoEvaluacionsForUsuarioIngreso = new HashSet(0);
-     private Set detalleExamensForUsuarioModifica = new HashSet(0);
-     private Set personasForUsuarioIngreso = new HashSet(0);
-     private Set poblacionsForUsuarioModifica = new HashSet(0);
-     private Set personasForUsuarioModifica = new HashSet(0);
-     private Set departamentoResidenciasForUsuarioModifica = new HashSet(0);
      private Set empleosForUsuarioModifica = new HashSet(0);
+     private Set asignacionsForEvaluado = new HashSet(0);
      private Set empleosForUsuarioIngreso = new HashSet(0);
      private Set preguntasForUsuarioIngreso = new HashSet(0);
-     private Set comandosForUsuarioIngreso = new HashSet(0);
+     private Set respuestasForUsuarioModifica = new HashSet(0);
      private Set examensForUsuarioIngreso = new HashSet(0);
-     private Set motivoNoAptosForUsuarioModifica = new HashSet(0);
-     private Set comandosForUsuarioModifica = new HashSet(0);
+     private Set respuestasForUsuarioIngreso = new HashSet(0);
      private Set examensForUsuarioModifica = new HashSet(0);
 
     public Usuario() {
     }
 
 	
-    public Usuario(int codigoUsuario) {
-        this.codigoUsuario = codigoUsuario;
+    public Usuario(String dpi) {
+        this.dpi = dpi;
     }
-    public Usuario(int codigoUsuario, Boolean estado, String nombreUsuario, String rol, String contrasenia, Set preguntasForUsuarioModifica, Set certificacionsForUsarioIngresa, Set gradosForUsuarioIngreso, Set certificacionsForUsuarioModifica, Set poblacionsForUsuarioIngreso, Set gradosForUsuarioModifica, Set bancoRespuestasesForUsuarioModifica, Set motivoEvaluacionsForUsuarioModifica, Set motivoNoAptosForUsuarioIngreso, Set departamentoResidenciasForUsuarioIngreso, Set bancoRespuestasesForUsuarioIngreso, Set detalleExamensForUsuarioIngreso, Set motivoEvaluacionsForUsuarioIngreso, Set detalleExamensForUsuarioModifica, Set personasForUsuarioIngreso, Set poblacionsForUsuarioModifica, Set personasForUsuarioModifica, Set departamentoResidenciasForUsuarioModifica, Set empleosForUsuarioModifica, Set empleosForUsuarioIngreso, Set preguntasForUsuarioIngreso, Set comandosForUsuarioIngreso, Set examensForUsuarioIngreso, Set motivoNoAptosForUsuarioModifica, Set comandosForUsuarioModifica, Set examensForUsuarioModifica) {
-       this.codigoUsuario = codigoUsuario;
+    public Usuario(String dpi, Comando comando, DepartamentoResidencia departamentoResidencia, Grado grado, Poblacion poblacion, Boolean estado, String nombreCompleto, String telefono, String nombreUsuario, String rol, String contrasenia, Set asignacionsForUsuarioIngreso, Set detallesForUsuarioIngreso, Set asignacionsForUsuarioModifica, Set detallesForUsuarioModifica, Set preguntasForUsuarioModifica, Set empleosForUsuarioModifica, Set asignacionsForEvaluado, Set empleosForUsuarioIngreso, Set preguntasForUsuarioIngreso, Set respuestasForUsuarioModifica, Set examensForUsuarioIngreso, Set respuestasForUsuarioIngreso, Set examensForUsuarioModifica) {
+       this.dpi = dpi;
+       this.comando = comando;
+       this.departamentoResidencia = departamentoResidencia;
+       this.grado = grado;
+       this.poblacion = poblacion;
        this.estado = estado;
+       this.nombreCompleto = nombreCompleto;
+       this.telefono = telefono;
        this.nombreUsuario = nombreUsuario;
        this.rol = rol;
        this.contrasenia = contrasenia;
+       this.asignacionsForUsuarioIngreso = asignacionsForUsuarioIngreso;
+       this.detallesForUsuarioIngreso = detallesForUsuarioIngreso;
+       this.asignacionsForUsuarioModifica = asignacionsForUsuarioModifica;
+       this.detallesForUsuarioModifica = detallesForUsuarioModifica;
        this.preguntasForUsuarioModifica = preguntasForUsuarioModifica;
-       this.certificacionsForUsarioIngresa = certificacionsForUsarioIngresa;
-       this.gradosForUsuarioIngreso = gradosForUsuarioIngreso;
-       this.certificacionsForUsuarioModifica = certificacionsForUsuarioModifica;
-       this.poblacionsForUsuarioIngreso = poblacionsForUsuarioIngreso;
-       this.gradosForUsuarioModifica = gradosForUsuarioModifica;
-       this.bancoRespuestasesForUsuarioModifica = bancoRespuestasesForUsuarioModifica;
-       this.motivoEvaluacionsForUsuarioModifica = motivoEvaluacionsForUsuarioModifica;
-       this.motivoNoAptosForUsuarioIngreso = motivoNoAptosForUsuarioIngreso;
-       this.departamentoResidenciasForUsuarioIngreso = departamentoResidenciasForUsuarioIngreso;
-       this.bancoRespuestasesForUsuarioIngreso = bancoRespuestasesForUsuarioIngreso;
-       this.detalleExamensForUsuarioIngreso = detalleExamensForUsuarioIngreso;
-       this.motivoEvaluacionsForUsuarioIngreso = motivoEvaluacionsForUsuarioIngreso;
-       this.detalleExamensForUsuarioModifica = detalleExamensForUsuarioModifica;
-       this.personasForUsuarioIngreso = personasForUsuarioIngreso;
-       this.poblacionsForUsuarioModifica = poblacionsForUsuarioModifica;
-       this.personasForUsuarioModifica = personasForUsuarioModifica;
-       this.departamentoResidenciasForUsuarioModifica = departamentoResidenciasForUsuarioModifica;
        this.empleosForUsuarioModifica = empleosForUsuarioModifica;
+       this.asignacionsForEvaluado = asignacionsForEvaluado;
        this.empleosForUsuarioIngreso = empleosForUsuarioIngreso;
        this.preguntasForUsuarioIngreso = preguntasForUsuarioIngreso;
-       this.comandosForUsuarioIngreso = comandosForUsuarioIngreso;
+       this.respuestasForUsuarioModifica = respuestasForUsuarioModifica;
        this.examensForUsuarioIngreso = examensForUsuarioIngreso;
-       this.motivoNoAptosForUsuarioModifica = motivoNoAptosForUsuarioModifica;
-       this.comandosForUsuarioModifica = comandosForUsuarioModifica;
+       this.respuestasForUsuarioIngreso = respuestasForUsuarioIngreso;
        this.examensForUsuarioModifica = examensForUsuarioModifica;
     }
    
-    public int getCodigoUsuario() {
-        return this.codigoUsuario;
+    public String getDpi() {
+        return this.dpi;
     }
     
-    public void setCodigoUsuario(int codigoUsuario) {
-        this.codigoUsuario = codigoUsuario;
+    public void setDpi(String dpi) {
+        this.dpi = dpi;
+    }
+    public Comando getComando() {
+        return this.comando;
+    }
+    
+    public void setComando(Comando comando) {
+        this.comando = comando;
+    }
+    public DepartamentoResidencia getDepartamentoResidencia() {
+        return this.departamentoResidencia;
+    }
+    
+    public void setDepartamentoResidencia(DepartamentoResidencia departamentoResidencia) {
+        this.departamentoResidencia = departamentoResidencia;
+    }
+    public Grado getGrado() {
+        return this.grado;
+    }
+    
+    public void setGrado(Grado grado) {
+        this.grado = grado;
+    }
+    public Poblacion getPoblacion() {
+        return this.poblacion;
+    }
+    
+    public void setPoblacion(Poblacion poblacion) {
+        this.poblacion = poblacion;
     }
     public Boolean getEstado() {
         return this.estado;
@@ -97,6 +111,20 @@ public class Usuario  implements java.io.Serializable {
     
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+    public String getNombreCompleto() {
+        return this.nombreCompleto;
+    }
+    
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+    public String getTelefono() {
+        return this.telefono;
+    }
+    
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
     public String getNombreUsuario() {
         return this.nombreUsuario;
@@ -119,6 +147,34 @@ public class Usuario  implements java.io.Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+    public Set getAsignacionsForUsuarioIngreso() {
+        return this.asignacionsForUsuarioIngreso;
+    }
+    
+    public void setAsignacionsForUsuarioIngreso(Set asignacionsForUsuarioIngreso) {
+        this.asignacionsForUsuarioIngreso = asignacionsForUsuarioIngreso;
+    }
+    public Set getDetallesForUsuarioIngreso() {
+        return this.detallesForUsuarioIngreso;
+    }
+    
+    public void setDetallesForUsuarioIngreso(Set detallesForUsuarioIngreso) {
+        this.detallesForUsuarioIngreso = detallesForUsuarioIngreso;
+    }
+    public Set getAsignacionsForUsuarioModifica() {
+        return this.asignacionsForUsuarioModifica;
+    }
+    
+    public void setAsignacionsForUsuarioModifica(Set asignacionsForUsuarioModifica) {
+        this.asignacionsForUsuarioModifica = asignacionsForUsuarioModifica;
+    }
+    public Set getDetallesForUsuarioModifica() {
+        return this.detallesForUsuarioModifica;
+    }
+    
+    public void setDetallesForUsuarioModifica(Set detallesForUsuarioModifica) {
+        this.detallesForUsuarioModifica = detallesForUsuarioModifica;
+    }
     public Set getPreguntasForUsuarioModifica() {
         return this.preguntasForUsuarioModifica;
     }
@@ -126,131 +182,19 @@ public class Usuario  implements java.io.Serializable {
     public void setPreguntasForUsuarioModifica(Set preguntasForUsuarioModifica) {
         this.preguntasForUsuarioModifica = preguntasForUsuarioModifica;
     }
-    public Set getCertificacionsForUsarioIngresa() {
-        return this.certificacionsForUsarioIngresa;
-    }
-    
-    public void setCertificacionsForUsarioIngresa(Set certificacionsForUsarioIngresa) {
-        this.certificacionsForUsarioIngresa = certificacionsForUsarioIngresa;
-    }
-    public Set getGradosForUsuarioIngreso() {
-        return this.gradosForUsuarioIngreso;
-    }
-    
-    public void setGradosForUsuarioIngreso(Set gradosForUsuarioIngreso) {
-        this.gradosForUsuarioIngreso = gradosForUsuarioIngreso;
-    }
-    public Set getCertificacionsForUsuarioModifica() {
-        return this.certificacionsForUsuarioModifica;
-    }
-    
-    public void setCertificacionsForUsuarioModifica(Set certificacionsForUsuarioModifica) {
-        this.certificacionsForUsuarioModifica = certificacionsForUsuarioModifica;
-    }
-    public Set getPoblacionsForUsuarioIngreso() {
-        return this.poblacionsForUsuarioIngreso;
-    }
-    
-    public void setPoblacionsForUsuarioIngreso(Set poblacionsForUsuarioIngreso) {
-        this.poblacionsForUsuarioIngreso = poblacionsForUsuarioIngreso;
-    }
-    public Set getGradosForUsuarioModifica() {
-        return this.gradosForUsuarioModifica;
-    }
-    
-    public void setGradosForUsuarioModifica(Set gradosForUsuarioModifica) {
-        this.gradosForUsuarioModifica = gradosForUsuarioModifica;
-    }
-    public Set getBancoRespuestasesForUsuarioModifica() {
-        return this.bancoRespuestasesForUsuarioModifica;
-    }
-    
-    public void setBancoRespuestasesForUsuarioModifica(Set bancoRespuestasesForUsuarioModifica) {
-        this.bancoRespuestasesForUsuarioModifica = bancoRespuestasesForUsuarioModifica;
-    }
-    public Set getMotivoEvaluacionsForUsuarioModifica() {
-        return this.motivoEvaluacionsForUsuarioModifica;
-    }
-    
-    public void setMotivoEvaluacionsForUsuarioModifica(Set motivoEvaluacionsForUsuarioModifica) {
-        this.motivoEvaluacionsForUsuarioModifica = motivoEvaluacionsForUsuarioModifica;
-    }
-    public Set getMotivoNoAptosForUsuarioIngreso() {
-        return this.motivoNoAptosForUsuarioIngreso;
-    }
-    
-    public void setMotivoNoAptosForUsuarioIngreso(Set motivoNoAptosForUsuarioIngreso) {
-        this.motivoNoAptosForUsuarioIngreso = motivoNoAptosForUsuarioIngreso;
-    }
-    public Set getDepartamentoResidenciasForUsuarioIngreso() {
-        return this.departamentoResidenciasForUsuarioIngreso;
-    }
-    
-    public void setDepartamentoResidenciasForUsuarioIngreso(Set departamentoResidenciasForUsuarioIngreso) {
-        this.departamentoResidenciasForUsuarioIngreso = departamentoResidenciasForUsuarioIngreso;
-    }
-    public Set getBancoRespuestasesForUsuarioIngreso() {
-        return this.bancoRespuestasesForUsuarioIngreso;
-    }
-    
-    public void setBancoRespuestasesForUsuarioIngreso(Set bancoRespuestasesForUsuarioIngreso) {
-        this.bancoRespuestasesForUsuarioIngreso = bancoRespuestasesForUsuarioIngreso;
-    }
-    public Set getDetalleExamensForUsuarioIngreso() {
-        return this.detalleExamensForUsuarioIngreso;
-    }
-    
-    public void setDetalleExamensForUsuarioIngreso(Set detalleExamensForUsuarioIngreso) {
-        this.detalleExamensForUsuarioIngreso = detalleExamensForUsuarioIngreso;
-    }
-    public Set getMotivoEvaluacionsForUsuarioIngreso() {
-        return this.motivoEvaluacionsForUsuarioIngreso;
-    }
-    
-    public void setMotivoEvaluacionsForUsuarioIngreso(Set motivoEvaluacionsForUsuarioIngreso) {
-        this.motivoEvaluacionsForUsuarioIngreso = motivoEvaluacionsForUsuarioIngreso;
-    }
-    public Set getDetalleExamensForUsuarioModifica() {
-        return this.detalleExamensForUsuarioModifica;
-    }
-    
-    public void setDetalleExamensForUsuarioModifica(Set detalleExamensForUsuarioModifica) {
-        this.detalleExamensForUsuarioModifica = detalleExamensForUsuarioModifica;
-    }
-    public Set getPersonasForUsuarioIngreso() {
-        return this.personasForUsuarioIngreso;
-    }
-    
-    public void setPersonasForUsuarioIngreso(Set personasForUsuarioIngreso) {
-        this.personasForUsuarioIngreso = personasForUsuarioIngreso;
-    }
-    public Set getPoblacionsForUsuarioModifica() {
-        return this.poblacionsForUsuarioModifica;
-    }
-    
-    public void setPoblacionsForUsuarioModifica(Set poblacionsForUsuarioModifica) {
-        this.poblacionsForUsuarioModifica = poblacionsForUsuarioModifica;
-    }
-    public Set getPersonasForUsuarioModifica() {
-        return this.personasForUsuarioModifica;
-    }
-    
-    public void setPersonasForUsuarioModifica(Set personasForUsuarioModifica) {
-        this.personasForUsuarioModifica = personasForUsuarioModifica;
-    }
-    public Set getDepartamentoResidenciasForUsuarioModifica() {
-        return this.departamentoResidenciasForUsuarioModifica;
-    }
-    
-    public void setDepartamentoResidenciasForUsuarioModifica(Set departamentoResidenciasForUsuarioModifica) {
-        this.departamentoResidenciasForUsuarioModifica = departamentoResidenciasForUsuarioModifica;
-    }
     public Set getEmpleosForUsuarioModifica() {
         return this.empleosForUsuarioModifica;
     }
     
     public void setEmpleosForUsuarioModifica(Set empleosForUsuarioModifica) {
         this.empleosForUsuarioModifica = empleosForUsuarioModifica;
+    }
+    public Set getAsignacionsForEvaluado() {
+        return this.asignacionsForEvaluado;
+    }
+    
+    public void setAsignacionsForEvaluado(Set asignacionsForEvaluado) {
+        this.asignacionsForEvaluado = asignacionsForEvaluado;
     }
     public Set getEmpleosForUsuarioIngreso() {
         return this.empleosForUsuarioIngreso;
@@ -266,12 +210,12 @@ public class Usuario  implements java.io.Serializable {
     public void setPreguntasForUsuarioIngreso(Set preguntasForUsuarioIngreso) {
         this.preguntasForUsuarioIngreso = preguntasForUsuarioIngreso;
     }
-    public Set getComandosForUsuarioIngreso() {
-        return this.comandosForUsuarioIngreso;
+    public Set getRespuestasForUsuarioModifica() {
+        return this.respuestasForUsuarioModifica;
     }
     
-    public void setComandosForUsuarioIngreso(Set comandosForUsuarioIngreso) {
-        this.comandosForUsuarioIngreso = comandosForUsuarioIngreso;
+    public void setRespuestasForUsuarioModifica(Set respuestasForUsuarioModifica) {
+        this.respuestasForUsuarioModifica = respuestasForUsuarioModifica;
     }
     public Set getExamensForUsuarioIngreso() {
         return this.examensForUsuarioIngreso;
@@ -280,19 +224,12 @@ public class Usuario  implements java.io.Serializable {
     public void setExamensForUsuarioIngreso(Set examensForUsuarioIngreso) {
         this.examensForUsuarioIngreso = examensForUsuarioIngreso;
     }
-    public Set getMotivoNoAptosForUsuarioModifica() {
-        return this.motivoNoAptosForUsuarioModifica;
+    public Set getRespuestasForUsuarioIngreso() {
+        return this.respuestasForUsuarioIngreso;
     }
     
-    public void setMotivoNoAptosForUsuarioModifica(Set motivoNoAptosForUsuarioModifica) {
-        this.motivoNoAptosForUsuarioModifica = motivoNoAptosForUsuarioModifica;
-    }
-    public Set getComandosForUsuarioModifica() {
-        return this.comandosForUsuarioModifica;
-    }
-    
-    public void setComandosForUsuarioModifica(Set comandosForUsuarioModifica) {
-        this.comandosForUsuarioModifica = comandosForUsuarioModifica;
+    public void setRespuestasForUsuarioIngreso(Set respuestasForUsuarioIngreso) {
+        this.respuestasForUsuarioIngreso = respuestasForUsuarioIngreso;
     }
     public Set getExamensForUsuarioModifica() {
         return this.examensForUsuarioModifica;

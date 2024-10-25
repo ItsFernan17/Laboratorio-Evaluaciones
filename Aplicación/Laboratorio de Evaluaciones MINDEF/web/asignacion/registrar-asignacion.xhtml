@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="#{sessionBean.template}">
+        <ui:define name="content">
+            <h:head>
+                <f:event type="preRenderView" listener="#{beanValidator.verificarSesion()}"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <link href="../src/css/stylesGeneral.css" rel="stylesheet" type="text/css"/>
+                <script src="../js/script.js" type="text/javascript"></script>
+
+            </h:head>
+            <h:body>
+
+                <div class="contenedor">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 45px !important; font-weight: 800; color: #142957;">
+                        Crear Nueva Asignación
+                    </h1>
+                    <h3>
+                        Complete el formulario a continuación para asignarle a un evaluado un exámen.
+                    </h3>
+                    <h:form id="form"> 
+                        <p:growl id="growl" showDetail="true" />
+                        <div class="panel">
+                            <h4>
+                                Información de la Asignación
+                            </h4>
+                            <div class="panelInformacion">
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Evaluado" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:selectOneMenu id="evaluado" value="#{beanAsignacion.evaluado}" styleClass="input" style="width: 90%; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El evaluado es obligatorio">
+                                                <f:selectItem itemLabel="Seleccione un Evaluado" itemValue="0" />
+                                                <f:selectItems value="#{beanAsignacion.listEvaluado}" />
+                                            </p:selectOneMenu>
+                                            <p:message for="evaluado" display="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div class="ui-fluid formgrid grid">
+                                            <div class="ui-fluid formgrid grid">
+                                                <div style="display: flex; flex-direction: column;">
+                                                    <p:outputLabel value="Examen" styleClass="label" style="margin-bottom: 5px" />
+                                                    <p:selectOneMenu id="motivo" value="#{beanAsignacion.codigoExamen}" styleClass="input" style="width: 90%; font-family: 'Poppins', sans-serif;" required="true" requiredMessage="*El motivo del examen es obligatorio">
+                                                        <f:selectItem itemLabel="Seleccione un Examen" itemValue="0" />
+                                                        <f:selectItems value="#{beanAsignacion.listExamen}" />
+                                                    </p:selectOneMenu>
+                                                    <p:message for="motivo" display="text" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenedorBoton">
+                                <p:commandButton value="Crear Examen" update="form growl" action="#{beanAsignacion.insertar()}" class="boton" style="font-weight:400; font-size: 18px !important; font-family: 'Poppins', sans-serif; "/>
+                            </div>
+                        </div>
+                    </h:form>             
+                </div>
+            </h:body> 
+        </ui:define>
+    </ui:composition>
+</html>

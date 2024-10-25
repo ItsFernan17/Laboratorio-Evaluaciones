@@ -7,22 +7,23 @@
     <h:head>
         <title>Ministerio de la Defensa</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="css/stylesIndex.css" rel="stylesheet" type="text/css"/>
+        <link href="src/css/stylesIndex.css" rel="stylesheet" type="text/css"/>
     </h:head>
 
-    <body style="background-image: url('src/img/fondo_login.jpg')"> 
+    <body style="background-image: url('resources/img/fondo_login.jpg')"> 
         <div class="contenedor">
             <div class="contenedorLogo">
-                <h:graphicImage value="src/img/logotipo.png" class="logo"/>
+                <h:graphicImage name="img/logotipo.png" class="logo"/>
             </div>
             <div class="contenedorInformacion">
                 <h1>Iniciar Sesión</h1>
                 <h:form>
+                    <p:growl id="growl" showDetail="true" sticky="false"/>
                     <div class="contenedorDatos">
                         <div class="col-12 md:col-4">
                             <div class="ui-inputgroup">
                                 <div class="ui-inputgroup-addon" id="contenedorIcono"><i class="pi pi-user"></i></div>
-                                <p:inputText placeholder="Usuario" id="usuario" class="input"/>
+                                <p:inputText placeholder="Usuario" id="usuario" value="#{sessionBean.usuarioSession}" class="input" style="font-family: 'Poppins', sans-serif; color: #142957"/>
                             </div>
                         </div>
                     </div>
@@ -30,11 +31,11 @@
                         <div class="col-12 md:col-4">
                             <div class="ui-inputgroup">
                                 <div class="ui-inputgroup-addon" id="contenedorIcono"><i class="pi pi-lock"></i></div>
-                                <p:inputText placeholder="Contraseña" id="contra" class="input"/>
+                                <p:password placeholder="Contraseña" id="contra" value="#{beanLogin.password}"  class="input" style="font-family: 'Poppins', sans-serif; color: #142957"/>
                             </div>
                         </div>
                     </div>
-                    <p:commandButton type="button" value="INICIAR SESIÓN" class="boton"/>
+                    <p:commandButton update="growl" action="#{beanLogin.irPrincipal()}"  value="Iniciar Sesión" class="boton" style="font-weight:600; font-size: 20px !important;"/>
                 </h:form>
                 <div class="otraInformacion">
                     <p:link href="https://www.mindef.mil.gt/" value="¿Olvidaste tu contraseña?"></p:link>

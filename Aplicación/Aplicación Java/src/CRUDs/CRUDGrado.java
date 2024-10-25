@@ -16,10 +16,9 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-
 public class CRUDGrado {
 
-    public static boolean insert(String nombreGrado, Integer usuarioIngreso) {
+    public static boolean insert(String nombreGrado) {
         boolean flag = false;
         Date fecha = new Date();
         Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
@@ -34,43 +33,7 @@ public class CRUDGrado {
                 insert = new Grado();
                 insert.setEstado(true);
                 insert.setNombreGrado(nombreGrado);
-                Usuario usuario = new Usuario();
-                usuario.setCodigoUsuario(usuarioIngreso);
-                insert.setUsuarioByUsuarioIngreso(usuario);
-                insert.setFechaIngreso(fecha);
                 session.save(insert);
-                flag = true;
-            }
-            transaction.commit();
-
-        } catch (HibernateException e) {
-            transaction.rollback();
-            System.out.println("Error " + e);
-        } finally {
-            session.close();
-        }
-
-        return flag;
-    }
-
-    public static boolean update(Integer codigoGrado, String nombreGrado, Integer usuarioModifica) {
-        boolean flag = false;
-        Date fecha = new Date();
-        Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Grado.class);
-        criteria.add(Restrictions.eq("codigoGrado", codigoGrado));
-        Grado update = (Grado) criteria.uniqueResult();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            if (update != null) {
-                update.setEstado(true);
-                update.setNombreGrado(nombreGrado);
-                Usuario usuario = new Usuario();
-                usuario.setCodigoUsuario(usuarioModifica);
-                update.setUsuarioByUsuarioModifica(usuario);
-                update.setFechaModifica(fecha);
-                session.update(update);
                 flag = true;
             }
             transaction.commit();
@@ -101,31 +64,4 @@ public class CRUDGrado {
         }
         return lista;
     }
-
-    public static boolean anular(Integer codigoGrado) {
-        boolean flag = false;
-        Session session = HibernetUtil.HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Grado.class);
-        criteria.add(Restrictions.eq("codigoGrado", codigoGrado));
-        Grado update = (Grado) criteria.uniqueResult();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            if (update != null) {
-                update.setEstado(false);
-                session.update(update);
-                flag = true;
-            }
-            transaction.commit();
-
-        } catch (HibernateException e) {
-            transaction.rollback();
-            System.out.println("Error " + e);
-        } finally {
-            session.close();
-        }
-
-        return flag;
-    }
-
 }

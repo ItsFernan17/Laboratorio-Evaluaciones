@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteExamen" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fbab6233-a226-4151-9078-0274073ab593">
+	<property name="ireport.zoom" value="1.4641000000000035"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="100"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="empleo" class="java.lang.String">
+		<fieldDescription><![CDATA[empleo]]></fieldDescription>
+	</field>
+	<field name="evaluado" class="java.lang.String">
+		<fieldDescription><![CDATA[evaluado]]></fieldDescription>
+	</field>
+	<field name="fechaEvaluacion" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaEvaluacion]]></fieldDescription>
+	</field>
+	<field name="instruccion" class="java.lang.String">
+		<fieldDescription><![CDATA[instruccion]]></fieldDescription>
+	</field>
+	<field name="opcion1" class="java.lang.String">
+		<fieldDescription><![CDATA[opcion1]]></fieldDescription>
+	</field>
+	<field name="opcion2" class="java.lang.String">
+		<fieldDescription><![CDATA[opcion2]]></fieldDescription>
+	</field>
+	<field name="opcion3" class="java.lang.String">
+		<fieldDescription><![CDATA[opcion3]]></fieldDescription>
+	</field>
+	<field name="pregunta" class="java.lang.String">
+		<fieldDescription><![CDATA[pregunta]]></fieldDescription>
+	</field>
+	<field name="punteoPregunta" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[punteoPregunta]]></fieldDescription>
+	</field>
+	<field name="serie" class="java.lang.String">
+		<fieldDescription><![CDATA[serie]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="325" splitType="Stretch">
+			<staticText>
+				<reportElement x="92" y="38" width="371" height="20" forecolor="#142957" uuid="e056b8c1-b77f-440b-b363-9d2aa78bfb6f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ Dirección de Personal Del Estado Mayor de la Defensa Nacional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="409" height="38" forecolor="#142957" uuid="9b2bd368-e804-462e-ab9e-c27b1a9dd9ae"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Estado Mayor de la Defensa Nacional]]></text>
+			</staticText>
+			<image hAlign="Center">
+				<reportElement x="211" y="65" width="117" height="91" uuid="310ea41c-6d16-44c4-a7ac-ef84c07053e4"/>
+				<imageExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto Final\\Laboratorio-Evaluaciones\\Aplicación\\Laboratorio de Evaluaciones MINDEF\\web\\resources\\img\\EMDN1.png"]]></imageExpression>
+			</image>
+			<rectangle radius="8">
+				<reportElement x="0" y="168" width="555" height="157" forecolor="#142957" uuid="edcf8f22-6ffe-4420-a44d-8c58fe10594b"/>
+			</rectangle>
+			<textField>
+				<reportElement x="153" y="187" width="135" height="20" uuid="a3aa4426-2ae3-42c8-8851-20f1f6f5b943"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaEvaluacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="187" width="132" height="20" forecolor="#142957" uuid="7c69f736-9760-4107-bd50-f8115a22a384"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Evaluación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="407" y="209" width="135" height="20" uuid="ccd47c32-9a80-440f-aa0e-2498947dd04e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="209" width="100" height="20" forecolor="#142957" uuid="29580721-04e7-4b7c-9eac-35361b9cfaf1"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleo a Optar:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="83" y="209" width="117" height="20" uuid="f24f395e-2fd0-487b-89ec-29f2e26cb9a6"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{evaluado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="209" width="60" height="20" forecolor="#142957" uuid="51c5e292-3df9-4008-889e-47bd2533b915"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evaluado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="187" width="135" height="20" forecolor="#142957" uuid="cad90004-35c8-4d01-b54d-c8cf34c0c409"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Tiempo de Evaluación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="187" width="51" height="20" uuid="e27fe01d-a521-43a0-a7d6-c658e60d81fb"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[1 hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="242" width="177" height="20" forecolor="#142957" uuid="c9da6967-5f3c-446e-9191-dc0bd5e58c31"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instrucciones Generales:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="265" width="514" height="50" uuid="549a946a-2c28-43f7-bba5-ee3dda7abfd5"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[No se permite el uso de correctores ni tachaduras en las respuestas. Es importante responder de manera clara y definitiva en cada espacio indicado, utilizando únicamente bolígrafo de tinta negra o azul.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="161" splitType="Stretch">
+			<textField>
+				<reportElement x="79" y="69" width="281" height="40" uuid="ebfc8c18-cf34-4f38-9ff7-df9f843296f7"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pregunta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="372" y="69" width="46" height="20" uuid="563fadff-94af-4c23-94c2-8fbcfd8a3d21"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="423" y="69" width="63" height="20" uuid="d7e390e1-0fa0-4500-8a5c-6425db2e8d29"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{punteoPregunta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="122" width="152" height="30" uuid="991b9050-6f67-43b5-ac57-5a26b9b2a822"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{opcion1}]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement x="21" y="125" width="15" height="15" uuid="da41cc95-97da-41bf-abc5-2c0194c50a25"/>
+			</ellipse>
+			<ellipse>
+				<reportElement x="198" y="125" width="15" height="15" uuid="afc572b3-14ad-4a21-8e76-79d92af9d24c"/>
+			</ellipse>
+			<textField>
+				<reportElement x="220" y="123" width="152" height="30" uuid="52c43011-bfde-4375-b2af-62eedfa6fe76"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{opcion2}]]></textFieldExpression>
+			</textField>
+			<ellipse>
+				<reportElement x="377" y="125" width="15" height="15" uuid="2b2d01f9-3d99-48b0-927b-32d2f9a8268a"/>
+			</ellipse>
+			<textField>
+				<reportElement x="398" y="123" width="151" height="30" uuid="53cf3f24-4663-4a75-b257-ae16c1bde654"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{opcion3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="69" width="60" height="20" forecolor="#142957" uuid="0cdf6eb0-57b6-46f9-8f7f-7c8e848f878b"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pregunta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="111" y="34" width="422" height="25" uuid="a5ff7ffd-65ed-49cc-8902-a555f62b526c"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{instruccion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="34" width="90" height="20" forecolor="#142957" uuid="259b06bf-cc57-40ad-9692-b3950360190c"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instrucciones:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="18" y="9" width="100" height="20" forecolor="#142957" uuid="48b92bcf-b354-42c9-b4a5-0362c3a48f1f"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{serie}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

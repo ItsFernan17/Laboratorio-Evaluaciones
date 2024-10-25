@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Sep 3, 2024 5:05:10 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,16 +14,16 @@ public class Examen  implements java.io.Serializable {
 
      private int codigoExamen;
      private Empleo empleo;
-     private Persona persona;
+     private Motivo motivo;
      private Usuario usuarioByUsuarioIngreso;
      private Usuario usuarioByUsuarioModifica;
      private Boolean estado;
      private Date fechaEvaluacion;
-     private Integer punteoTotal;
+     private Integer punteoMaximo;
      private Date fechaIngreso;
      private Date fechaModifica;
-     private Set certificacions = new HashSet(0);
-     private Set detalleExamens = new HashSet(0);
+     private Set asignacions = new HashSet(0);
+     private Set detalles = new HashSet(0);
 
     public Examen() {
     }
@@ -32,19 +32,19 @@ public class Examen  implements java.io.Serializable {
     public Examen(int codigoExamen) {
         this.codigoExamen = codigoExamen;
     }
-    public Examen(int codigoExamen, Empleo empleo, Persona persona, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, Date fechaEvaluacion, Integer punteoTotal, Date fechaIngreso, Date fechaModifica, Set certificacions, Set detalleExamens) {
+    public Examen(int codigoExamen, Empleo empleo, Motivo motivo, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, Date fechaEvaluacion, Integer punteoMaximo, Date fechaIngreso, Date fechaModifica, Set asignacions, Set detalles) {
        this.codigoExamen = codigoExamen;
        this.empleo = empleo;
-       this.persona = persona;
+       this.motivo = motivo;
        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
        this.estado = estado;
        this.fechaEvaluacion = fechaEvaluacion;
-       this.punteoTotal = punteoTotal;
+       this.punteoMaximo = punteoMaximo;
        this.fechaIngreso = fechaIngreso;
        this.fechaModifica = fechaModifica;
-       this.certificacions = certificacions;
-       this.detalleExamens = detalleExamens;
+       this.asignacions = asignacions;
+       this.detalles = detalles;
     }
    
     public int getCodigoExamen() {
@@ -61,12 +61,12 @@ public class Examen  implements java.io.Serializable {
     public void setEmpleo(Empleo empleo) {
         this.empleo = empleo;
     }
-    public Persona getPersona() {
-        return this.persona;
+    public Motivo getMotivo() {
+        return this.motivo;
     }
     
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setMotivo(Motivo motivo) {
+        this.motivo = motivo;
     }
     public Usuario getUsuarioByUsuarioIngreso() {
         return this.usuarioByUsuarioIngreso;
@@ -96,12 +96,12 @@ public class Examen  implements java.io.Serializable {
     public void setFechaEvaluacion(Date fechaEvaluacion) {
         this.fechaEvaluacion = fechaEvaluacion;
     }
-    public Integer getPunteoTotal() {
-        return this.punteoTotal;
+    public Integer getPunteoMaximo() {
+        return this.punteoMaximo;
     }
     
-    public void setPunteoTotal(Integer punteoTotal) {
-        this.punteoTotal = punteoTotal;
+    public void setPunteoMaximo(Integer punteoMaximo) {
+        this.punteoMaximo = punteoMaximo;
     }
     public Date getFechaIngreso() {
         return this.fechaIngreso;
@@ -117,19 +117,19 @@ public class Examen  implements java.io.Serializable {
     public void setFechaModifica(Date fechaModifica) {
         this.fechaModifica = fechaModifica;
     }
-    public Set getCertificacions() {
-        return this.certificacions;
+    public Set getAsignacions() {
+        return this.asignacions;
     }
     
-    public void setCertificacions(Set certificacions) {
-        this.certificacions = certificacions;
+    public void setAsignacions(Set asignacions) {
+        this.asignacions = asignacions;
     }
-    public Set getDetalleExamens() {
-        return this.detalleExamens;
+    public Set getDetalles() {
+        return this.detalles;
     }
     
-    public void setDetalleExamens(Set detalleExamens) {
-        this.detalleExamens = detalleExamens;
+    public void setDetalles(Set detalles) {
+        this.detalles = detalles;
     }
 
 

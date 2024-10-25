@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="#{sessionBean.template}">
+        <ui:define name="content">
+            <h:head>
+                <f:event type="preRenderView" listener="#{beanValidator.verificarSesion()}"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <link href="../src/css/stylesGeneral.css" rel="stylesheet" type="text/css"/>
+                <script src="../js/script.js" type="text/javascript"></script>
+
+            </h:head>
+            <h:body onload="foco('form:ceom')">
+
+                <div class="contenedor">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 45px !important; font-weight: 800; color: #142957;">
+                        Crear Nuevo Empleo
+                    </h1>
+                    <h3>
+                        Complete el formulario a continuación para registrar un nuevo empleo disponible.
+                    </h3>
+                    <h:form id="form"> 
+                        <p:growl id="growl" showDetail="true" />
+                        <div class="panel">
+                            <h4>
+                                Información del Empleo
+                            </h4>
+                            <div class="panelInformacion">
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="CEOM" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:inputText placeholder="Ejemplo: E71A20" id="ceom" value="#{beanEmpleo.ceom}" styleClass="input" style="width: 90%;" required="true" requiredMessage="*El CEOM es obligatorio" 
+                                                         onkeypress="if (event.keyCode === 13) {
+                                                                     foco('form:descripcion');
+                                                                     return false
+                                                                 }"/>
+                                            <p:message for="ceom" display="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Descripcion" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:inputText placeholder="Descripción del Empleo" id="descripcion" value="#{beanEmpleo.descripcion}" styleClass="input" style="width: 90%;" required="true" requiredMessage="*La descripción del empleo es obligatorio"/>                                                        
+                                            <p:message for="descripcion" display="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenedorBoton">
+                                <p:commandButton value="Crear Empleo" update="form growl" action="#{beanEmpleo.insertar}" class="boton" style="font-weight:400; font-size: 18px !important; font-family: 'Poppins', sans-serif; "/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </h:body> 
+        </ui:define>
+    </ui:composition>
+</html>

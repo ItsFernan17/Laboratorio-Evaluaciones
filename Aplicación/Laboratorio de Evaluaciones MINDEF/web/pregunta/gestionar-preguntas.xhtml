@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <ui:composition template="#{sessionBean.template}">
+        <ui:define name="content">
+            <h:head>
+                <f:event type="preRenderView" listener="#{beanValidator.verificarSesion()}"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <link href="../src/css/stylesGeneral.css" rel="stylesheet" type="text/css"/>
+            </h:head>
+
+            <h:body>
+                <p:growl id="growl" showDetail="true" />
+
+                <div style="margin-left: 50px !important; margin-right: 50px !important; margin-bottom: 20px; margin-top: 30px !important;">
+                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 45px !important; font-weight: 800; color: #142957;">
+                        Preguntas y Respuestas para Examen
+                    </h1>   
+
+                    <h:form id="tabla">
+                        <p:dataTable var="row" value="#{beanPreguntaRespuesta.listaRespuestas}">
+                            <p:column headerText="Pregunta">
+                                <h:outputText value="#{row[1]}"/>
+                            </p:column>
+
+                            <p:column headerText="Punteo">
+                                <h:outputText value="#{row[2]}"/>
+                            </p:column>
+
+                            <p:column headerText="Respuesta No. 1">
+                                <h:outputText value="#{row[3]}"/>
+                            </p:column>
+
+                            <p:column headerText="¿Correcta?">
+                                <h:outputText value="#{row[4] == 1 ? 'Correcta' : 'Incorrecta'}" />
+                            </p:column>
+
+                            <p:column headerText="Respuesta No. 2">
+                                <h:outputText value="#{row[5]}"/>
+                            </p:column>
+
+                            <p:column headerText="¿Correcta?">
+                                <h:outputText value="#{row[6] == 1 ? 'Correcta' : 'Incorrecta'}"/> 
+                            </p:column>
+
+                            <p:column headerText="Respuesta No. 3">
+                                <h:outputText value="#{row[7]}"/> 
+                            </p:column>
+
+                            <p:column headerText="¿Correcta?">
+                                <h:outputText value="#{row[8] == 1 ? 'Correcta' : 'Incorrecta'}"/>
+                            </p:column>
+
+                            <p:column headerText="Acciones">
+                                <p:commandButton id="modificarPregunta" icon="pi pi-file-edit" 
+                                                 action="#{beanPreguntaRespuesta.seleccionarPregunta(row)}" 
+                                                 oncomplete="PF('dlgEditarPregunta').show()" 
+                                                 update=":formEditarPregunta" 
+                                                 styleClass="aceptar" style="margin-right: 5px; border-radius: 5px !important; height: 45px !important" />
+
+                                <p:commandButton id="anularPregunta" icon="pi pi-trash" 
+                                                 action="#{beanPreguntaRespuesta.seleccionarPregunta(row)}" 
+                                                 oncomplete="PF('dlgAnularPregunta').show()" 
+                                                 update=":formAnularPregunta" 
+                                                 styleClass="anular" style="border-radius: 5px !important; height: 45px" />
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </h:form>
+
+                    <!-- Editar Pregunta Dialog -->
+                    <p:dialog id="formEditarPreguntaDlg" header="Actualizar Pregunta" widgetVar="dlgEditarPregunta" draggable="false" modal="true" width="720" showEffect="fade" closeOnEscape="false" closable="false">
+                        <h:form id="formEditarPregunta">
+                            <div class="panelInformacion">
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <p:outputLabel value="Enunciado" styleClass="label" style="margin-bottom: 5px" />
+                                            <p:inputText placeholder="Ejemplo: ¿Cuál es la misión del EMDN?" id="enunciado" value="#{beanPreguntaRespuesta.enunciado}" styleClass="input" style="width: 90%;" required="true" requiredMessage="*El enunciado es obligatorio" />
+                                            <p:message for="enunciado" display="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="border: none">
+                                    <div class="ui-fluid formgrid grid">
+                                        <div class="ui-fluid formgrid grid">
+                                            <div class="ui-fluid formgrid grid">
+                                                <div style="display: flex; flex-direction: column;">
+                                                    <p:outputLabel value="Punteo" styleClass="label" style="margin-bottom: 5px" />
+                                                    <p:inputText placeholder="1, 2, 0.5, etc." type="number" id="punteo" value="#{beanPreguntaRespuesta.punteo}" styleClass="input" 
+                                                                 style="width: 90%;" required="true" requiredMessage="*El punteo es obligatorio" 
+                                                                 validatorMessage="*El punteo mínimo es de 0.5">
+                                                        <f:validateDoubleRange minimum="0.5" />
+                                                    </p:inputText>
+                                                    <p:message for="punteo" display="text" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <p:commandButton value="Actualizar" action="#{beanPreguntaRespuesta.update()}" update=":tabla :growl" 
+                                                 onclick="PF('dlgEditar').hide()" 
+                                                 styleClass="aceptar" style="width: 20%; border-radius: 10px !important; margin-right: 10px; margin-bottom: 0"/>
+
+                                <p:commandButton value="Cancelar" onclick="PF('dlgEditar').hide()" 
+                                                 styleClass="anular" style="width: 20%; border-radius: 10px !important; margin-bottom: 0"/>
+                            </div>
+                        </h:form>
+                    </p:dialog>
+
+
+                    <!-- Anular Pregunta Dialog -->
+                    <p:dialog id="formAnularPreguntaDlg" header="Anular Pregunta" widgetVar="dlgAnularPregunta" draggable="false" modal="true" width="600" showEffect="fade" closeOnEscape="false" closable="false">
+                        <h:form id="formAnularPregunta">
+                            <h:outputLabel value="¿Desea Anular el siguiente Registro?" style="font-family: 'Poppins', sans-serif; margin-top: 20px !important; font-size:25px; font-weight: 800; color:#142957"/>
+                            <br></br>
+                            <br></br>
+                            <h:outputLabel value="Pregunta: #{beanPreguntaRespuesta.enunciado}" style="font-family: 'Poppins', sans-serif;"/>
+                            <br></br>
+                            <h:outputLabel value="Punteo #{beanPreguntaRespuesta.punteo}" style="font-family: 'Poppins', sans-serif;"/>
+                            <br></br>
+                            <center>
+                                <p:commandButton id="si" value="Confirmar" update=":tabla :growl" onclick="PF('dlgAnular').hide()" action="#{beanPreguntaRespuesta.anular()}" styleClass="anular" style="width: 30%; margin-bottom: 0 !important;"/>
+                                <p:commandButton id="no" value="Cancelar" onclick="PF('dlgAnular').hide()" styleClass="boton" style="margin-left: 20px !important; justify-content: center; font-weight:800; margin-bottom: 0 !important; font-family: 'Poppis', sans-serif; margin-top: 20px; width: 30%;"/>
+                            </center>  
+                        </h:form>
+                    </p:dialog>             
+                </div>
+            </h:body> 
+        </ui:define>
+    </ui:composition>
+
+</html>
