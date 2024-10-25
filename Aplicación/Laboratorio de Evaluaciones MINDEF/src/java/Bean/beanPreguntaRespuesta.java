@@ -7,6 +7,7 @@ package Bean;
 
 import Pojos.Pregunta;
 import Pojos.Respuesta;
+import Scope.sessionBean;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,13 +15,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 /**
  *
- * @author ferna
+ * @author escobo
  */
 @ManagedBean
 @ViewScoped
@@ -40,9 +42,22 @@ public class beanPreguntaRespuesta {
     private List<Object[]> listaRespuestas;
     private List listaPreguntas = null;
 
+    @ManagedProperty(value = "#{sessionBean}")
+    private sessionBean sessionBean = null;
+
+    public sessionBean getSessionBean() {
+        return sessionBean;
+    }
+
+    public void setSessionBean(sessionBean sessionBean) {
+        this.sessionBean = sessionBean;
+    }   
+    
+    
+    
     @PostConstruct
     public void init() {
-        comboPregunta();
+       comboPregunta();
        mostrar();
     }
 
@@ -51,7 +66,7 @@ public class beanPreguntaRespuesta {
         if (enunciado == null || enunciado.isEmpty() || punteo == null) {
             context.addMessage(null, new FacesMessage("Error", "Campos Vacios"));
         } else {
-            if (CRUDs.CRUDPregunta.insert(enunciado, punteo, "1724271260706")) {
+            if (CRUDs.CRUDPregunta.insert(enunciado, punteo, getSessionBean().getUsuario().getDpi())) {
                 limpiar();
                 recargarPreguntas();
                 context.addMessage(null, new FacesMessage("Exito", "¡Pregunta registrada!"));
@@ -89,7 +104,7 @@ public class beanPreguntaRespuesta {
                 context.addMessage(null, new FacesMessage("Error", "Campos vacíos en la respuesta " + i));
                 exito = false;
                 break;
-            } else if (!CRUDs.CRUDRespuesta.insert(currentRespuesta, currentEsCorrecta, codigoPregunta, "1724271260706")) {
+            } else if (!CRUDs.CRUDRespuesta.insert(currentRespuesta, currentEsCorrecta, codigoPregunta, getSessionBean().getUsuario().getDpi())) {
                 context.addMessage(null, new FacesMessage("Error", "No se pudo registrar la respuesta " + i));
                 exito = false;
                 break;
@@ -110,7 +125,7 @@ public class beanPreguntaRespuesta {
             context.addMessage(null, new FacesMessage("Error", "Campos Vacios"));
         } else {
 
-            if (CRUDs.CRUDPregunta.update(codigoPregunta, enunciado, punteo, "1724271260706")) {
+            if (CRUDs.CRUDPregunta.update(codigoPregunta, enunciado, punteo, getSessionBean().getUsuario().getDpi())) {
                 context.addMessage(null, new FacesMessage("Exito", "¡Pregunta Actualizado!"));
                 mostrar();
             } else {

@@ -9,6 +9,7 @@
     <ui:composition template="#{sessionBean.template}">
         <ui:define name="content">
             <h:head>
+                <f:event type="preRenderView" listener="#{beanValidator.verificarSesion()}"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <link href="../src/css/stylesGeneral.css" rel="stylesheet" type="text/css"/>
                 <script src="../js/script.js" type="text/javascript"></script>
@@ -21,7 +22,7 @@
                         Crear Nuevo Empleo
                     </h1>
                     <h3>
-                         Complete el formulario a continuación para registrar un nuevo empleo disponible.
+                        Complete el formulario a continuación para registrar un nuevo empleo disponible.
                     </h3>
                     <h:form id="form"> 
                         <p:growl id="growl" showDetail="true" />
@@ -36,9 +37,9 @@
                                             <p:outputLabel value="CEOM" styleClass="label" style="margin-bottom: 5px" />
                                             <p:inputText placeholder="Ejemplo: E71A20" id="ceom" value="#{beanEmpleo.ceom}" styleClass="input" style="width: 90%;" required="true" requiredMessage="*El CEOM es obligatorio" 
                                                          onkeypress="if (event.keyCode === 13) {
-                                                                        foco('form:descripcion');
-                                                                        return false
-                                                                    }"/>
+                                                                     foco('form:descripcion');
+                                                                     return false
+                                                                 }"/>
                                             <p:message for="ceom" display="text" />
                                         </div>
                                     </div>

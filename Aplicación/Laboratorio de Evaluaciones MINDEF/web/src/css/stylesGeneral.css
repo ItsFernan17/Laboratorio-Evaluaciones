@@ -15,6 +15,7 @@ h3{
     font-size: 22px;
     font-family: 'Poppins', sans-serif;
     font-weight: normal;
+    color: #142957
 }
 
 .h4, h4 {
@@ -75,12 +76,13 @@ body .ui-panel .ui-panel-content{
 }
 
 .ui-calendar input{
-    background-color: #ece3d4 !important;
+    background-color: #ebf2fb !important;
+    border: 1px solid #142957 !important;
     font-family: 'Poppins', sans-serif;
-    font-size: 15px !important;
+    font-size: 17px !important;
     font-weight: 500;
-    color: #9b8b71 !important; 
     margin-bottom: 15px !important;
+    color: black !important;
 }
 
 .contenedorBoton{
@@ -157,8 +159,6 @@ body .ui-panel .ui-panel-content{
     border: 2px solid #0f763d !important;
     font-family: 'Poppins', sans-serif;
 }
-
-
 
 
 .ui-datatable {

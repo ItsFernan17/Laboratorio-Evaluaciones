@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -13,9 +13,9 @@ import java.util.Set;
 public class Pregunta  implements java.io.Serializable {
 
 
-     private int codigoPregunta;
-     private Usuario usuarioByUsuarioIngreso;
+     private Integer codigoPregunta;
      private Usuario usuarioByUsuarioModifica;
+     private Usuario usuarioByUsuarioIngreso;
      private Boolean estado;
      private String enunciado;
      private BigDecimal punteo;
@@ -27,14 +27,9 @@ public class Pregunta  implements java.io.Serializable {
     public Pregunta() {
     }
 
-	
-    public Pregunta(int codigoPregunta) {
-        this.codigoPregunta = codigoPregunta;
-    }
-    public Pregunta(int codigoPregunta, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, String enunciado, BigDecimal punteo, Date fechaIngreso, Date fechaModifica, Set detalles, Set respuestas) {
-       this.codigoPregunta = codigoPregunta;
-       this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
+    public Pregunta(Usuario usuarioByUsuarioModifica, Usuario usuarioByUsuarioIngreso, Boolean estado, String enunciado, BigDecimal punteo, Date fechaIngreso, Date fechaModifica, Set detalles, Set respuestas) {
        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
+       this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
        this.estado = estado;
        this.enunciado = enunciado;
        this.punteo = punteo;
@@ -44,19 +39,12 @@ public class Pregunta  implements java.io.Serializable {
        this.respuestas = respuestas;
     }
    
-    public int getCodigoPregunta() {
+    public Integer getCodigoPregunta() {
         return this.codigoPregunta;
     }
     
-    public void setCodigoPregunta(int codigoPregunta) {
+    public void setCodigoPregunta(Integer codigoPregunta) {
         this.codigoPregunta = codigoPregunta;
-    }
-    public Usuario getUsuarioByUsuarioIngreso() {
-        return this.usuarioByUsuarioIngreso;
-    }
-    
-    public void setUsuarioByUsuarioIngreso(Usuario usuarioByUsuarioIngreso) {
-        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
     }
     public Usuario getUsuarioByUsuarioModifica() {
         return this.usuarioByUsuarioModifica;
@@ -64,6 +52,13 @@ public class Pregunta  implements java.io.Serializable {
     
     public void setUsuarioByUsuarioModifica(Usuario usuarioByUsuarioModifica) {
         this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
+    }
+    public Usuario getUsuarioByUsuarioIngreso() {
+        return this.usuarioByUsuarioIngreso;
+    }
+    
+    public void setUsuarioByUsuarioIngreso(Usuario usuarioByUsuarioIngreso) {
+        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
     }
     public Boolean getEstado() {
         return this.estado;

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojos.Usuario" table="usuario" catalog="laboratorio_evaluados" optimistic-lock="version">
         <id name="dpi" type="string">
@@ -38,11 +38,11 @@
         <property name="contrasenia" type="string">
             <column name="CONTRASENIA" length="45" />
         </property>
-        <set name="empleosForUsuarioModifica" table="empleo" inverse="true" lazy="true" fetch="select">
+        <set name="asignacionsForUsuarioIngreso" table="asignacion" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO_MODIFICA" length="25" />
+                <column name="USUARIO_INGRESO" length="25" />
             </key>
-            <one-to-many class="Pojos.Empleo" />
+            <one-to-many class="Pojos.Asignacion" />
         </set>
         <set name="detallesForUsuarioIngreso" table="detalle" inverse="true" lazy="true" fetch="select">
             <key>
@@ -50,11 +50,35 @@
             </key>
             <one-to-many class="Pojos.Detalle" />
         </set>
-        <set name="examensForUsuario" table="examen" inverse="true" lazy="true" fetch="select">
+        <set name="asignacionsForUsuarioModifica" table="asignacion" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="USUARIO" length="25" />
+                <column name="USUARIO_MODIFICA" length="25" />
             </key>
-            <one-to-many class="Pojos.Examen" />
+            <one-to-many class="Pojos.Asignacion" />
+        </set>
+        <set name="detallesForUsuarioModifica" table="detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USUARIO_MODIFICA" length="25" />
+            </key>
+            <one-to-many class="Pojos.Detalle" />
+        </set>
+        <set name="preguntasForUsuarioModifica" table="pregunta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USUARIO_MODIFICA" length="25" />
+            </key>
+            <one-to-many class="Pojos.Pregunta" />
+        </set>
+        <set name="empleosForUsuarioModifica" table="empleo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USUARIO_MODIFICA" length="25" />
+            </key>
+            <one-to-many class="Pojos.Empleo" />
+        </set>
+        <set name="asignacionsForEvaluado" table="asignacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EVALUADO" length="25" />
+            </key>
+            <one-to-many class="Pojos.Asignacion" />
         </set>
         <set name="empleosForUsuarioIngreso" table="empleo" inverse="true" lazy="true" fetch="select">
             <key>
@@ -74,23 +98,11 @@
             </key>
             <one-to-many class="Pojos.Respuesta" />
         </set>
-        <set name="detallesForUsuarioModifica" table="detalle" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_MODIFICA" length="25" />
-            </key>
-            <one-to-many class="Pojos.Detalle" />
-        </set>
         <set name="examensForUsuarioIngreso" table="examen" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="USUARIO_INGRESO" length="25" />
             </key>
             <one-to-many class="Pojos.Examen" />
-        </set>
-        <set name="preguntasForUsuarioModifica" table="pregunta" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="USUARIO_MODIFICA" length="25" />
-            </key>
-            <one-to-many class="Pojos.Pregunta" />
         </set>
         <set name="respuestasForUsuarioIngreso" table="respuesta" inverse="true" lazy="true" fetch="select">
             <key>

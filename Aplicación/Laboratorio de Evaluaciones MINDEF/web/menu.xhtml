@@ -10,11 +10,39 @@
         <ui:define name="content">
             <h:head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <link href="src/css/stylesNavbar.css" rel="stylesheet" type="text/css"/>
-
+                <link href="src/css/stylesMenu.css" rel="stylesheet" type="text/css"/>
             </h:head>
             <h:body>
-                hola
+                    <h:form>
+                        <div class="container">
+                            <div class="header">
+                                <h1 class="main-title">
+                                    Estado Mayor de la Defensa Nacional
+                                </h1>
+                                <h2 class="sub-title">
+                                    Dirección de Personal Del Estado Mayor de la Defensa Nacional
+                                </h2>
+                            </div>
+                            <div class="logo-container">
+                                <h:graphicImage value="/resources/img/logo_dpemdn.png" alt="Logo de la Defensa Nacional" class="logo" />
+                            </div>
+                            <div class="welcome-section">
+                                <h2 class="welcome-heading">
+                                    ¡Bienvenido al Sistema de Evaluación!
+                                </h2>
+
+                                <!-- Mensaje de bienvenida -->
+                                <h:outputText value="#{beanSaludos.getSaludoAtencion()}" styleClass="info-text" style="font-weight: 800;" />
+
+                                <span class="info-text">
+                                    Es fundamental que toda la información contenida en este sistema sea tratada con el máximo cuidado y confidencialidad,
+                                    siguiendo los protocolos de seguridad establecidos. La manipulación de los datos debe ser precisa y rigurosa,
+                                    ya que cualquier uso indebido podría comprometer la integridad del sistema y la privacidad de la información.
+                                </span>
+                            </div>
+                        </div>
+                    </h:form>
+
             </h:body> 
         </ui:define>
     </ui:composition>

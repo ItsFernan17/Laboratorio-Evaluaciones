@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.Date;
 public class Respuesta  implements java.io.Serializable {
 
 
-     private int codigoRespuesta;
+     private Integer codigoRespuesta;
      private Pregunta pregunta;
      private Usuario usuarioByUsuarioModifica;
      private Usuario usuarioByUsuarioIngreso;
@@ -23,12 +23,7 @@ public class Respuesta  implements java.io.Serializable {
     public Respuesta() {
     }
 
-	
-    public Respuesta(int codigoRespuesta) {
-        this.codigoRespuesta = codigoRespuesta;
-    }
-    public Respuesta(int codigoRespuesta, Pregunta pregunta, Usuario usuarioByUsuarioModifica, Usuario usuarioByUsuarioIngreso, Boolean estado, String respuesta, Boolean escorrecta, Date fechaIngreso, Date fechaModifica) {
-       this.codigoRespuesta = codigoRespuesta;
+    public Respuesta(Pregunta pregunta, Usuario usuarioByUsuarioModifica, Usuario usuarioByUsuarioIngreso, Boolean estado, String respuesta, Boolean escorrecta, Date fechaIngreso, Date fechaModifica) {
        this.pregunta = pregunta;
        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
@@ -39,11 +34,11 @@ public class Respuesta  implements java.io.Serializable {
        this.fechaModifica = fechaModifica;
     }
    
-    public int getCodigoRespuesta() {
+    public Integer getCodigoRespuesta() {
         return this.codigoRespuesta;
     }
     
-    public void setCodigoRespuesta(int codigoRespuesta) {
+    public void setCodigoRespuesta(Integer codigoRespuesta) {
         this.codigoRespuesta = codigoRespuesta;
     }
     public Pregunta getPregunta() {

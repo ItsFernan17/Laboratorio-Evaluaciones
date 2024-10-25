@@ -21,7 +21,19 @@ public class beanEmpleo {
 
     private String ceom;
     private String descripcion;
-    private List listaEmpleos;
+    private List listaEmpleos;   
+    
+    @ManagedProperty(value = "#{sessionBean}")
+    private sessionBean sessionBean = null;
+
+    public sessionBean getSessionBean() {
+        return sessionBean;
+    }
+
+    public void setSessionBean(sessionBean sessionBean) {
+        this.sessionBean = sessionBean;
+    }
+    
 
     @PostConstruct
     public void init() {
@@ -33,7 +45,7 @@ public class beanEmpleo {
         if (ceom == null || ceom.isEmpty() || descripcion == null || descripcion.isEmpty()) {
             context.addMessage(null, new FacesMessage("Error", "Campos Vacios"));
         } else {
-            if (CRUDs.CRUDEmpleo.insert(ceom, descripcion, "1724271260706")) {
+            if (CRUDs.CRUDEmpleo.insert(ceom, descripcion, getSessionBean().getUsuario().getDpi())) {
                 limpiar();
                 context.addMessage(null, new FacesMessage("Exito", "¡Empleo registrado!"));
             } else {
@@ -49,7 +61,7 @@ public class beanEmpleo {
             context.addMessage(null, new FacesMessage("Error", "Campos Vacios"));
         } else {
 
-            if (CRUDs.CRUDEmpleo.update(ceom, descripcion, "1724271260706")) {
+            if (CRUDs.CRUDEmpleo.update(ceom, descripcion, getSessionBean().getUsuario().getDpi())) {
                 context.addMessage(null, new FacesMessage("Exito", "¡Empleo Actualizado!"));
                 mostrar();
             } else {

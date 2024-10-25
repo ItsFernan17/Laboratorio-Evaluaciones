@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="#{sessionBean.template}">
+        <ui:define name="content">
+            <h:head>
+                <f:event type="preRenderView" listener="#{beanValidator.verificarSesion()}"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <link href="../src/css/stylesGeneral.css" rel="stylesheet" type="text/css"/>
+                <link href="../src/css/stylesMenu.css" rel="stylesheet" type="text/css"/>
+            </h:head>
+
+            <h:body>
+                <p:growl id="growl" showDetail="true" />
+                <div class="container">
+                    <div class="header">
+                        <h1 class="main-title">
+                            Estado Mayor de la Defensa Nacional
+                        </h1>
+                        <h2 class="sub-title">
+                            Dirección de Personal Del Estado Mayor de la Defensa Nacional
+                        </h2>
+                        <h:outputText value="#{beanSaludos.saludoBienvenida}" styleClass="info-text" style="font-weight: 800;" />
+                    </div>
+                </div>
+
+                <div style="margin-left: 50px !important; margin-right: 50px !important; margin-bottom: 20px; margin-top: 30px !important;">
+                    <h:form id="tabla">
+                        <p:dataTable var="row" value="#{beanAsignacion.listAsignaciones}">
+                            <p:column headerText="Evaluado">
+                                <h:outputText value="#{row.usuarioByEvaluado.nombreCompleto}"/>
+                            </p:column>
+                            <p:column headerText="Examen">
+                                <h:outputText value="#{row.examen.motivo.nombreMotivo}" />
+                            </p:column>
+                            <p:column headerText="Empelo a Optar">
+                                <h:outputText value="#{row.examen.empleo.descripcion}" />
+                            </p:column>   
+                            <p:column headerText="Puneto Neto">
+                                <h:outputText value="#{row.examen.punteoMaximo}" />
+                            </p:column>                             
+                            <p:column headerText="Realizar Examen">
+                                <p:commandButton id="hacer" value="Imprimir Examen"                                      
+                                                 style="background: none !important; color: #0f763d !important; border: none !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>                                                       
+                            </p:column>
+                            <p:column headerText="Certificación">
+                                <p:commandButton id="certificacion" value="Generar PDF"                                                                
+                                                 style="background: none !important; border: none !important; color: #142957 !important; font-family: 'Poppins', sans-serif; font-weight: 500; "/>                            
+                            </p:column>                               
+                        </p:dataTable>
+                    </h:form>
+
+                </div>
+            </h:body> 
+        </ui:define>
+    </ui:composition>
+</html>

@@ -41,15 +41,4 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="laboratorio_evaluados"/>
-  <table-filter match-name="empleo"/>
-  <table-filter match-name="detalle"/>
-  <table-filter match-name="comando"/>
-  <table-filter match-name="respuesta"/>
-  <table-filter match-name="motivo"/>
-  <table-filter match-name="examen"/>
-  <table-filter match-name="grado"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="pregunta"/>
-  <table-filter match-name="departamento_residencia"/>
-  <table-filter match-name="poblacion"/>
 </hibernate-reverse-engineering>

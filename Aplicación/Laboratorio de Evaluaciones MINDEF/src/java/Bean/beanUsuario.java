@@ -1,10 +1,12 @@
 package Bean;
 
+import Scope.sessionBean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
@@ -29,6 +31,17 @@ public class beanUsuario {
     private List listPoblaciones = null;
     private List listGrados = null;
     private List listUsuarios = null;
+
+    @ManagedProperty(value = "#{sessionBean}")
+    private sessionBean sessionBean = null;
+
+    public sessionBean getSessionBean() {
+        return sessionBean;
+    }
+
+    public void setSessionBean(sessionBean sessionBean) {
+        this.sessionBean = sessionBean;
+    }
 
     public static String generarNombreUsuario(String nombreApellido) {
         String[] partes = nombreApellido.split("\\s+");
@@ -56,6 +69,7 @@ public class beanUsuario {
         comboGrados();
         comboPoblacion();
         mostrar();
+        comboRoles();
     }
 
     public void insertar() {
@@ -111,10 +125,10 @@ public class beanUsuario {
             }
         }
     }
-
+    
     public void anular() {
         FacesContext context = FacesContext.getCurrentInstance();
-        if (dpi == null || dpi.isEmpty() ) {
+        if (dpi == null || dpi.isEmpty()) {
             context.addMessage(null, new FacesMessage("Error", "Campos Vacios"));
         } else {
             if (CRUDs.CRUDUsuario.anular(dpi)) {
@@ -169,6 +183,22 @@ public class beanUsuario {
         return listDepartamentos;
     }
 
+    public List<SelectItem> comboRoles() {
+        List<SelectItem> listRoles = new ArrayList<>();
+        String rolUsuario = getSessionBean().getUsuario().getRol();
+        
+        if (rolUsuario.equalsIgnoreCase("admin")) {
+            listRoles.add(new SelectItem("admin", "Administrador"));
+        }
+        listRoles.add(new SelectItem("evaluador", "Evaluador"));
+        listRoles.add(new SelectItem("auxiliar", "Auxiliar"));
+        listRoles.add(new SelectItem("evaluado", "Evaluado"));
+
+        return listRoles;
+    }    
+    
+    
+    
     private List<SelectItem> comboComandos() {
         setListComandos(new ArrayList<SelectItem>());
         List<Pojos.Comando> lstComando = CRUDs.CRUDComando.universo();

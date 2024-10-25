@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+    margin-top: 0;
+}
+
+.header {
+    width: 100%;
+}
+
+.main-title {
+    font-size: 48px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #142957;
+    margin-bottom: 0;
+}
+
+.sub-title {
+    font-size: 22px;
+    color: #142957;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.logo-container {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    width: 250px;
+    margin-bottom: 0;
+}
+
+/* Contenido de bienvenida */
+.welcome-section {
+    margin-top: 20px;
+    margin-left: 80px;
+    margin-right: 80px;
+    
+}
+
+.welcome-heading {
+    font-size: 33px;
+    font-weight: 700;
+    color: #142957 !important;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+    color: #1a202c;
+}
+
+.welcome-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a202c;
+}
+
+.info-text {
+    font-size: 20px;
+    color: #142957 !important;
+    font-family: 'Poppins', sans-serif;;
+}

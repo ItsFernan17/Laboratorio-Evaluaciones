@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Pojos.Motivo" table="motivo" catalog="laboratorio_evaluados" optimistic-lock="version">
         <id name="codigoMotivo" type="int">

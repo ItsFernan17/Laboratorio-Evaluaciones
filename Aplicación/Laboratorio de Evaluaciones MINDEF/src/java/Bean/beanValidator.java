@@ -17,19 +17,19 @@ import javax.faces.context.FacesContext;
 
 public class beanValidator {
 
-    @ManagedProperty(value = "{sessionBean}")
-    
+    @ManagedProperty(value = "#{sessionBean}")
+
     private sessionBean sessionBean = null;
-    
-    public void verificarSesion(){
+
+    public void verificarSesion() {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
             Usuario user = getSessionBean().getUsuario();
-            if((user == null) || (getSessionBean() == null)){
-                context.getExternalContext().redirect("/Laboratorio_de_Evaluaciones_MINDEF/");
+            if ((user == null) || (getSessionBean() == null)) {
+                context.getExternalContext().redirect("/Laboratorio_de_Evaluaciones_MINDEF");
             }
-        } catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
     }
 

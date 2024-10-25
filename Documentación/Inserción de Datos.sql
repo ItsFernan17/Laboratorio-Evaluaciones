@@ -17,6 +17,9 @@ DELIMITER $$
 
 CREATE PROCEDURE PivotPreguntasRespuestas()
 BEGIN
+    -- Eliminar la tabla temporal si ya existe
+    DROP TEMPORARY TABLE IF EXISTS temp_respuestas;
+
     -- Crear una tabla temporal para numerar las respuestas
     CREATE TEMPORARY TABLE temp_respuestas AS
     SELECT 
@@ -37,11 +40,11 @@ BEGIN
     ORDER BY 
         r.PREGUNTA, r.CODIGO_RESPUESTA;
 
-    -- Actualizar todas las respuestas de preguntas eliminadas
+    -- Actualizar todas las respuestas de preguntas eliminadas usando una clave en la condición WHERE
     UPDATE respuesta r
     LEFT JOIN pregunta p ON r.PREGUNTA = p.CODIGO_PREGUNTA
     SET r.ESTADO = 0
-    WHERE p.ESTADO = 0;
+    WHERE p.ESTADO = 0 AND r.CODIGO_RESPUESTA IS NOT NULL;  -- Se utiliza la clave CODIGO_RESPUESTA
 
     -- Crear la consulta dinámica
     SET @sql = 'SELECT t.PREGUNTA AS CODIGO_PREGUNTA, t.ENUNCIADO, t.PUNTEO';  -- Incluir el punteo
@@ -71,5 +74,152 @@ END$$
 
 DELIMITER ;
 
-
 CALL PivotPreguntasRespuestas();
+
+-- Datos de Prueba
+INSERT INTO pregunta (CODIGO_PREGUNTA, ESTADO, ENUNCIADO, PUNTEO, USUARIO_INGRESO, FECHA_INGRESO) VALUES
+(1, 1, '¿Qué día es hoy?', 2.00, '1724271260706', NOW()),
+(2, 1, '¿Cómo me llamo?', 2.00, '1724271260706', NOW()),
+(3, 1, '¿Ganó el Barça?', 1.00, '1724271260706', NOW()),
+(4, 1, '¿Cuál es la capital de Francia?', 2.00, '1724271260706', NOW()),
+(5, 1, '¿Cuánto es 5 + 5?', 2.00, '1724271260706', NOW()),
+(6, 1, '¿Cuál es el color del cielo en un día soleado?', 2.00, '1724271260706', NOW()),
+(7, 1, '¿Qué animal ladra?', 2.00, '1724271260706', NOW()),
+(8, 1, '¿Cuánto es 8 * 7?', 2.00, '1724271260706', NOW()),
+(9, 1, '¿Quién pintó La Mona Lisa?', 2.00, '1724271260706', NOW()),
+(10, 1, '¿Cuál es el planeta más cercano al Sol?', 2.00, '1724271260706', NOW()),
+(11, 1, '¿Quién escribió Hamlet?', 2.00, '1724271260706', NOW()),
+(12, 1, '¿Cuántos colores tiene un arcoíris?', 2.00, '1724271260706', NOW()),
+(13, 1, '¿Cuántos días tiene una semana?', 2.00, '1724271260706', NOW()),
+(14, 1, '¿Cuál es el metal más ligero?', 2.00, '1724271260706', NOW()),
+(15, 1, '¿Qué gas respiran los humanos?', 2.00, '1724271260706', NOW()),
+(16, 1, '¿Cuál es el océano más grande del mundo?', 2.00, '1724271260706', NOW()),
+(17, 1, '¿Qué instrumento tiene teclas blancas y negras?', 2.00, '1724271260706', NOW()),
+(18, 1, '¿Qué planeta es conocido como el planeta rojo?', 2.00, '1724271260706', NOW()),
+(19, 1, '¿Qué mes tiene el día más corto del año?', 2.00, '1724271260706', NOW()),
+(20, 1, '¿Cuál es el río más largo del mundo?', 2.00, '1724271260706', NOW()),
+(21, 1, '¿Cuántos huesos tiene el cuerpo humano?', 2.00, '1724271260706', NOW()),
+(22, 1, '¿Cuál es el animal más grande del mundo?', 2.00, '1724271260706', NOW()),
+(23, 1, '¿Qué órgano bombea la sangre?', 2.00, '1724271260706', NOW()),
+(24, 1, '¿Quién inventó la bombilla?', 2.00, '1724271260706', NOW());
+
+INSERT INTO respuesta (CODIGO_RESPUESTA, ESTADO, RESPUESTA, ESCORRECTA, PREGUNTA, USUARIO_INGRESO, FECHA_INGRESO) VALUES
+-- Respuestas para la pregunta 1
+(1, 1, 'Lunes', 0, 1, '1724271260706', NOW()),
+(2, 1, 'Viernes', 1, 1, '1724271260706', NOW()),
+(3, 1, 'Domingo', 0, 1, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 2
+(4, 1, 'Pedro', 0, 2, '1724271260706', NOW()),
+(5, 1, 'Juan', 1, 2, '1724271260706', NOW()),
+(6, 1, 'Lucas', 0, 2, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 3
+(7, 1, 'Sí', 1, 3, '1724271260706', NOW()),
+(8, 1, 'No', 0, 3, '1724271260706', NOW()),
+(9, 1, 'No sé', 0, 3, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 4
+(10, 1, 'Londres', 0, 4, '1724271260706', NOW()),
+(11, 1, 'París', 1, 4, '1724271260706', NOW()),
+(12, 1, 'Berlín', 0, 4, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 5
+(13, 1, '10', 1, 5, '1724271260706', NOW()),
+(14, 1, '15', 0, 5, '1724271260706', NOW()),
+(15, 1, '20', 0, 5, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 6
+(16, 1, 'Azul', 1, 6, '1724271260706', NOW()),
+(17, 1, 'Verde', 0, 6, '1724271260706', NOW()),
+(18, 1, 'Amarillo', 0, 6, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 7
+(19, 1, 'Perro', 1, 7, '1724271260706', NOW()),
+(20, 1, 'Gato', 0, 7, '1724271260706', NOW()),
+(21, 1, 'Elefante', 0, 7, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 8
+(22, 1, '56', 1, 8, '1724271260706', NOW()),
+(23, 1, '64', 0, 8, '1724271260706', NOW()),
+(24, 1, '72', 0, 8, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 9
+(25, 1, 'Da Vinci', 1, 9, '1724271260706', NOW()),
+(26, 1, 'Picasso', 0, 9, '1724271260706', NOW()),
+(27, 1, 'Van Gogh', 0, 9, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 10
+(28, 1, 'Mercurio', 1, 10, '1724271260706', NOW()),
+(29, 1, 'Venus', 0, 10, '1724271260706', NOW()),
+(30, 1, 'Tierra', 0, 10, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 11
+(31, 1, 'Shakespeare', 1, 11, '1724271260706', NOW()),
+(32, 1, 'Cervantes', 0, 11, '1724271260706', NOW()),
+(33, 1, 'Hemingway', 0, 11, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 12
+(34, 1, '7', 1, 12, '1724271260706', NOW()),
+(35, 1, '6', 0, 12, '1724271260706', NOW()),
+(36, 1, '8', 0, 12, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 13
+(37, 1, '7', 1, 13, '1724271260706', NOW()),
+(38, 1, '5', 0, 13, '1724271260706', NOW()),
+(39, 1, '10', 0, 13, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 14
+(40, 1, 'Litio', 1, 14, '1724271260706', NOW()),
+(41, 1, 'Hierro', 0, 14, '1724271260706', NOW()),
+(42, 1, 'Cobre', 0, 14, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 15
+(43, 1, 'Oxígeno', 1, 15, '1724271260706', NOW()),
+(44, 1, 'Dióxido de Carbono', 0, 15, '1724271260706', NOW()),
+(45, 1, 'Nitrógeno', 0, 15, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 16
+(46, 1, 'Océano Pacífico', 1, 16, '1724271260706', NOW()),
+(47, 1, 'Océano Atlántico', 0, 16, '1724271260706', NOW()),
+(48, 1, 'Océano Índico', 0, 16, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 17
+(49, 1, 'Piano', 1, 17, '1724271260706', NOW()),
+(50, 1, 'Guitarra', 0, 17, '1724271260706', NOW()),
+(51, 1, 'Violín', 0, 17, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 18
+(52, 1, 'Marte', 1, 18, '1724271260706', NOW()),
+(53, 1, 'Júpiter', 0, 18, '1724271260706', NOW()),
+(54, 1, 'Saturno', 0, 18, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 19
+(55, 1, 'Diciembre', 1, 19, '1724271260706', NOW()),
+(56, 1, 'Enero', 0, 19, '1724271260706', NOW()),
+(57, 1, 'Febrero', 0, 19, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 20
+(58, 1, 'Amazonas', 1, 20, '1724271260706', NOW()),
+(59, 1, 'Nilo', 0, 20, '1724271260706', NOW()),
+(60, 1, 'Yangtsé', 0, 20, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 21
+(61, 1, '206', 1, 21, '1724271260706', NOW()),
+(62, 1, '208', 0, 21, '1724271260706', NOW()),
+(63, 1, '204', 0, 21, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 22
+(64, 1, 'Ballena Azul', 1, 22, '1724271260706', NOW()),
+(65, 1, 'Elefante', 0, 22, '1724271260706', NOW()),
+(66, 1, 'Jirafa', 0, 22, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 23
+(67, 1, 'Corazón', 1, 23, '1724271260706', NOW()),
+(68, 1, 'Pulmón', 0, 23, '1724271260706', NOW()),
+(69, 1, 'Riñón', 0, 23, '1724271260706', NOW()),
+
+-- Respuestas para la pregunta 24
+(70, 1, 'Thomas Edison', 1, 24, '1724271260706', NOW()),
+(71, 1, 'Nikola Tesla', 0, 24, '1724271260706', NOW()),
+(72, 1, 'Benjamin Franklin', 0, 24, '1724271260706', NOW());

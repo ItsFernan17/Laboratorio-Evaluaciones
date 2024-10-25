@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,6 +15,9 @@ public class Detalle  implements java.io.Serializable {
      private Pregunta pregunta;
      private Usuario usuarioByUsuarioIngreso;
      private Usuario usuarioByUsuarioModifica;
+     private Boolean estado;
+     private String serie;
+     private String instruccion;
      private Date fechaIngreso;
      private Date fechaModifica;
 
@@ -25,12 +28,15 @@ public class Detalle  implements java.io.Serializable {
     public Detalle(int codigoDetalle) {
         this.codigoDetalle = codigoDetalle;
     }
-    public Detalle(int codigoDetalle, Examen examen, Pregunta pregunta, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Date fechaIngreso, Date fechaModifica) {
+    public Detalle(int codigoDetalle, Examen examen, Pregunta pregunta, Usuario usuarioByUsuarioIngreso, Usuario usuarioByUsuarioModifica, Boolean estado, String serie, String instruccion, Date fechaIngreso, Date fechaModifica) {
        this.codigoDetalle = codigoDetalle;
        this.examen = examen;
        this.pregunta = pregunta;
        this.usuarioByUsuarioIngreso = usuarioByUsuarioIngreso;
        this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
+       this.estado = estado;
+       this.serie = serie;
+       this.instruccion = instruccion;
        this.fechaIngreso = fechaIngreso;
        this.fechaModifica = fechaModifica;
     }
@@ -69,6 +75,27 @@ public class Detalle  implements java.io.Serializable {
     
     public void setUsuarioByUsuarioModifica(Usuario usuarioByUsuarioModifica) {
         this.usuarioByUsuarioModifica = usuarioByUsuarioModifica;
+    }
+    public Boolean getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+    public String getSerie() {
+        return this.serie;
+    }
+    
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+    public String getInstruccion() {
+        return this.instruccion;
+    }
+    
+    public void setInstruccion(String instruccion) {
+        this.instruccion = instruccion;
     }
     public Date getFechaIngreso() {
         return this.fechaIngreso;

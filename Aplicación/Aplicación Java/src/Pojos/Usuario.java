@@ -1,5 +1,5 @@
 package Pojos;
-// Generated Oct 23, 2024 11:02:41 PM by Hibernate Tools 4.3.1
+// Generated Oct 24, 2024 12:41:15 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -22,15 +22,17 @@ public class Usuario  implements java.io.Serializable {
      private String nombreUsuario;
      private String rol;
      private String contrasenia;
-     private Set empleosForUsuarioModifica = new HashSet(0);
+     private Set asignacionsForUsuarioIngreso = new HashSet(0);
      private Set detallesForUsuarioIngreso = new HashSet(0);
-     private Set examensForUsuario = new HashSet(0);
+     private Set asignacionsForUsuarioModifica = new HashSet(0);
+     private Set detallesForUsuarioModifica = new HashSet(0);
+     private Set preguntasForUsuarioModifica = new HashSet(0);
+     private Set empleosForUsuarioModifica = new HashSet(0);
+     private Set asignacionsForEvaluado = new HashSet(0);
      private Set empleosForUsuarioIngreso = new HashSet(0);
      private Set preguntasForUsuarioIngreso = new HashSet(0);
      private Set respuestasForUsuarioModifica = new HashSet(0);
-     private Set detallesForUsuarioModifica = new HashSet(0);
      private Set examensForUsuarioIngreso = new HashSet(0);
-     private Set preguntasForUsuarioModifica = new HashSet(0);
      private Set respuestasForUsuarioIngreso = new HashSet(0);
      private Set examensForUsuarioModifica = new HashSet(0);
 
@@ -41,7 +43,7 @@ public class Usuario  implements java.io.Serializable {
     public Usuario(String dpi) {
         this.dpi = dpi;
     }
-    public Usuario(String dpi, Comando comando, DepartamentoResidencia departamentoResidencia, Grado grado, Poblacion poblacion, Boolean estado, String nombreCompleto, String telefono, String nombreUsuario, String rol, String contrasenia, Set empleosForUsuarioModifica, Set detallesForUsuarioIngreso, Set examensForUsuario, Set empleosForUsuarioIngreso, Set preguntasForUsuarioIngreso, Set respuestasForUsuarioModifica, Set detallesForUsuarioModifica, Set examensForUsuarioIngreso, Set preguntasForUsuarioModifica, Set respuestasForUsuarioIngreso, Set examensForUsuarioModifica) {
+    public Usuario(String dpi, Comando comando, DepartamentoResidencia departamentoResidencia, Grado grado, Poblacion poblacion, Boolean estado, String nombreCompleto, String telefono, String nombreUsuario, String rol, String contrasenia, Set asignacionsForUsuarioIngreso, Set detallesForUsuarioIngreso, Set asignacionsForUsuarioModifica, Set detallesForUsuarioModifica, Set preguntasForUsuarioModifica, Set empleosForUsuarioModifica, Set asignacionsForEvaluado, Set empleosForUsuarioIngreso, Set preguntasForUsuarioIngreso, Set respuestasForUsuarioModifica, Set examensForUsuarioIngreso, Set respuestasForUsuarioIngreso, Set examensForUsuarioModifica) {
        this.dpi = dpi;
        this.comando = comando;
        this.departamentoResidencia = departamentoResidencia;
@@ -53,15 +55,17 @@ public class Usuario  implements java.io.Serializable {
        this.nombreUsuario = nombreUsuario;
        this.rol = rol;
        this.contrasenia = contrasenia;
-       this.empleosForUsuarioModifica = empleosForUsuarioModifica;
+       this.asignacionsForUsuarioIngreso = asignacionsForUsuarioIngreso;
        this.detallesForUsuarioIngreso = detallesForUsuarioIngreso;
-       this.examensForUsuario = examensForUsuario;
+       this.asignacionsForUsuarioModifica = asignacionsForUsuarioModifica;
+       this.detallesForUsuarioModifica = detallesForUsuarioModifica;
+       this.preguntasForUsuarioModifica = preguntasForUsuarioModifica;
+       this.empleosForUsuarioModifica = empleosForUsuarioModifica;
+       this.asignacionsForEvaluado = asignacionsForEvaluado;
        this.empleosForUsuarioIngreso = empleosForUsuarioIngreso;
        this.preguntasForUsuarioIngreso = preguntasForUsuarioIngreso;
        this.respuestasForUsuarioModifica = respuestasForUsuarioModifica;
-       this.detallesForUsuarioModifica = detallesForUsuarioModifica;
        this.examensForUsuarioIngreso = examensForUsuarioIngreso;
-       this.preguntasForUsuarioModifica = preguntasForUsuarioModifica;
        this.respuestasForUsuarioIngreso = respuestasForUsuarioIngreso;
        this.examensForUsuarioModifica = examensForUsuarioModifica;
     }
@@ -143,12 +147,12 @@ public class Usuario  implements java.io.Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-    public Set getEmpleosForUsuarioModifica() {
-        return this.empleosForUsuarioModifica;
+    public Set getAsignacionsForUsuarioIngreso() {
+        return this.asignacionsForUsuarioIngreso;
     }
     
-    public void setEmpleosForUsuarioModifica(Set empleosForUsuarioModifica) {
-        this.empleosForUsuarioModifica = empleosForUsuarioModifica;
+    public void setAsignacionsForUsuarioIngreso(Set asignacionsForUsuarioIngreso) {
+        this.asignacionsForUsuarioIngreso = asignacionsForUsuarioIngreso;
     }
     public Set getDetallesForUsuarioIngreso() {
         return this.detallesForUsuarioIngreso;
@@ -157,12 +161,40 @@ public class Usuario  implements java.io.Serializable {
     public void setDetallesForUsuarioIngreso(Set detallesForUsuarioIngreso) {
         this.detallesForUsuarioIngreso = detallesForUsuarioIngreso;
     }
-    public Set getExamensForUsuario() {
-        return this.examensForUsuario;
+    public Set getAsignacionsForUsuarioModifica() {
+        return this.asignacionsForUsuarioModifica;
     }
     
-    public void setExamensForUsuario(Set examensForUsuario) {
-        this.examensForUsuario = examensForUsuario;
+    public void setAsignacionsForUsuarioModifica(Set asignacionsForUsuarioModifica) {
+        this.asignacionsForUsuarioModifica = asignacionsForUsuarioModifica;
+    }
+    public Set getDetallesForUsuarioModifica() {
+        return this.detallesForUsuarioModifica;
+    }
+    
+    public void setDetallesForUsuarioModifica(Set detallesForUsuarioModifica) {
+        this.detallesForUsuarioModifica = detallesForUsuarioModifica;
+    }
+    public Set getPreguntasForUsuarioModifica() {
+        return this.preguntasForUsuarioModifica;
+    }
+    
+    public void setPreguntasForUsuarioModifica(Set preguntasForUsuarioModifica) {
+        this.preguntasForUsuarioModifica = preguntasForUsuarioModifica;
+    }
+    public Set getEmpleosForUsuarioModifica() {
+        return this.empleosForUsuarioModifica;
+    }
+    
+    public void setEmpleosForUsuarioModifica(Set empleosForUsuarioModifica) {
+        this.empleosForUsuarioModifica = empleosForUsuarioModifica;
+    }
+    public Set getAsignacionsForEvaluado() {
+        return this.asignacionsForEvaluado;
+    }
+    
+    public void setAsignacionsForEvaluado(Set asignacionsForEvaluado) {
+        this.asignacionsForEvaluado = asignacionsForEvaluado;
     }
     public Set getEmpleosForUsuarioIngreso() {
         return this.empleosForUsuarioIngreso;
@@ -185,26 +217,12 @@ public class Usuario  implements java.io.Serializable {
     public void setRespuestasForUsuarioModifica(Set respuestasForUsuarioModifica) {
         this.respuestasForUsuarioModifica = respuestasForUsuarioModifica;
     }
-    public Set getDetallesForUsuarioModifica() {
-        return this.detallesForUsuarioModifica;
-    }
-    
-    public void setDetallesForUsuarioModifica(Set detallesForUsuarioModifica) {
-        this.detallesForUsuarioModifica = detallesForUsuarioModifica;
-    }
     public Set getExamensForUsuarioIngreso() {
         return this.examensForUsuarioIngreso;
     }
     
     public void setExamensForUsuarioIngreso(Set examensForUsuarioIngreso) {
         this.examensForUsuarioIngreso = examensForUsuarioIngreso;
-    }
-    public Set getPreguntasForUsuarioModifica() {
-        return this.preguntasForUsuarioModifica;
-    }
-    
-    public void setPreguntasForUsuarioModifica(Set preguntasForUsuarioModifica) {
-        this.preguntasForUsuarioModifica = preguntasForUsuarioModifica;
     }
     public Set getRespuestasForUsuarioIngreso() {
         return this.respuestasForUsuarioIngreso;
