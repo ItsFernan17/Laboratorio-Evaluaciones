@@ -1,6 +1,6 @@
 # Laboratorio-Evaluaciones-Web
 
-<img src="./Aplicación/Laboratorio de Evaluaciones MINDEF/web/resources/img/logotipo.png alt="Laboratorio Evaluaciones" width="350" />
+<img src="./Aplicación/Laboratorio de Evaluaciones MINDEF/web/resources/img/logotipo.png" alt="Laboratorio Evaluaciones" width="350" />
 
 ## Descripción
 
@@ -28,7 +28,7 @@ Sigue estos pasos para instalar y configurar el proyecto en tu entorno local:
 1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/laboratorio-evaluaciones-web.git
+   git clone https://github.com/tu-usuario/laboratorio-evaluaciones.git
 
 2. Configura la base de datos:
 
