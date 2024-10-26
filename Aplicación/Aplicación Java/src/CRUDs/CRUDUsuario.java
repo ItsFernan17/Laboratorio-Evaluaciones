@@ -34,11 +34,11 @@ public class CRUDUsuario {
             transaction = session.beginTransaction();
             if (insert == null) {
                 insert = new Usuario();
-<<<<<<< HEAD
+
                 insert.setCodigoUsuario(0);
-=======
+
                 insert.setDpi(dpi);
->>>>>>> main
+
                 insert.setEstado(true);
                 insert.setNombreCompleto(nombreCompleto);
                 insert.setTelefono(telefono);
